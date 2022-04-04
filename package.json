@@ -18,11 +18,14 @@
     "@angular/common": "~13.3.0",
     "@angular/compiler": "~13.3.0",
     "@angular/core": "~13.3.0",
+    "@angular/flex-layout": "^13.0.0-beta.38",
     "@angular/forms": "~13.3.0",
     "@angular/material": "^13.3.2",
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
+    "highcharts": "^10.0.0",
+    "highcharts-angular": "^3.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -54,8 +57,8 @@
     "typescript": "~4.6.2"
   },
   "husky": {
-		"hooks": {
-			"pre-commit": "npm run lint-format && git add ."
-		}
-	}
+    "hooks": {
+      "pre-commit": "npm run lint-format && git add ."
+    }
+  }
 }

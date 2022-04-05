@@ -1,3 +1,4 @@
+import { AngularMaterialModule } from './../angular-material-modulo';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -10,8 +11,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { TreeComponent } from './components/tree/tree.component';
 @NgModule({
-	declarations: [HeaderComponent, FooterComponent, SidebarComponent],
+	declarations: [HeaderComponent, FooterComponent, SidebarComponent, TreeComponent],
 	imports: [
 		MatListModule,
 		MatMenuModule,
@@ -20,7 +23,9 @@ import { MatListModule } from '@angular/material/list';
 		MatToolbarModule,
 		MatIconModule,
 		MatButtonModule,
-		FlexLayoutModule
+		MatExpansionModule,
+		FlexLayoutModule,
+		AngularMaterialModule
 	],
 	exports: [HeaderComponent, FooterComponent, SidebarComponent]
 })

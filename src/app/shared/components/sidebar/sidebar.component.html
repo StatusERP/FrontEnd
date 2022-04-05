@@ -8,11 +8,37 @@
 	</div>
 	<mat-divider></mat-divider>
 	<h2 matSubheader>Modulos</h2>
-	<a mat-list-item routerLinkActive="lis-item-active" routerLink="/">Admin-Sistemas</a>
-	<a mat-list-item routerLinkActive="lis-item-active" routerLink="/">Facturacion</a>
-	<a mat-list-item routerLinkActive="lis-item-active" routerLink="/">Inventario</a>
-	<a mat-list-item routerLinkActive="lis-item-active" routerLink="/">Cuentas por Cobrar</a>
-	<a mat-list-item routerLinkActive="lis-item-active" routerLink="/">Contabilidad General</a>
-	<a mat-list-item routerLinkActive="lis-item-active" routerLink="/">Control Bancario</a>
-	<a mat-list-item routerLinkActive="lis-item-active" routerLink="/">Cuentas por Pagar</a>
+	<mat-accordion>
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-panel-title> <mat-icon>admin_panel_settings</mat-icon> <span>Admin-Sistemas</span> </mat-panel-title>
+			</mat-expansion-panel-header>
+			<app-tree></app-tree>
+		</mat-expansion-panel>
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-panel-title> <mat-icon>account_balance</mat-icon> <span>Facturacion</span> </mat-panel-title>
+			</mat-expansion-panel-header>
+		</mat-expansion-panel>
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-panel-title> <mat-icon>account_balance</mat-icon> <span>Inventario</span> </mat-panel-title>
+			</mat-expansion-panel-header>
+		</mat-expansion-panel>
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-panel-title> <mat-icon>account_balance</mat-icon> <span>Cuentas por Cobrar</span> </mat-panel-title>
+			</mat-expansion-panel-header>
+		</mat-expansion-panel>
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-panel-title> <mat-icon>account_balance</mat-icon> <span>Contabilidad General</span> </mat-panel-title>
+			</mat-expansion-panel-header>
+		</mat-expansion-panel>
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-panel-title> <mat-icon>account_balance</mat-icon> <span>Cuentas Por Pagar</span> </mat-panel-title>
+			</mat-expansion-panel-header>
+		</mat-expansion-panel>
+	</mat-accordion>
 </mat-nav-list>

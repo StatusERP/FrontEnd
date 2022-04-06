@@ -37,3 +37,10 @@ export interface IRequestChangePassword {
 	newPassword: string;
 }
 //#endregion
+//#region  CHANGE PASWWORD
+export interface IRequestChangePassword {
+	email: string;
+	oldPassword: string;
+	newPassword: string;
+}
+//#endregion

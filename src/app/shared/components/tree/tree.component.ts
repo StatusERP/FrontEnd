@@ -204,11 +204,7 @@ export class TreeComponent implements OnInit {
 	ngOnInit(): void {
 		this.nestdDataSource.data = TREE_DATA;
 	}
-	/*
-  hasNestedChild(): void {
-		return ok('hola');
-	}
-	*/
+
 	hasNestedChild(index: number, node: AdminNode): number | undefined {
 		return node?.children?.length;
 	}

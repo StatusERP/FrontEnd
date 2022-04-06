@@ -2,21 +2,31 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
 	<mat-card class="box">
 		<mat-card-header>
-			<mat-card-title>Mi Cuenta</mat-card-title>
+			<mat-card-title>INICIO DE SESION</mat-card-title>
 		</mat-card-header>
-		<form class="example-form">
+		<form class="example-form" autocomplete="off" [formGroup]="formGroup">
 			<mat-card-content>
 				<mat-form-field class="example-full-width">
-					<input type="Email" matInput placeholder="Email" />
+					<input type="Email" matInput placeholder="Email" formControlName="email" />
 				</mat-form-field>
 				<mat-form-field class="example-full-width">
-					<input type="password" matInput placeholder="Contraseña" />
+					<input type="password" matInput placeholder="Contraseña" formControlName="password" />
 				</mat-form-field>
 				<mat-form-field class="example-full-width">
-					<input matInput placeholder="NIT Compañia" />
+					<input matInput placeholder="Empresa" formControlName="empresa" />
 				</mat-form-field>
 			</mat-card-content>
-			<button mat-stroked-button color="accent" class="btn-block">Ingresar</button>
+			<button
+				mat-stroked-button
+				color="primary"
+				type="button"
+				[disabled]="formGroup.invalid"
+				class="btn-block"
+				(click)="clickLogin()"
+			>
+				Ingresar
+			</button>
+			<span>Olvidaste tu contrasena</span>
 		</form>
 	</mat-card>
 </div>

@@ -1,8 +1,6 @@
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit } from '@angular/core';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
-import { ok } from 'assert';
-import * as internal from 'stream';
 
 interface AdminNode {
 	name: string;
@@ -206,12 +204,12 @@ export class TreeComponent implements OnInit {
 	ngOnInit(): void {
 		this.nestdDataSource.data = TREE_DATA;
 	}
-	hasNestedChild(): void {
+	/*
+  hasNestedChild(): void {
 		return ok('hola');
 	}
-	/*
-	hasNestedChild(index: number, node: AdminNode){
+	*/
+	hasNestedChild(index: number, node: AdminNode): number | undefined {
 		return node?.children?.length;
 	}
-	*/
 }

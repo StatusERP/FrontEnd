@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from './angular-material-modulo';
 
 import { UserModule } from './page/user/user.module';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
@@ -22,7 +23,8 @@ import { UserModule } from './page/user/user.module';
 		AngularMaterialModule,
 		FormsModule,
 		ReactiveFormsModule,
-		UserModule
+		UserModule,
+		HttpClientModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

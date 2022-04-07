@@ -25,7 +25,7 @@ export class LoginComponent {
 	private _login(email: string, password: string): void {
 		this._userApiService.login({ email, password }).subscribe({
 			next: (response) => {
-				console.log('exito');
+				console.log(response);
 			},
 			error: () => {
 				console.log('error');

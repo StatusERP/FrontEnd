@@ -14,7 +14,7 @@ export interface IRequestRegister {
 	firstName: string;
 	lastName: string;
 	typeDocument: number;
-	documentNumber: string;
+	documentoNumber: string;
 	email: string;
 	password: string;
 	confirmPassword: string;

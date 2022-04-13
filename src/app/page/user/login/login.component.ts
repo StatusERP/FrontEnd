@@ -1,3 +1,4 @@
+import { ChanelHeaderService } from './../../../services/local/chanel-header.service';
 import { UserApiService } from './../services/api/user-api.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -9,7 +10,12 @@ import { Router } from '@angular/router';
 	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-	constructor(private _router: Router, private _formBuilder: FormBuilder, private _userApiService: UserApiService) {
+	constructor(
+		private _router: Router,
+		private _formBuilder: FormBuilder,
+		private _userApiService: UserApiService,
+		private _chanelHeaderService: ChanelHeaderService
+	) {
 		this._loadFormGroup();
 	}
 	disableButton = false;
@@ -18,6 +24,7 @@ export class LoginComponent {
 		if (this.formGroup.valid) {
 			const email = this.formGroup.get('email')?.value as string;
 			const password = this.formGroup.get('password')?.value as string;
+
 			this._login(email, password);
 		}
 	}
@@ -26,6 +33,7 @@ export class LoginComponent {
 		this._userApiService.login({ email, password }).subscribe({
 			next: (response) => {
 				console.log(response);
+				this._chanelHeaderService.showUser(true);
 			},
 			error: () => {
 				console.log('error');

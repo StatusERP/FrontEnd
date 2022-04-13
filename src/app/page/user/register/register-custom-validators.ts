@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { IAtribute } from './../../commons/models/error-form.interface';
+import { IAtribute } from '../../../shared/components/models/error-form-interface';
 
 const patternUpperCase = new RegExp('^(?=.*[A-Z])');
 const patternLowerCase = new RegExp('^(?=.*[a-z])');

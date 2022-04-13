@@ -5,7 +5,10 @@
     "baseUrl": "./",
     "paths": {
       "@app/*":["src/app/*"],
-      "@core/*":["src/app/core"]
+      "@core/*":["src/app/core"],
+      "@config/*":["src/app/config"],
+      "@interceptors/*":["src/app/interceptors"],
+      "@serviceLocal/*":["src/app/services/local"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

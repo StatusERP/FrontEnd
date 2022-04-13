@@ -11,7 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from './angular-material-modulo';
 
 import { UserModule } from './page/user/user.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ApiInterceptor } from './interceptors/api.interceptor';
+import { ErrorApiInterceptor } from './interceptors/error-api.interceptor';
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
@@ -26,7 +28,10 @@ import { HttpClientModule } from '@angular/common/http';
 		UserModule,
 		HttpClientModule
 	],
-	providers: [],
+	providers: [
+		{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: ErrorApiInterceptor, multi: true }
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule {}

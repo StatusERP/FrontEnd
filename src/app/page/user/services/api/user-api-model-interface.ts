@@ -5,7 +5,7 @@ export interface IRequestLogin {
 export interface IResponseLogin {
 	token: string;
 	fullName: string;
-	role: string[];
+	roles: string[];
 	success: boolean;
 	errors: string[];
 }

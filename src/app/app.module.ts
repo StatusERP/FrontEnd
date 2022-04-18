@@ -16,9 +16,10 @@ import { ApiInterceptor } from './interceptors/api.interceptor';
 import { ErrorApiInterceptor } from './interceptors/error-api.interceptor';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { SnotifyModule, ToastDefaults, SnotifyService } from 'ng-snotify';
+import { AsPageComponent } from './modules/as/pages/as-page/as-page/as-page.component';
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent, AsPageComponent],
 	imports: [
 		FlexLayoutModule,
 		BrowserModule,

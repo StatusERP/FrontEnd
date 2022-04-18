@@ -1,21 +1,24 @@
 <app-header></app-header>
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
 	<mat-card class="box">
+		<img mat-card-image src="../../../../assets/logos/LogoStatusERP.jpeg" alt="Photo of a Shiba Inu" />
+	</mat-card>
+	<mat-card class="box">
 		<mat-card-header>
 			<mat-card-title>INICIO DE SESION</mat-card-title>
 		</mat-card-header>
 		<form class="example-form" autocomplete="off" [formGroup]="formGroup">
 			<mat-card-content>
-				<mat-form-field class="example-full-width">
+				<mat-form-field class="example-full-width" appearance="fill">
 					<input type="Email" matInput placeholder="Email" formControlName="email" />
 					<mat-error *ngIf="formGroup.get('email')!.hasError('required')">El Correo es requerido</mat-error>
 					<mat-error *ngIf="formGroup.get('email')!.hasError('email')">El Correo no es valido</mat-error>
 				</mat-form-field>
-				<mat-form-field class="example-full-width">
+				<mat-form-field class="example-full-width" appearance="fill">
 					<input type="password" matInput placeholder="Contraseña" formControlName="password" />
 					<mat-error *ngIf="formGroup.get('password')!.hasError('required')">La contraseña es requerida</mat-error>
 				</mat-form-field>
-				<mat-form-field class="example-full-width">
+				<mat-form-field class="example-full-width" appearance="fill">
 					<input matInput placeholder="Empresa" formControlName="empresa" />
 					<mat-error *ngIf="formGroup.get('empresa')!.hasError('required')">Nombre de Empresa es requerida</mat-error>
 				</mat-form-field>

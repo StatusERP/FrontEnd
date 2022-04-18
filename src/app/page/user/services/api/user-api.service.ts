@@ -11,8 +11,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const URL_LOGIN = environment.host + '/ERPADMIN/User/Login';
-const URL_REGISTER = environment.host + '/ERPADMIN/User/Register';
+export const URL_LOGIN = environment.host + '/ERPADMIN/User/Login';
+export const URL_REGISTER = environment.host + '/ERPADMIN/User/Register';
 const URL_SEND_TOKEN_RESET_PASSWORD = environment.host + '/ERPADMIN/User/SendTokenToResetPassword';
 const URL_RESET_PASSWORD = environment.host + '/ERPADMIN/User/ResetPassword';
 const URL_CHANGE_PASSWORD = environment.host + '/ERPMADIN/User/ChangePassword';

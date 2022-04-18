@@ -14,6 +14,9 @@ import { UserModule } from './page/user/user.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { ErrorApiInterceptor } from './interceptors/error-api.interceptor';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { SnotifyModule, ToastDefaults, SnotifyService } from 'ng-snotify';
+
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
@@ -26,10 +29,14 @@ import { ErrorApiInterceptor } from './interceptors/error-api.interceptor';
 		FormsModule,
 		ReactiveFormsModule,
 		UserModule,
-		HttpClientModule
+		HttpClientModule,
+		NgxUiLoaderModule,
+		SnotifyModule
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+		{ provide: 'SnotifyToastConfig', useValue: ToastDefaults },
+		SnotifyService,
 		{ provide: HTTP_INTERCEPTORS, useClass: ErrorApiInterceptor, multi: true }
 	],
 	bootstrap: [AppComponent]

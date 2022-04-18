@@ -1,5 +1,5 @@
 import { AbstractControl } from '@angular/forms';
-import { IAtribute } from './../shared/components/models/error-form-interface';
+import { IAtribute } from '../core/models/error-form-interface';
 
 export const validateFieldForm = (model: IAtribute[], formControlName: string, control: AbstractControl): string[] => {
 	const atributeError = model.find((x) => x.formControlName == formControlName);

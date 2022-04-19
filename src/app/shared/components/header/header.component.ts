@@ -16,4 +16,7 @@ export class HeaderComponent {
 	home(): void {
 		void this._router.navigateByUrl('/');
 	}
+	salir(): void {
+		console.log('salir');
+	}
 }

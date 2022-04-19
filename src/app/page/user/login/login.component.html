@@ -1,14 +1,21 @@
 <app-header></app-header>
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-	<mat-card class="box">
-		<img mat-card-image src="../../../../assets/logos/LogoStatusERP.jpeg" alt="Photo of a Shiba Inu" />
-	</mat-card>
-	<mat-card class="box">
-		<mat-card-header>
-			<mat-card-title>INICIO DE SESION</mat-card-title>
-		</mat-card-header>
-		<form class="example-form" autocomplete="off" [formGroup]="formGroup">
-			<mat-card-content>
+<div class="login-wrapper ps" fxLayout="row wrap" fxLayoutAlign="center center">
+	<div
+		fxLayout="row"
+		fxLayout.xs="column"
+		fxLayoutAlign="start stretch"
+		fxFlex="60"
+		fxflex.xs="94"
+		fxflex.sm="80"
+		class="singup-container mat-elevation-z4"
+	>
+		<div fxlayout="column" fxLayoutAlign="center center" fxflex="30" class="singup-header">
+			<div fxLayout="row wrap" fxLayoutAlign="center center" class="singup-logo">
+				<img width="500px" src="../../../../assets/logos/LogoStatusERP.jpeg" alt="Photo of a Shiba Inu" />
+			</div>
+		</div>
+		<div fxFlex="70" fxLayout="row wrap" fxLayoutAlign="center center" class="box">
+			<form class="singup-form grey-100" autocomplete="off" [formGroup]="formGroup">
 				<mat-form-field class="example-full-width" appearance="fill">
 					<input type="Email" matInput placeholder="Email" formControlName="email" />
 					<mat-error *ngIf="formGroup.get('email')!.hasError('required')">El Correo es requerido</mat-error>
@@ -22,18 +29,23 @@
 					<input matInput placeholder="Empresa" formControlName="empresa" />
 					<mat-error *ngIf="formGroup.get('empresa')!.hasError('required')">Nombre de Empresa es requerida</mat-error>
 				</mat-form-field>
-			</mat-card-content>
-			<button
-				mat-stroked-button
-				color="primary"
-				type="button"
-				[disabled]="formGroup.invalid"
-				class="btn-block"
-				(click)="clickLogin()"
-			>
-				Ingresar
-			</button>
-			<span>Olvidaste tu contrasena</span>
-		</form>
-	</mat-card>
+				<div fxLayout="row" fxLayoutAlign="start center" class="pie">
+					<button
+						mat-flat-button
+						color="primary"
+						type="button"
+						[disabled]="formGroup.invalid"
+						class="mat-flat-button mat-button-base mat-primary"
+						(click)="clickLogin()"
+					>
+						<span class="mat-button-wrapper"> Iniciar Sesión</span>
+						<div matripple class="mat-ripple mat-button-ripple"></div>
+						<div class="mat-button-focus-overlay"></div>
+					</button>
+					<span class="px-16">o</span>
+					<a class="font-weight-bold mat-color-primary" href="#">¿Olvidaste tu contraseña?</a>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>

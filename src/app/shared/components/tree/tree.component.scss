@@ -1,3 +1,4 @@
+@use '../../../shared/styles/colors.scss';
 .tree-demo-container{
     font-family: "Roboto";
     display: flex;
@@ -22,4 +23,10 @@
 
 .example-tree .mat-nested-tree-node .nested-node{
     padding-left: 40px;
+}
+.link:hover{
+        color: colors.$primary-color;
+        cursor: pointer;
+        font-weight: bold;
+      
 }

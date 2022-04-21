@@ -1,3 +1,5 @@
+import { PATH_AS_PAGES } from './../../../config/path-pages';
+import { Router } from '@angular/router';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit } from '@angular/core';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
@@ -199,6 +201,7 @@ const TREE_DATA: AdminNode[] = [
 	styleUrls: ['./tree.component.scss']
 })
 export class TreeComponent implements OnInit {
+	constructor(private _router: Router) {}
 	nestdDataSource = new MatTreeNestedDataSource<AdminNode>();
 	nestdTreeControl = new NestedTreeControl<AdminNode>((node) => node.children);
 	ngOnInit(): void {
@@ -207,5 +210,13 @@ export class TreeComponent implements OnInit {
 
 	hasNestedChild(index: number, node: AdminNode): number | undefined {
 		return node?.children?.length;
+	}
+	navigateToPage(name: string): void {
+		if (name === 'Pais') {
+			void this._router.navigateByUrl(PATH_AS_PAGES.pais.onlyPath);
+		}
+		if (name === 'Zona') {
+			void this._router.navigateByUrl(PATH_AS_PAGES.zona.onlyPath);
+		}
 	}
 }

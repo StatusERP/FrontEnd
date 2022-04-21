@@ -26,14 +26,23 @@ const reportes = 'reportes';
 const seguridad = 'seguridad';
 //Arbol de menu as/Tablas/
 const tablas = 'tablas';
-const areas = 'areas';
-const pais = 'pais';
-const region = 'region';
+//Arbol de Menu as/Tablas/areas
+const area = 'areas';
+const paisPage = 'pais';
+const zonaPage = 'zona';
+const rutaPage = 'ruta';
+const regionPage = 'region';
+
 //
 
 export const PATH_AS_PAGES = {
 	withSlash: `/${modulo_AS}`,
-	onlyPath: modulo_AS
+	onlyPath: modulo_AS,
+	//as/areas/
+	pais: { withSlash: `/${modulo_AS}/${area}/${paisPage}`, onlyPath: paisPage },
+	zona: { withSlash: `/${modulo_AS}/${area}/${zonaPage}`, onlyPath: zonaPage },
+	ruta: { withSlash: `/${modulo_AS}/${area}/${rutaPage}`, onlyPath: rutaPage },
+	region: { withSlash: `/${modulo_AS}/${area}/${regionPage}`, onlyPath: regionPage }
 };
 
 //#endregion

@@ -1,6 +1,6 @@
 import { KEYS_WEB_STORAGE } from './../../util/enums';
 import { Injectable } from '@angular/core';
-import { IDataUser } from '@app/page/user/models/data-user';
+import { IDataUser } from '../../modules/auth/models/data-user';
 import { SessionStorageService } from './storage/storage.service';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
 

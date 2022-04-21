@@ -1,7 +1,7 @@
 <div class="tree-demo-container">
 	<mat-tree class="example-tree" [dataSource]="nestdDataSource" [treeControl]="nestdTreeControl">
 		<mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-			{{ node.name }}
+			<span class="link" (click)="navigateToPage(node.name)">{{ node.name }}</span>
 		</mat-tree-node>
 
 		<mat-nested-tree-node *matTreeNodeDef="let node; when: hasNestedChild">

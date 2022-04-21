@@ -10,16 +10,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from './angular-material-modulo';
 
-import { UserModule } from './page/user/user.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { ErrorApiInterceptor } from './interceptors/error-api.interceptor';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { SnotifyModule, ToastDefaults, SnotifyService } from 'ng-snotify';
-import { AsPageComponent } from './modules/as/pages/as-page/as-page/as-page.component';
 
 @NgModule({
-	declarations: [AppComponent, AsPageComponent],
+	declarations: [AppComponent],
 	imports: [
 		FlexLayoutModule,
 		BrowserModule,
@@ -29,7 +28,7 @@ import { AsPageComponent } from './modules/as/pages/as-page/as-page/as-page.comp
 		AngularMaterialModule,
 		FormsModule,
 		ReactiveFormsModule,
-		UserModule,
+		AuthModule,
 		HttpClientModule,
 		NgxUiLoaderModule,
 		SnotifyModule

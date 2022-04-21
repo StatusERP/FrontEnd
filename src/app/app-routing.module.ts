@@ -1,8 +1,5 @@
-import { AsPageComponent } from './modules/as/pages/as-page/as-page/as-page.component';
-import { PATHS_AUTH_PAGES } from './config/path-pages';
+import { PATHS_AUTH_PAGES, PATH_AS_PAGES } from './config/path-pages';
 import { DefaultComponent } from './layouts/default/default.component';
-
-import { RegisterComponent } from './page/user/register/register.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -21,18 +18,26 @@ const routes: Routes = [
 
 				component: HomePageComponent
 			},
+
 			{
-				path: 'as',
-				component: AsPageComponent
+				path: PATH_AS_PAGES.onlyPath,
+				loadChildren: () => import('./modules/as/as.module').then((m) => m.AsModule)
+			},
+			{
+				path: PATH_AS_PAGES.pais.onlyPath,
+				loadChildren: () => import('./modules/as/tablas/areas/pais/pais.module').then((m) => m.PaisModule)
+			},
+			{
+				path: PATH_AS_PAGES.zona.onlyPath,
+				loadChildren: () => import('./modules/as/tablas/areas/zonas/zonas.module').then((m) => m.ZonasModule)
 			}
 		]
 	},
 
 	{
 		path: PATHS_AUTH_PAGES.LoginPage.onLyPath,
-		loadChildren: () => import('./page/user/user.module').then((m) => m.UserModule)
-	},
-	{ path: 'register', component: RegisterComponent }
+		loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule)
+	}
 ];
 
 @NgModule({

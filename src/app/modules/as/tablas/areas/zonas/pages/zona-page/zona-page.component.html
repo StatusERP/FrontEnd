@@ -1,0 +1,30 @@
+<div class="search-div">
+	<button mat-raised-button><mat-icon>add</mat-icon>Crear</button>
+</div>
+
+<div class="mat-elevation-z8">
+	<mat-table [dataSource]="listZonas" matSort>
+		<ng-container matColumnDef="codZona">
+			<mat-header-cell *matHeaderCellDef mat-sort-header>codZona</mat-header-cell>
+			<mat-cell *matCellDef="let element">{{ element.codZona }}</mat-cell>
+		</ng-container>
+		<ng-container matColumnDef="descripcion">
+			<mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion</mat-header-cell>
+			<mat-cell *matCellDef="let element">{{ element.descripcion }}</mat-cell>
+		</ng-container>
+		<ng-container matColumnDef="activa">
+			<mat-header-cell *matHeaderCellDef mat-sort-header>Activo</mat-header-cell>
+			<mat-cell *matCellDef="let element">{{ element.activa }}</mat-cell>
+		</ng-container>
+		<ng-container matColumnDef="actions">
+			<mat-header-cell *matHeaderCellDef></mat-header-cell>
+			<mat-cell *matCellDef="let row">
+				<button mat-icon-button><mat-icon>launch</mat-icon></button>
+				<button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
+			</mat-cell>
+		</ng-container>
+
+		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+	</mat-table>
+</div>

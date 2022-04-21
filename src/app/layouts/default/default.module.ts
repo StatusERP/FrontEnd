@@ -2,7 +2,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularMaterialModule } from './../../angular-material-modulo';
 import { HomePageComponent } from './../../modules/home/pages/home-page/home-page.component';
 import { SharedModule } from './../../shared/shared.module';
-import { AsComponent } from './../../modules/as/as.component';
 import { RouterModule } from '@angular/router';
 
 import { DefaultComponent } from './default.component';
@@ -12,7 +11,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
-	declarations: [DefaultComponent, HomePageComponent, AsComponent],
+	declarations: [DefaultComponent, HomePageComponent],
 	imports: [
 		CommonModule,
 		RouterModule,

@@ -9,12 +9,12 @@
 		fxflex.sm="80"
 		class="singup-container mat-elevation-z4"
 	>
-		<div fxlayout="column" fxLayoutAlign="center center" fxflex="30" class="singup-header">
+		<div fxlayout="row wrap" fxLayoutAlign="center center" fxflex="20" class="singup-header">
 			<div fxLayout="row wrap" fxLayoutAlign="center center" class="singup-logo">
-				<img width="500px" src="../../../../assets/logos/LogoStatusERP.jpeg" alt="Photo of a Shiba Inu" />
+				<img width="400px" src="../../../../assets/logos/LogoStatusERP.jpeg" alt="Photo of a Shiba Inu" />
 			</div>
 		</div>
-		<div fxFlex="70" fxLayout="row wrap" fxLayoutAlign="center center" class="box">
+		<div fxFlex="80" fxLayout="row wrap" fxLayoutAlign="center center" class="box">
 			<form class="singup-form grey-100" autocomplete="off" [formGroup]="formGroup">
 				<mat-form-field class="example-full-width" appearance="fill">
 					<input type="Email" matInput placeholder="Email" formControlName="email" />
@@ -26,7 +26,14 @@
 					<mat-error *ngIf="formGroup.get('password')!.hasError('required')">La contraseña es requerida</mat-error>
 				</mat-form-field>
 				<mat-form-field class="example-full-width" appearance="fill">
-					<input matInput placeholder="Empresa" formControlName="empresa" />
+					<input
+						matInput
+						placeholder="Empresa"
+						formControlName="empresa"
+						type="text"
+						[(ngModel)]="inputValue"
+						(ngModelChange)="inputValue = $event.toUpperCase()"
+					/>
 					<mat-error *ngIf="formGroup.get('empresa')!.hasError('required')">Nombre de Empresa es requerida</mat-error>
 				</mat-form-field>
 				<div fxLayout="row" fxLayoutAlign="start center" class="pie">

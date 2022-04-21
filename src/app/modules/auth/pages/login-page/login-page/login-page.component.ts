@@ -14,6 +14,7 @@ import { KEYS_WEB_STORAGE } from '@app/util/enums';
 	styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent {
+	inputValue = '';
 	constructor(
 		private _router: Router,
 		private _formBuilder: FormBuilder,

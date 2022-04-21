@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, Output, EventEmitter } from '@angular/core';
+import { SessionStorageService } from '@app/services/local/storage/storage.service';
 
 @Component({
 	selector: 'app-header',
@@ -7,7 +8,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 	styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-	constructor(private _router: Router) {}
+	constructor(private _router: Router, private _sessionStorageService: SessionStorageService) {}
 	@Output() toggleSideBarForMe: EventEmitter<unknown> = new EventEmitter();
 
 	toggleSideBar(): void {
@@ -17,6 +18,7 @@ export class HeaderComponent {
 		void this._router.navigateByUrl('/');
 	}
 	salir(): void {
-		console.log('salir');
+		this._sessionStorageService.removeItem('data_user');
+		void this._router.navigateByUrl('/login');
 	}
 }

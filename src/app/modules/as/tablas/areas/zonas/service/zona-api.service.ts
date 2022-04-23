@@ -20,4 +20,9 @@ export class ZonaApiService {
 		url = url + '?page=' + page + '&rows=' + rows;
 		return this._httpClient.get<IResponse<IResponseZona[]>>(url);
 	}
+	delete(idZona: number): Observable<IResponse<number>> {
+		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+		const url = URL_ZONA + '/' + idZona;
+		return this._httpClient.delete<IResponse<number>>(url);
+	}
 }

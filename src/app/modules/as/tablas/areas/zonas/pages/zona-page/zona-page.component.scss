@@ -1,8 +1,15 @@
-.hide{
-    display: none;
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
+.search-div{
+    border: 2;
 }
-mat-footer-row mat-footer-cell{
-    justify-content: center;
-    font-style: italic;
-}
-

@@ -1,35 +1,96 @@
+import { SnotifyService, SnotifyPosition } from 'ng-snotify';
+
+import { AddComponent } from './../add/add.component';
 import { IResponseZona } from './../../service/zona-api-model-interfaces';
 import { ZonaApiService } from './../../service/zona-api.service';
 import { Router } from '@angular/router';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 @Component({
 	selector: 'app-zona-page',
 	templateUrl: './zona-page.component.html',
 	styleUrls: ['./zona-page.component.scss']
 })
-export class ZonaPageComponent implements OnInit {
-	constructor(private _router: Router, private _zonaApiService: ZonaApiService) {}
-	listZonas: IResponseZona[] = [];
+export class ZonaPageComponent implements OnInit, AfterViewInit {
+	constructor(
+		private _snotifyService: SnotifyService,
+		private dialog: MatDialog,
+		private _router: Router,
+		private _zonaApiService: ZonaApiService
+	) {}
+	listZonas = new MatTableDataSource<IResponseZona>();
 	displayedColumns: string[] = ['codZona', 'descripcion', 'activa', 'actions'];
 	@ViewChild(MatSort)
 	sort!: MatSort;
+	@ViewChild(MatPaginator) paginator!: MatPaginator;
 	searchKey!: 'carlos';
 	ngOnInit(): void {
-		this._loadZona(1, 5);
+		this._loadZona(1, 100);
+	}
+
+	ngAfterViewInit(): void {
+		this.listZonas.paginator = this.paginator;
+		this.listZonas.sort = this.sort;
+	}
+	openDialog(): void {
+		this.dialog
+			.open(AddComponent, {
+				width: '30%'
+			})
+			.afterClosed()
+			.subscribe((val) => {
+				if (val === 'save') {
+					this._loadZona(1, 100);
+				}
+			});
 	}
 
 	private _loadZona(page: number, rows: number): void {
 		this._zonaApiService.getZonas(page, rows).subscribe({
 			next: (response) => {
-				//	console.log(response.result);
-				this.listZonas = response.result;
-
-				//this._saveDateUserAndRedirect(response);
+				this.listZonas.data = response.result;
 			},
 			error: () => {
 				console.log('error');
 			}
 		});
+	}
+
+	applyFilter(event: Event): void {
+		console.log(event);
+		//Fconst filterValue = (event.target as HTMLInputElement).value;
+		//		this.listZonas.filter = filterValue.trim().toLowerCase();
+	}
+	clickDelete(id: number): void {
+		this._snotifyService.confirm('Esta seguro de eliminar el registro?', {
+			position: SnotifyPosition.rightCenter,
+			buttons: [
+				{
+					text: 'SI',
+					bold: true,
+					action: (toast) => {
+						this._snotifyService.remove(toast.id);
+						this._zonaApiService.delete(id).subscribe((response) => {
+							if (response && response.success) {
+								this._snotifyService.info('El registro ha sido Eliminado');
+								this.listZonas.data = this.listZonas.data.filter((item) => item.id == id);
+							}
+						});
+					}
+				},
+				{
+					text: 'CANCELAR',
+					action: () => {
+						this._acctionsSucces();
+					}
+				}
+			]
+		});
+	}
+	private _acctionsSucces(): void {
+		this.listZonas.data.length;
 	}
 }

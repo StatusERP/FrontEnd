@@ -33,8 +33,8 @@ export class RegisterPageComponent {
 		if (this.formGroup.invalid) {
 			return;
 		}
-		console.log(this.formGroup);
-		console.log(this._getRequest());
+		//	console.log(this.formGroup);
+		//	console.log(this._getRequest());
 		this._userApiService.register(this._getRequest()).subscribe((response) => {
 			if (response) {
 				void this._router.navigateByUrl(PATHS_AUTH_PAGES.LoginPage.withSlash);

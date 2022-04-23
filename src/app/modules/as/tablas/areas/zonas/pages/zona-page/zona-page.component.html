@@ -1,5 +1,8 @@
-<div class="search-div">
-	<button mat-raised-button><mat-icon>add</mat-icon>Crear</button>
+<div class="search-div" fxLayout="row wrap" fxLayoutAlign="space-around center">
+	<button mat-raised-button color="warn" (click)="openDialog()"><mat-icon>add</mat-icon>Crear</button>
+
+	<mat-label>Filter</mat-label>
+	<input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input />
 </div>
 
 <div class="mat-elevation-z8">
@@ -19,12 +22,18 @@
 		<ng-container matColumnDef="actions">
 			<mat-header-cell *matHeaderCellDef></mat-header-cell>
 			<mat-cell *matCellDef="let row">
-				<button mat-icon-button><mat-icon>launch</mat-icon></button>
+				<button mat-icon-button>
+					<mat-icon>launch</mat-icon>
+				</button>
 				<button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
 			</mat-cell>
 		</ng-container>
 
 		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 		<mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+		<tr class="mat-row" *matNoDataRow>
+			<td class="mat-cell" colspan="4">No data matching the filter "{{ input.value }}"</td>
+		</tr>
 	</mat-table>
+	<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 </div>

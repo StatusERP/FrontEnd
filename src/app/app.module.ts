@@ -1,3 +1,4 @@
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { DefaultModule } from './layouts/default/default.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -31,7 +32,8 @@ import { SnotifyModule, ToastDefaults, SnotifyService } from 'ng-snotify';
 		AuthModule,
 		HttpClientModule,
 		NgxUiLoaderModule,
-		SnotifyModule
+		SnotifyModule,
+		MatFormFieldModule
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },

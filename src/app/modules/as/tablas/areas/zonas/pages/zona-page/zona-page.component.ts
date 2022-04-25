@@ -28,7 +28,7 @@ export class ZonaPageComponent implements OnInit, AfterViewInit {
 	@ViewChild(MatPaginator) paginator!: MatPaginator;
 	searchKey!: 'carlos';
 	ngOnInit(): void {
-		this._loadZona(1, 100);
+		this._loadZona(1, 100000);
 	}
 
 	ngAfterViewInit(): void {
@@ -43,7 +43,7 @@ export class ZonaPageComponent implements OnInit, AfterViewInit {
 			.afterClosed()
 			.subscribe((val) => {
 				if (val === 'save') {
-					this._loadZona(1, 100);
+					this._loadZona(1, 100000);
 				}
 			});
 	}
@@ -61,12 +61,12 @@ export class ZonaPageComponent implements OnInit, AfterViewInit {
 
 	applyFilter(event: Event): void {
 		console.log(event);
-		//Fconst filterValue = (event.target as HTMLInputElement).value;
-		//		this.listZonas.filter = filterValue.trim().toLowerCase();
+		const filterValue = (event.target as HTMLInputElement).value;
+		this.listZonas.filter = filterValue.trim().toLowerCase();
 	}
 	clickDelete(id: number): void {
 		this._snotifyService.confirm('Esta seguro de eliminar el registro?', {
-			position: SnotifyPosition.rightCenter,
+			position: SnotifyPosition.rightTop,
 			buttons: [
 				{
 					text: 'SI',
@@ -76,19 +76,32 @@ export class ZonaPageComponent implements OnInit, AfterViewInit {
 						this._zonaApiService.delete(id).subscribe((response) => {
 							if (response && response.success) {
 								this._snotifyService.info('El registro ha sido Eliminado');
-								this.listZonas.data = this.listZonas.data.filter((item) => item.id == id);
+								this._loadZona(1, 100000);
 							}
 						});
 					}
 				},
 				{
-					text: 'CANCELAR',
-					action: () => {
-						this._acctionsSucces();
-					}
+					text: 'CANCELAR'
 				}
 			]
 		});
+	}
+
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	clickEdit(element: any): void {
+		this.dialog
+			.open(AddComponent, {
+				width: '30%',
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+				data: element
+			})
+			.afterClosed()
+			.subscribe((val) => {
+				if (val === 'edit') {
+					this._loadZona(1, 100000);
+				}
+			});
 	}
 	private _acctionsSucces(): void {
 		this.listZonas.data.length;

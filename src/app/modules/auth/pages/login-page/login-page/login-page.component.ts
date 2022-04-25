@@ -15,6 +15,7 @@ import { KEYS_WEB_STORAGE } from '@app/util/enums';
 })
 export class LoginPageComponent {
 	inputValue = '';
+	hide = true;
 	constructor(
 		private _router: Router,
 		private _formBuilder: FormBuilder,

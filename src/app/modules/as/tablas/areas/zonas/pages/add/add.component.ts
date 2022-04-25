@@ -1,28 +1,28 @@
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SnotifyService, SnotifyPosition } from 'ng-snotify';
 import { IRequestCreateZona } from './../../service/zona-api-model-interfaces';
 import { ZonaApiService } from './../../service/zona-api.service';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 
 @Component({
 	selector: 'app-add',
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.scss']
 })
-export class AddComponent implements OnInit {
+export class AddComponent {
 	zonaForm!: FormGroup;
+	// eslint-disable-next-line @typescript-eslint/no-inferrable-types
+	actionBtn: string = 'Guardar';
 	constructor(
 		private _formBuider: FormBuilder,
 		private _zonaApiService: ZonaApiService,
 		private _snotifyService: SnotifyService,
+		// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+		@Inject(MAT_DIALOG_DATA) public editData: any,
 		private _dialogRef: MatDialogRef<AddComponent>
 	) {
 		this._loadFormGroup();
-	}
-
-	ngOnInit(): void {
-		throw new Error('Method not implemented.');
 	}
 
 	private _loadFormGroup(): void {
@@ -30,19 +30,32 @@ export class AddComponent implements OnInit {
 			codZona: ['', Validators.required],
 			descripcion: ['', Validators.required]
 		});
+		if (this.editData) {
+			this.actionBtn = 'Editar';
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			this.zonaForm.controls['codZona'].setValue(this.editData.codZona);
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			this.zonaForm.controls['descripcion'].setValue(this.editData.descripcion);
+		}
 	}
 
 	clickSave(): void {
 		if (this.zonaForm.invalid) {
 			return;
 		}
-		//	this.zonaForm.disable();
-
-		const sendZona: IRequestCreateZona = {
-			codZona: this.codZonaField.value as string,
-			descripcion: this.descriocionField.value as string
-		};
-		this._save(sendZona);
+		if (!this.editData) {
+			const sendZona: IRequestCreateZona = {
+				codZona: this.codZonaField.value as string,
+				descripcion: this.descriocionField.value as string
+			};
+			this._save(sendZona);
+		} else {
+			const sendZona: IRequestCreateZona = {
+				codZona: this.codZonaField.value as string,
+				descripcion: this.descriocionField.value as string
+			};
+			this._edit(sendZona);
+		}
 	}
 
 	private _save(zona: IRequestCreateZona) {
@@ -62,6 +75,13 @@ export class AddComponent implements OnInit {
 				console.log('error');
 			}
 		});
+	}
+
+	private _edit(zona: IRequestCreateZona) {
+		console.log('actualizar');
+		this.zonaForm.reset();
+		this._snotifyService.info('El registro se actualizo sin problema', { position: SnotifyPosition.rightTop });
+		this._dialogRef.close('update');
 	}
 
 	get codZonaField(): AbstractControl {

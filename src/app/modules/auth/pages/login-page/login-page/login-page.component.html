@@ -22,7 +22,16 @@
 					<mat-error *ngIf="formGroup.get('email')!.hasError('email')">El Correo no es valido</mat-error>
 				</mat-form-field>
 				<mat-form-field class="example-full-width" appearance="fill">
-					<input type="password" matInput placeholder="Contraseña" formControlName="password" />
+					<input matInput [type]="hide ? 'password' : 'text'" formControlName="password" />
+					<button
+						mat-icon-button
+						matSuffix
+						(click)="hide = !hide"
+						[attr.aria-label]="'Hide password'"
+						[attr.aria-pressed]="hide"
+					>
+						<mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+					</button>
 					<mat-error *ngIf="formGroup.get('password')!.hasError('required')">La contraseña es requerida</mat-error>
 				</mat-form-field>
 				<mat-form-field class="example-full-width" appearance="fill">

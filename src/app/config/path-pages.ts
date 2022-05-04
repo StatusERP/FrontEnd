@@ -28,13 +28,27 @@ const seguridad = 'seguridad';
 const tablas = 'tablas';
 //Arbol de Menu as/Tablas/areas
 const area = 'areas';
+
 const paisPage = 'pais';
 const zonaPage = 'zona';
 const rutaPage = 'ruta';
 const regionPage = 'region';
-
-//
-
+//tablas/funcionarios
+const funcionario = 'funcionario';
+const cobradorPage = 'cobrador';
+const vendedorPage = 'vendedor';
+const responsablePage = 'responsable';
+//Tablas/Categoria
+const categoria = 'categoria';
+const categoriaClientePage = 'categoriaCliente';
+const categoriaProveedorPage = 'categoriaProveedor';
+const categoriaArticuloPage = 'categoriaArticulo';
+const nivelPrecioPage = 'nivelPrecio';
+//Tablas/Otros
+const otros = 'otro';
+const bodegaPage = 'bodega';
+//Administracion
+const parametrosASPage = 'parametrosAS';
 export const PATH_AS_PAGES = {
 	withSlash: `/${modulo_AS}`,
 	onlyPath: modulo_AS,
@@ -42,7 +56,29 @@ export const PATH_AS_PAGES = {
 	pais: { withSlash: `/${modulo_AS}/${area}/${paisPage}`, onlyPath: paisPage },
 	zona: { withSlash: `/${modulo_AS}/${area}/${zonaPage}`, onlyPath: zonaPage },
 	ruta: { withSlash: `/${modulo_AS}/${area}/${rutaPage}`, onlyPath: rutaPage },
-	region: { withSlash: `/${modulo_AS}/${area}/${regionPage}`, onlyPath: regionPage }
+	region: { withSlash: `/${modulo_AS}/${area}/${regionPage}`, onlyPath: regionPage },
+	//as/tablas/funcionarios/
+	cobrador: { withSlash: `/${modulo_AS}/${funcionario}/${cobradorPage}`, onlyPath: cobradorPage },
+	vendedor: { withSlash: `/${modulo_AS}/${funcionario}/${vendedorPage}`, onlyPath: vendedorPage },
+	responsable: { withSlash: `/${modulo_AS}/${funcionario}/${responsablePage}`, onlyPath: responsablePage },
+	//as/tablas/Categoria/
+	categoriaCliente: {
+		withSlash: `/${modulo_AS}/${categoria}/${categoriaClientePage}`,
+		onlyPath: categoriaClientePage
+	},
+	categoriaProveedor: {
+		withSlash: `/${modulo_AS}/${categoria}/${categoriaProveedorPage}`,
+		onlyPath: categoriaProveedorPage
+	},
+	categoriaArticulo: {
+		withSlash: `/${modulo_AS}/${categoria}/${categoriaArticuloPage}`,
+		onlyPath: categoriaArticuloPage
+	},
+	nivelPrecios: { withSlash: `/${modulo_AS}/${categoria}/${nivelPrecioPage}`, onlyPath: nivelPrecioPage },
+	//as/Tablas/Otros
+	bodega: { withSlash: `/${modulo_AS}/${otros}/${bodegaPage}`, onlyPath: bodegaPage },
+	//Administracion/ParametrosModulo
+	parametrosAS: { withSlash: `/${modulo_AS}/${parametrosASPage}`, onlyPath: parametrosASPage }
 };
 
 //#endregion

@@ -60,7 +60,6 @@ export class ZonaPageComponent implements OnInit, AfterViewInit {
 	}
 
 	applyFilter(event: Event): void {
-		console.log(event);
 		const filterValue = (event.target as HTMLInputElement).value;
 		this.listZonas.filter = filterValue.trim().toLowerCase();
 	}

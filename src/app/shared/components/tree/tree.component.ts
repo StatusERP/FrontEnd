@@ -18,9 +18,6 @@ const TREE_DATA: AdminNode[] = [
 			},
 			{
 				name: 'Grupos'
-			},
-			{
-				name: 'Zona'
 			}
 		]
 	},
@@ -78,9 +75,6 @@ const TREE_DATA: AdminNode[] = [
 					},
 					{
 						name: 'Cobrador'
-					},
-					{
-						name: 'Responsable'
 					}
 				]
 			},
@@ -91,10 +85,10 @@ const TREE_DATA: AdminNode[] = [
 						name: 'Categoria de Cliente'
 					},
 					{
-						name: 'Categoria de Venedor'
+						name: 'Categoria de Proveedor'
 					},
 					{
-						name: 'Categoria de articulo'
+						name: 'Categoria de Articulo'
 					},
 					{
 						name: 'Nivel Precio'
@@ -212,11 +206,48 @@ export class TreeComponent implements OnInit {
 		return node?.children?.length;
 	}
 	navigateToPage(name: string): void {
-		if (name === 'Pais') {
-			void this._router.navigateByUrl(PATH_AS_PAGES.pais.onlyPath);
-		}
-		if (name === 'Zona') {
-			void this._router.navigateByUrl(PATH_AS_PAGES.zona.onlyPath);
+		switch (name) {
+			case 'Pais':
+				void this._router.navigateByUrl(PATH_AS_PAGES.pais.onlyPath);
+				break;
+			case 'Zona':
+				void this._router.navigateByUrl(PATH_AS_PAGES.zona.onlyPath);
+				break;
+			case 'Ruta':
+				void this._router.navigateByUrl(PATH_AS_PAGES.ruta.onlyPath);
+				break;
+			case 'Regiones':
+				void this._router.navigateByUrl(PATH_AS_PAGES.region.onlyPath);
+				break;
+			case 'Cobrador':
+				void this._router.navigateByUrl(PATH_AS_PAGES.cobrador.onlyPath);
+				break;
+			case 'Vendedor':
+				void this._router.navigateByUrl(PATH_AS_PAGES.vendedor.onlyPath);
+				break;
+			case 'Responsable':
+				void this._router.navigateByUrl(PATH_AS_PAGES.responsable.onlyPath);
+				break;
+			case 'Categoria de Cliente':
+				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaCliente.onlyPath);
+				break;
+			case 'Categoria de Proveedor':
+				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaProveedor.onlyPath);
+				break;
+			case 'Categoria de Articulo':
+				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaArticulo.onlyPath);
+				break;
+			case 'Nivel Precio':
+				void this._router.navigateByUrl(PATH_AS_PAGES.nivelPrecios.onlyPath);
+				break;
+			case 'Bodegas':
+				void this._router.navigateByUrl(PATH_AS_PAGES.bodega.onlyPath);
+				break;
+			case 'Parametros del Modulo':
+				void this._router.navigateByUrl(PATH_AS_PAGES.parametrosAS.onlyPath);
+				break;
+			default:
+				break;
 		}
 	}
 }

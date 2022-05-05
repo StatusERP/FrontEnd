@@ -13,3 +13,17 @@ mat-form-field{
                 
       
 }
+
+.title_box { 
+    border: #3c5a86 1px dotted; 
+}
+.title_box #title { 
+    position: relative; 
+    top : -0.5em;
+    margin-left: 1em;
+    display: inline; 
+    background-color: white; 
+}
+.title_box #content {
+ padding: 10px;
+}

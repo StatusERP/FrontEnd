@@ -16,18 +16,23 @@
 			>
 				<form class="formulario grey-100">
 					<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="50">
-						<mat-form-field appearance="outline">
-							<mat-label>Costos</mat-label>
-							<input type="number" formControlName="email" matInput placeholder="Decimales para Costo" />
-						</mat-form-field>
-						<mat-form-field appearance="outline">
-							<mat-label>Existencias</mat-label>
-							<input type="number" formControlName="email" matInput placeholder="Decimales para Existencias" />
-						</mat-form-field>
-						<mat-form-field appearance="outline">
-							<mat-label>Pesos</mat-label>
-							<input type="number" formControlName="email" matInput placeholder="Decimales para Pesos" />
-						</mat-form-field>
+						<div class="title_box" id="bill_to">
+							<div id="title">Decimales</div>
+							<div id="content">
+								<mat-form-field appearance="outline">
+									<mat-label>Costos</mat-label>
+									<input type="number" formControlName="email" matInput placeholder="Decimales para Costo" />
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Existencias</mat-label>
+									<input type="number" formControlName="email" matInput placeholder="Decimales para Existencias" />
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Pesos</mat-label>
+									<input type="number" formControlName="email" matInput placeholder="Decimales para Pesos" />
+								</mat-form-field>
+							</div>
+						</div>
 						<mat-form-field appearance="outline">
 							<mat-label>Costo Fiscal</mat-label>
 							<mat-select [disabled]="disableSelect.value">

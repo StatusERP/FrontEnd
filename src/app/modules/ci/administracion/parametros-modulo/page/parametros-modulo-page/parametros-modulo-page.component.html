@@ -1,0 +1,114 @@
+<div mat-dialog-title>
+	<h1>Parámetros de Control de Inventario</h1>
+</div>
+
+<mat-tab-group mat-align-tabs="center">
+	<mat-tab label="Generales">
+		<div class="generales" fxLayout="row wrap" fxLayoutAlign="center center">
+			<div
+				fxLayout="row"
+				fxLayout.xs="column"
+				fxLayoutAlign="start stretch"
+				fxFlex="60"
+				fxFlex.xs="94"
+				fxFlex.sm="80"
+				class="generalContenedor"
+			>
+				<form class="formulario grey-100">
+					<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="50">
+						<mat-form-field appearance="outline">
+							<mat-label>Costos</mat-label>
+							<input type="number" formControlName="email" matInput placeholder="Decimales para Costo" />
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<mat-label>Existencias</mat-label>
+							<input type="number" formControlName="email" matInput placeholder="Decimales para Existencias" />
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<mat-label>Pesos</mat-label>
+							<input type="number" formControlName="email" matInput placeholder="Decimales para Pesos" />
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<mat-label>Costo Fiscal</mat-label>
+							<mat-select [disabled]="disableSelect.value">
+								<mat-option value="E">Estandar</mat-option>
+								<mat-option value="X">PEPS</mat-option>
+								<mat-option value="P">Promedio</mat-option>
+								<mat-option value="Z">UEPS</mat-option>
+								<mat-option value="Ultimo">Ultimo</mat-option>
+							</mat-select>
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<mat-label>Costo Corporaiva</mat-label>
+							<mat-select [disabled]="disableSelect.value">
+								<mat-option value="E">Estandar</mat-option>
+								<mat-option value="X">PEPS</mat-option>
+								<mat-option value="P">Promedio</mat-option>
+								<mat-option value="Z">UEPS</mat-option>
+								<mat-option value="Ultimo">Ultimo</mat-option>
+							</mat-select>
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<mat-label>Clasificacion 1</mat-label>
+							<input type="text" formControlName="email" matInput placeholder="Texto de Clasificacion 1" />
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<mat-label>Clasificacion 2</mat-label>
+							<input type="text" formControlName="email" matInput placeholder="Texto de Clasificacion 2" />
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<mat-label>Clasificacion 3</mat-label>
+							<input type="text" formControlName="email" matInput placeholder="Texto de Clasificacion 3" />
+						</mat-form-field>
+					</div>
+					<div fxFlex="50" fxLayout="row wrap" fxLayoutAlign="center center" class="boxDerecho">
+						<mat-form-field appearance="outline">
+							<mat-label>Tipo Cambio</mat-label>
+							<input type="text" formControlName="email" matInput placeholder="Correo Cobrador" />
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<mat-label>Patron de Centro de Costo</mat-label>
+							<input type="text" formControlName="email" matInput placeholder="Correo Cobrador" />
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<mat-label>Nombre Impuesto 1</mat-label>
+							<input type="text" formControlName="email" matInput placeholder="Correo Cobrador" />
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<mat-label>Nombre Impuesto 2</mat-label>
+							<input type="text" formControlName="email" matInput placeholder="Correo Cobrador" />
+						</mat-form-field>
+
+						<mat-form-field appearance="outline">
+							<mat-label>Importe Minimo Exento</mat-label>
+							<input type="email" formControlName="email" matInput placeholder="Correo Cobrador" />
+						</mat-form-field>
+
+						<mat-form-field appearance="outline">
+							<mat-label>Posiciones Fijas</mat-label>
+							<input type="email" formControlName="email" matInput placeholder="Correo Cobrador" />
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<mat-label>Digitos Secuenciales</mat-label>
+							<input type="email" formControlName="email" matInput placeholder="Correo Cobrador" />
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<mat-label>Limites para Advertencias</mat-label>
+							<input type="email" formControlName="email" matInput placeholder="Correo Cobrador" />
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<mat-label>Dias de Vencimiento</mat-label>
+							<input type="email" formControlName="email" matInput placeholder="Correo Cobrador" />
+						</mat-form-field>
+					</div>
+				</form>
+			</div>
+		</div>
+	</mat-tab>
+	<mat-tab label="Indicadores"> Content 2 </mat-tab>
+	<mat-tab label="Contable"> Content 3 </mat-tab>
+	<mat-tab label="Ajuste"> Content 3 </mat-tab>
+</mat-tab-group>
+<div mat-dialog-actions [align]="'center'" style="margin-bottom: 30px">
+	<button mat-raised-button color="warn">Guardar</button>
+</div>

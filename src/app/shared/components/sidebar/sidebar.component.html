@@ -17,27 +17,33 @@
 		</mat-expansion-panel>
 		<mat-expansion-panel>
 			<mat-expansion-panel-header>
-				<mat-panel-title> <mat-icon>account_balance</mat-icon> <span>Facturacion</span> </mat-panel-title>
+				<mat-panel-title> <mat-icon>receipt</mat-icon> <span>Facturacion</span> </mat-panel-title>
+			</mat-expansion-panel-header>
+		</mat-expansion-panel>
+		<mat-expansion-panel (click)="CIclick()">
+			<mat-expansion-panel-header>
+				<mat-panel-title> <mat-icon>store</mat-icon> <span>Inventario</span> </mat-panel-title>
+			</mat-expansion-panel-header>
+			<app-tree-ci></app-tree-ci>
+		</mat-expansion-panel>
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-panel-title> <mat-icon>folder_shared</mat-icon> <span>Cuentas por Cobrar</span> </mat-panel-title>
 			</mat-expansion-panel-header>
 		</mat-expansion-panel>
 		<mat-expansion-panel>
 			<mat-expansion-panel-header>
-				<mat-panel-title> <mat-icon>account_balance</mat-icon> <span>Inventario</span> </mat-panel-title>
+				<mat-panel-title> <mat-icon>calculate</mat-icon> <span>Contabilidad General</span> </mat-panel-title>
 			</mat-expansion-panel-header>
 		</mat-expansion-panel>
 		<mat-expansion-panel>
 			<mat-expansion-panel-header>
-				<mat-panel-title> <mat-icon>account_balance</mat-icon> <span>Cuentas por Cobrar</span> </mat-panel-title>
+				<mat-panel-title> <mat-icon>manage_accounts</mat-icon> <span>Cuentas Por Pagar</span> </mat-panel-title>
 			</mat-expansion-panel-header>
 		</mat-expansion-panel>
 		<mat-expansion-panel>
 			<mat-expansion-panel-header>
-				<mat-panel-title> <mat-icon>account_balance</mat-icon> <span>Contabilidad General</span> </mat-panel-title>
-			</mat-expansion-panel-header>
-		</mat-expansion-panel>
-		<mat-expansion-panel>
-			<mat-expansion-panel-header>
-				<mat-panel-title> <mat-icon>account_balance</mat-icon> <span>Cuentas Por Pagar</span> </mat-panel-title>
+				<mat-panel-title> <mat-icon>account_balance</mat-icon> <span>Bancos</span> </mat-panel-title>
 			</mat-expansion-panel-header>
 		</mat-expansion-panel>
 	</mat-accordion>

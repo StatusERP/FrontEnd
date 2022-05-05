@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { AsRoutingModule } from './as-routing.module';
 import { AreaComponent } from './componetes/widgets/area/area.component';
 
-console.log('asmodule');
 @NgModule({
 	declarations: [AsPageComponent, AreaComponent],
 	imports: [CommonModule, AsRoutingModule, AngularMaterialModule, HighchartsChartModule, FlexLayoutModule]

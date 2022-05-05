@@ -1,3 +1,4 @@
+import { PATHS_CI_PAGES } from './config/path-page-ci';
 import { PATHS_AUTH_PAGES, PATH_AS_PAGES } from './config/path-pages';
 import { DefaultComponent } from './layouts/default/default.component';
 
@@ -86,6 +87,18 @@ const routes: Routes = [
 				path: PATH_AS_PAGES.parametrosAS.onlyPath,
 				loadChildren: () =>
 					import('./modules/as/administracion/administracion.module').then((m) => m.AdministracionModule)
+			},
+			//Mudulo Control Inventario
+			{
+				path: PATHS_CI_PAGES.moduloCI.onLyPath,
+				loadChildren: () => import('./modules/ci/ci-routing.module').then((m) => m.CiRoutingModule)
+			},
+			{
+				path: PATHS_CI_PAGES.parametrosModulo.onLyPath,
+				loadChildren: () =>
+					import('./modules/ci/administracion/parametros-modulo/parametros-modulo.module').then(
+						(m) => m.ParametrosModuloModule
+					)
 			}
 		]
 	},

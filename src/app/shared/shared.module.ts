@@ -16,9 +16,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { TreeComponent } from './components/tree/tree.component';
+import { TreeCiComponent } from './components/tree/ci/tree-ci/tree-ci.component';
 
 @NgModule({
-	declarations: [AreaComponent, HeaderComponent, FooterComponent, SidebarComponent, TreeComponent],
+	declarations: [AreaComponent, HeaderComponent, FooterComponent, SidebarComponent, TreeComponent, TreeCiComponent],
 	imports: [
 		MatListModule,
 		MatMenuModule,

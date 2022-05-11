@@ -77,7 +77,7 @@ export class BodegaPageComponent implements OnInit, AfterViewInit {
 	private _loadBodega(page: number, rows: number): void {
 		this._bodegaApiService.getBodega(page, rows).subscribe({
 			next: (response) => {
-				console.log(response);
+				//console.log(response);
 				this.listBodega.data = response.result;
 			},
 			error: () => {

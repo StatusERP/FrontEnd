@@ -1,3 +1,4 @@
+@use '../../../../../../shared/styles/colors.scss';
 .formulario {
     margin-top: 10px;
     width: 100%;
@@ -10,12 +11,19 @@
 
 mat-form-field{  
         width: 90%;
-                
-      
+                  
 }
 
 .title_box { 
-    border: #3c5a86 1px dotted; 
+    border: colors.$text-color 1px solid; 
+    margin: 10px;
+}
+
+.title_box_contable
+{ 
+    border: colors.$text-color 1px solid; 
+    margin: 10px 300px;
+    
 }
 .title_box #title { 
     position: relative; 
@@ -23,7 +31,34 @@ mat-form-field{
     margin-left: 1em;
     display: inline; 
     background-color: white; 
+
 }
 .title_box #content {
  padding: 10px;
 }
+.existenciaTotal{
+ width: 95%;
+}
+.mat-checkbox{
+    color: colors.$primary-color;
+}
+.indicadores{
+    margin: 1px 0;
+}
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    align-items: flex-start;
+  }
+  
+  .radio-button {
+    margin: 5px;
+  }
+  .mat-radio-button{
+    color: colors.$primary-color;
+  }
+  .content_paquete{
+      width: 100%;
+  }
+ 

@@ -99,6 +99,13 @@ const routes: Routes = [
 					import('./modules/ci/administracion/parametros-modulo/parametros-modulo.module').then(
 						(m) => m.ParametrosModuloModule
 					)
+			},
+			{
+				path: PATHS_CI_PAGES.clasificaciones.onLypath,
+				loadChildren: () =>
+					import('./modules/ci/administracion/clasificaciones/clasificaciones.module').then(
+						(m) => m.ClasificacionesModule
+					)
 			}
 		]
 	},

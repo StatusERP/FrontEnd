@@ -17,6 +17,9 @@ import { ApiInterceptor } from './interceptors/api.interceptor';
 import { ErrorApiInterceptor } from './interceptors/error-api.interceptor';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { SnotifyModule, ToastDefaults, SnotifyService } from 'ng-snotify';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -33,7 +36,9 @@ import { SnotifyModule, ToastDefaults, SnotifyService } from 'ng-snotify';
 		HttpClientModule,
 		NgxUiLoaderModule,
 		SnotifyModule,
-		MatFormFieldModule
+		MatFormFieldModule,
+		StoreModule.forRoot({}, {}),
+		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },

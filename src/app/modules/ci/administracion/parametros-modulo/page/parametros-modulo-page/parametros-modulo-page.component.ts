@@ -11,5 +11,9 @@ interface Food {
 	styleUrls: ['./parametros-modulo-page.component.scss']
 })
 export class ParametrosModuloPageComponent {
+	/**
+	 *
+	 */
+
 	disableSelect = new FormControl(false);
 }

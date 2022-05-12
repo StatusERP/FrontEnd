@@ -45,7 +45,7 @@
 								<mat-option value="X">PEPS</mat-option>
 								<mat-option value="P">Promedio</mat-option>
 								<mat-option value="Z">UEPS</mat-option>
-								<mat-option value="Ultimo">Ultimo</mat-option>
+								<mat-option value="U">Ultimo</mat-option>
 							</mat-select>
 						</mat-form-field>
 						<mat-form-field appearance="outline">
@@ -63,20 +63,28 @@
 					</div>
 					<div fxFlex="50" fxLayout="row wrap" fxLayoutAlign="center center" class="boxDerecho">
 						<mat-form-field appearance="outline">
-							<mat-label>Tipo Cambio</mat-label>
-							<input type="text" formControlName="email" matInput placeholder="Correo Cobrador" />
+							<mat-label>Costo Ingreso Especial</mat-label>
+							<mat-select [disabled]="disableSelect.value">
+								<mat-option value="P">Promedio</mat-option>
+								<mat-option value="F">Fiscal</mat-option>
+								<mat-option value="U">Ultimo</mat-option>
+							</mat-select>
 						</mat-form-field>
 						<mat-form-field appearance="outline">
-							<mat-label>Patron de Centro de Costo</mat-label>
-							<input type="text" formControlName="email" matInput placeholder="Correo Cobrador" />
+							<mat-label>Unidad de Peso</mat-label>
+							<input type="text" formControlName="email" matInput placeholder="Unidad de Peso" />
 						</mat-form-field>
 						<mat-form-field appearance="outline">
-							<mat-label>Nombre Impuesto 1</mat-label>
-							<input type="text" formControlName="email" matInput placeholder="Correo Cobrador" />
+							<mat-label>Unidad de Volumen</mat-label>
+							<input type="text" formControlName="email" matInput placeholder="Unidad de Volumen" />
 						</mat-form-field>
 						<mat-form-field appearance="outline">
-							<mat-label>Nombre Impuesto 2</mat-label>
-							<input type="text" formControlName="email" matInput placeholder="Correo Cobrador" />
+							<mat-label>Existencia en Totales</mat-label>
+							<p><mat-checkbox formControlName="cuarentena">Cuarentena</mat-checkbox></p>
+							<p><mat-checkbox formControlName="disponible">Disponible</mat-checkbox></p>
+							<p><mat-checkbox formControlName="remitida">Remitida</mat-checkbox></p>
+							<p><mat-checkbox formControlName="reservada">Reservada</mat-checkbox></p>
+							<p><mat-checkbox formControlName="vencida">Vencida</mat-checkbox></p>
 						</mat-form-field>
 
 						<mat-form-field appearance="outline">

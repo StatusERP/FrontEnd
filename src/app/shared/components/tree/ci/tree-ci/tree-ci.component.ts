@@ -86,8 +86,8 @@ export class TreeCiComponent implements OnInit {
 			case '_parametroModulo':
 				void this._router.navigateByUrl(PATHS_CI_PAGES.parametrosModulo.onLyPath);
 				break;
-			case 'Regiones':
-				void this._router.navigateByUrl(PATH_AS_PAGES.region.onlyPath);
+			case '_clasificciones':
+				void this._router.navigateByUrl(PATHS_CI_PAGES.clasificaciones.onLypath);
 				break;
 			case 'Cobrador':
 				void this._router.navigateByUrl(PATH_AS_PAGES.cobrador.onlyPath);

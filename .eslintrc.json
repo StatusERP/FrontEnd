@@ -1,7 +1,8 @@
 {
   "root": true,
   "ignorePatterns": [
-    "projects/**/*", "src/app/**/*.spec.ts"
+    "projects/**/*",
+    "src/app/**/*.spec.ts"
   ],
   "overrides": [
     {
@@ -15,12 +16,12 @@
         "createDefaultProgram": true
       },
       "extends": [
-              "plugin:@angular-eslint/recommended",
-       			  "plugin:@angular-eslint/template/process-inline-templates",
-       			  "eslint:recommended",
-       			  "plugin:@typescript-eslint/recommended",
-        		  "plugin:@typescript-eslint/recommended-requiring-type-checking",
-       			  "plugin:prettier/recommended"
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:prettier/recommended"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -40,13 +41,15 @@
           }
         ],
         "@typescript-eslint/unbound-method": [
-					"error",
-					{
-						"ignoreStatic": true
-					}
-				],
-				"@typescript-eslint/explicit-module-boundary-types": ["error"],
-				"@typescript-eslint/no-non-null-assertion": "off" 
+          "error",
+          {
+            "ignoreStatic": true
+          }
+        ],
+        "@typescript-eslint/explicit-module-boundary-types": [
+          "error"
+        ],
+        "@typescript-eslint/no-non-null-assertion": "off"
       }
     },
     {
@@ -58,6 +61,14 @@
         "plugin:prettier/recommended"
       ],
       "rules": {}
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:ngrx/recommended"
+      ]
     }
   ]
 }

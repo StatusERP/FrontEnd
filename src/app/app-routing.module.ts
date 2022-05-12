@@ -106,6 +106,11 @@ const routes: Routes = [
 					import('./modules/ci/administracion/clasificaciones/clasificaciones.module').then(
 						(m) => m.ClasificacionesModule
 					)
+			},
+			{
+				path: PATH_AS_PAGES.unidadMedida.onlyPath,
+				loadChildren: () =>
+					import('./modules/as/tablas/otros/unidad-medida/unidad-medida.module').then((m) => m.UnidadMedidaModule)
 			}
 		]
 	},

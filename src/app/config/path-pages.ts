@@ -47,6 +47,7 @@ const nivelPrecioPage = 'nivelPrecio';
 //Tablas/Otros
 const otros = 'otro';
 const bodegaPage = 'bodega';
+const unidadMedidaPage = 'unidadMedida';
 //Administracion
 const parametrosASPage = 'parametrosAS';
 export const PATH_AS_PAGES = {
@@ -77,6 +78,7 @@ export const PATH_AS_PAGES = {
 	nivelPrecios: { withSlash: `/${modulo_AS}/${categoria}/${nivelPrecioPage}`, onlyPath: nivelPrecioPage },
 	//as/Tablas/Otros
 	bodega: { withSlash: `/${modulo_AS}/${otros}/${bodegaPage}`, onlyPath: bodegaPage },
+	unidadMedida: { withSlash: `/${modulo_AS}/${otros}/${unidadMedidaPage}`, onlyPath: unidadMedidaPage },
 	//Administracion/ParametrosModulo
 	parametrosAS: { withSlash: `/${modulo_AS}/${parametrosASPage}`, onlyPath: parametrosASPage }
 };

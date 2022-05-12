@@ -6,165 +6,217 @@ import { MatTreeNestedDataSource } from '@angular/material/tree';
 
 interface AdminNode {
 	name: string;
+	constante: string;
 	children?: AdminNode[];
 }
 
 const TREE_DATA: AdminNode[] = [
 	{
 		name: 'Seguridad',
+		constante: 'demo',
 		children: [
 			{
-				name: 'Usuario'
+				name: 'Usuario',
+				constante: '_usuario'
 			},
 			{
-				name: 'Grupos'
+				name: 'Grupos',
+				constante: '_grupos'
 			}
 		]
 	},
 	{
 		name: 'Reportes',
+		constante: 'demo',
 		children: [
 			{
-				name: 'Reporte de Privilegios'
+				name: 'Reporte de Privilegios',
+				constante: '_reporteDePrivilegios'
 			},
 			{
-				name: 'Bitacora de procesos'
+				name: 'Bitacora de procesos',
+				constante: '_bitacoraDeProcesos'
 			}
 		]
 	},
 
 	{
 		name: 'Tablas',
+		constante: 'demo',
 		children: [
 			{
 				name: 'Areas',
+				constante: 'demo',
 				children: [
 					{
-						name: 'Pais'
+						name: 'Pais',
+						constante: '_pais'
 					},
 					{
-						name: 'Zona'
+						name: 'Zona',
+						constante: '_zona'
 					},
 					{
-						name: 'Ruta'
+						name: 'Ruta',
+						constante: '_ruta'
 					},
 					{
-						name: 'Regiones'
+						name: 'Regiones',
+						constante: '_regiones'
 					}
 				]
 			},
 			{
 				name: 'Organizacion/Ubicacion',
+				constante: 'demo',
 				children: [
 					{
-						name: 'Centro de Costo'
+						name: 'Centro de Costo',
+						constante: '_centoDeCoso'
 					},
 					{
-						name: 'Departamneto'
+						name: 'Departamneto',
+						constante: '_departamento'
 					},
 					{
-						name: 'Ubicacion'
+						name: 'Ubicacion',
+						constante: '_ubicacion'
 					}
 				]
 			},
 			{
 				name: 'Funcionarios',
+				constante: 'demo',
 				children: [
 					{
-						name: 'Vendedor'
+						name: 'Vendedor',
+						constante: '_vendedor'
 					},
 					{
-						name: 'Cobrador'
+						name: 'Cobrador',
+						constante: '_cobrador'
 					}
 				]
 			},
 			{
 				name: 'Categoria',
+				constante: 'demo',
 				children: [
 					{
-						name: 'Categoria de Cliente'
+						name: 'Categoria de Cliente',
+						constante: '_categoriaDeCliente'
 					},
 					{
-						name: 'Categoria de Proveedor'
+						name: 'Categoria de Proveedor',
+						constante: '_categoriaDeProveedor'
 					},
 					{
-						name: 'Categoria de Articulo'
+						name: 'Categoria de Articulo',
+						constante: '_categoriaDeArticulo'
 					},
 					{
-						name: 'Nivel Precio'
+						name: 'Nivel Precio',
+						constante: '_nivelPrecio'
 					}
 				]
 			},
 			{
 				name: 'Tipos',
+				constante: 'demo',
 				children: [
 					{
-						name: 'Moneda'
+						name: 'Moneda',
+						constante: '_moneda'
 					},
 					{
-						name: 'Tipos de cambio'
+						name: 'Tipos de cambio',
+						constante: 'tipoDeCambio'
 					},
 					{
-						name: 'Condiciones de Pago'
+						name: 'Condiciones de Pago',
+						constante: 'condicionDePago'
 					},
 					{
-						name: 'Codigos de Impuestos'
+						name: 'Codigos de Impuestos',
+						constante: '_codigoDeImpuestos'
 					},
 					{
-						name: 'Direcciones'
+						name: 'Direcciones',
+						constante: '_direcciones'
 					},
 					{
-						name: 'Retenciones'
+						name: 'Retenciones',
+						constante: '_retenciones'
 					},
 					{
-						name: 'Tipos de Anulacion'
+						name: 'Tipos de Anulacion',
+						constante: '_tipoDeAnulacion'
 					},
 					{
-						name: 'Tipo de Impuestos'
+						name: 'Tipo de Impuestos',
+						constante: 'tipoDeImpuestos'
 					}
 				]
 			},
 			{
 				name: 'Otros',
+				constante: 'demo',
 				children: [
 					{
-						name: 'Entidades Finacieras'
+						name: 'Entidades Finacieras',
+						constante: '_entidadesFincaieras'
 					},
 					{
-						name: 'Tarjetas de Credito'
+						name: 'Tarjetas de Credito',
+						constante: '_tarjetasDeCredito'
 					},
 					{
-						name: 'Bodegas'
+						name: 'Bodegas',
+						constante: '_bodegas'
 					},
 					{
-						name: 'Unidades'
+						name: 'Unidades',
+						constante: '_unidades'
 					},
 					{
-						name: 'Tipos de NITs'
+						name: 'Unidad de Medida',
+						constante: '_unidadDeMedida'
 					},
 					{
-						name: 'NITs'
+						name: 'Tipos de NITs',
+						constante: '_tipoDeNits'
 					},
 					{
-						name: 'Atributos'
+						name: 'NITs',
+						constante: '_nits'
 					},
 					{
-						name: 'Aduanas'
+						name: 'Atributos',
+						constante: '_atributos'
 					},
 					{
-						name: 'Encargados de bodega'
+						name: 'Aduanas',
+						constante: '_aduanas'
 					},
 					{
-						name: 'Consecutivo NCF'
+						name: 'Encargados de bodega',
+						constante: '_encargadoDeBodegas'
 					},
 					{
-						name: 'Modelo Retenciones'
+						name: 'Consecutivo NCF',
+						constante: '_consecutivoNcf'
 					},
 					{
-						name: 'Consecutivos Globales'
+						name: 'Modelo Retenciones',
+						constante: '_modeloRetenciones'
 					},
 					{
-						name: 'Cargos'
+						name: 'Consecutivos Globales',
+						constante: '_consecutivosGlobales'
+					},
+					{
+						name: 'Cargos',
+						constante: '_cargos'
 					}
 				]
 			}
@@ -172,18 +224,23 @@ const TREE_DATA: AdminNode[] = [
 	},
 	{
 		name: 'Administracion',
+		constante: 'demo',
 		children: [
 			{
-				name: 'Companias'
+				name: 'Companias',
+				constante: '_companias'
 			},
 			{
-				name: 'Cambio de Clave de Acceso'
+				name: 'Cambio de Clave de Acceso',
+				constante: '_cambioDeClaveAcesso'
 			},
 			{
-				name: 'Periodos Contables'
+				name: 'Periodos Contables',
+				constante: '_periodosContables'
 			},
 			{
-				name: 'Parametros del Modulo'
+				name: 'Parametros del Modulo',
+				constante: '_parametosDelModulo'
 			}
 		]
 	}
@@ -207,44 +264,47 @@ export class TreeComponent implements OnInit {
 	}
 	navigateToPage(name: string): void {
 		switch (name) {
-			case 'Pais':
+			case '_pais':
 				void this._router.navigateByUrl(PATH_AS_PAGES.pais.onlyPath);
 				break;
-			case 'Zona':
+			case '_zona':
 				void this._router.navigateByUrl(PATH_AS_PAGES.zona.onlyPath);
 				break;
-			case 'Ruta':
+			case '_ruta':
 				void this._router.navigateByUrl(PATH_AS_PAGES.ruta.onlyPath);
 				break;
-			case 'Regiones':
+			case '_regiones':
 				void this._router.navigateByUrl(PATH_AS_PAGES.region.onlyPath);
 				break;
-			case 'Cobrador':
+			case '_cobrador':
 				void this._router.navigateByUrl(PATH_AS_PAGES.cobrador.onlyPath);
 				break;
-			case 'Vendedor':
+			case '_vendedor':
 				void this._router.navigateByUrl(PATH_AS_PAGES.vendedor.onlyPath);
 				break;
-			case 'Responsable':
+			case '_responsable':
 				void this._router.navigateByUrl(PATH_AS_PAGES.responsable.onlyPath);
 				break;
-			case 'Categoria de Cliente':
+			case '_categoriaDeCliente':
 				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaCliente.onlyPath);
 				break;
-			case 'Categoria de Proveedor':
+			case '_categoriaDeProveedor':
 				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaProveedor.onlyPath);
 				break;
-			case 'Categoria de Articulo':
+			case '_categroiaDeArticulo':
 				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaArticulo.onlyPath);
 				break;
-			case 'Nivel Precio':
+			case '_nivelPrecio':
 				void this._router.navigateByUrl(PATH_AS_PAGES.nivelPrecios.onlyPath);
 				break;
-			case 'Bodegas':
+			case '_bodegas':
 				void this._router.navigateByUrl(PATH_AS_PAGES.bodega.onlyPath);
 				break;
-			case 'Parametros del Modulo':
+			case '_parametrosDelModulo':
 				void this._router.navigateByUrl(PATH_AS_PAGES.parametrosAS.onlyPath);
+				break;
+			case '_unidadDeMedida':
+				void this._router.navigateByUrl(PATH_AS_PAGES.unidadMedida.onlyPath);
 				break;
 			default:
 				break;

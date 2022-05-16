@@ -291,7 +291,7 @@ export class TreeComponent implements OnInit {
 			case '_categoriaDeProveedor':
 				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaProveedor.onlyPath);
 				break;
-			case '_categroiaDeArticulo':
+			case '_categoriaDeArticulo':
 				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaArticulo.onlyPath);
 				break;
 			case '_nivelPrecio':

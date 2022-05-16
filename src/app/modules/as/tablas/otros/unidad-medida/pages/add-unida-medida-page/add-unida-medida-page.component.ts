@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { ICreateUnidadMedida } from './../../service/unidad-medida-api-model-interface';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SnotifyService, SnotifyPosition } from 'ng-snotify';
 import { UnidadMedidaApiService } from './../../service/unidad-medida-api.service';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 
 @Component({
 	selector: 'app-add-unida-medida-page',
@@ -20,6 +21,8 @@ export class AddUnidaMedidaPageComponent {
 		private _unidadMedidaApiService: UnidadMedidaApiService,
 		private _snotifyService: SnotifyService,
 		// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 		@Inject(MAT_DIALOG_DATA) public editData: any,
 		private _dialogRef: MatDialogRef<AddUnidaMedidaPageComponent>
 	) {
@@ -33,9 +36,11 @@ export class AddUnidaMedidaPageComponent {
 		if (this.editData) {
 			this.actionBtn = 'Editar';
 
-			//		this.f.controls['codUnidadMedida'].setValue(this.editData.codUnidadMedida);
-			//		this.f.controls['codUnidadMedida'].disable();
-			//		this.f.controls['descripcion'].setValue(this.editData.descripcion);
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			this.f.controls['codUnidadMedida'].setValue(this.editData.codUnidadMedida);
+			this.f.controls['codUnidadMedida'].disable();
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			this.f.controls['descripcion'].setValue(this.editData.descripcion);
 		}
 	}
 
@@ -76,9 +81,17 @@ export class AddUnidaMedidaPageComponent {
 		});
 	}
 	private _edit(unidadMedida: ICreateUnidadMedida) {
-		this.f.reset();
-		this._snotifyService.info('El registro de actualizo sin problema', { position: SnotifyPosition.rightTop });
-		this._dialogRef.close('update');
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+		this._unidadMedidaApiService.update(this.editData.id, unidadMedida).subscribe({
+			next: (response) => {
+				this.f.reset();
+				this._snotifyService.info('El registro de actualizo sin problema', { position: SnotifyPosition.rightTop });
+				this._dialogRef.close('update');
+			},
+			error: () => {
+				console.log('error');
+			}
+		});
 	}
 
 	get codUnidadMedidaField(): AbstractControl {

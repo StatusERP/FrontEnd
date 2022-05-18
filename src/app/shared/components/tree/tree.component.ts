@@ -265,7 +265,7 @@ export class TreeComponent implements OnInit {
 	navigateToPage(name: string): void {
 		switch (name) {
 			case '_pais':
-				void this._router.navigateByUrl(PATH_AS_PAGES.pais.onlyPath);
+				void this._router.navigateByUrl(PATH_AS_PAGES.pais.withSlash);
 				break;
 			case '_zona':
 				void this._router.navigateByUrl(PATH_AS_PAGES.zona.onlyPath);

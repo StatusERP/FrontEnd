@@ -77,7 +77,7 @@ export class TreeCiComponent implements OnInit {
 	}
 	navigateToPage(name: string): void {
 		switch (name) {
-			case '_articulo':
+			case '_articulos':
 				void this._router.navigateByUrl(PATHS_CI_PAGES.articulo.onLypath);
 				break;
 			case '_lote':

@@ -1,3 +1,7 @@
+import { AngularMaterialModule } from './../../../../../angular-material-modulo';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -8,6 +12,14 @@ import { NivelPrecioPageComponent } from './pages/nivel-precio-page/nivel-precio
 
 @NgModule({
 	declarations: [NivelPrecioPageComponent, AddNivelPrecioPageComponent],
-	imports: [CommonModule, NivelprecioRoutingModule]
+	imports: [
+		CommonModule,
+		NivelprecioRoutingModule,
+		FormsModule,
+		MatTableModule,
+		MatIconModule,
+		ReactiveFormsModule,
+		AngularMaterialModule
+	]
 })
 export class NivelprecioModule {}

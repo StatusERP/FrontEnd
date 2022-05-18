@@ -1,3 +1,7 @@
+import { AngularMaterialModule } from './../../../../../angular-material-modulo';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -8,6 +12,14 @@ import { AddCatArticuloPageComponent } from './pages/add-cat-articulo-page/add-c
 console.log('routercategoriaarticulo');
 @NgModule({
 	declarations: [CategoriaarticuloPageComponent, AddCatArticuloPageComponent],
-	imports: [CommonModule, CategoriaarticuloRoutingModule]
+	imports: [
+		CommonModule,
+		CategoriaarticuloRoutingModule,
+		FormsModule,
+		MatTableModule,
+		MatIconModule,
+		ReactiveFormsModule,
+		AngularMaterialModule
+	]
 })
 export class CategoriaarticuloModule {}

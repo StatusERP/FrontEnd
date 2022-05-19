@@ -1,9 +1,9 @@
-export interface IResponseRuta {
+export interface IResponseCatCliente {
 	codCategoriaCliente: string;
 	descripcion: string;
 }
 
-export interface IRequestCreateRuta {
+export interface IRequestCreateCatCliente {
 	codCategoriaCliente: string;
 	descripcion: string;
 }

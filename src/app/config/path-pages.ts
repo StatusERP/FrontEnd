@@ -53,7 +53,7 @@ const parametrosASPage = 'parametrosAS';
 export const PATH_AS_PAGES = {
 	withSlash: `/${modulo_AS}`,
 	onlyPath: modulo_AS,
-	//as/areas/
+	// /as/areas/pais
 	pais: { withSlash: `/${modulo_AS}/${area}/${paisPage}`, onlyPath: paisPage },
 	zona: { withSlash: `/${modulo_AS}/${area}/${zonaPage}`, onlyPath: zonaPage },
 	ruta: { withSlash: `/${modulo_AS}/${area}/${rutaPage}`, onlyPath: rutaPage },

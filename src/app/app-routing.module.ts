@@ -101,6 +101,10 @@ const routes: Routes = [
 					)
 			},
 			{
+				path: PATHS_CI_PAGES.articulo.onLypath,
+				loadChildren: () => import('./modules/ci/articulo/articulo.module').then((m) => m.ArticuloModule)
+			},
+			{
 				path: PATHS_CI_PAGES.clasificaciones.onLypath,
 				loadChildren: () =>
 					import('./modules/ci/administracion/clasificaciones/clasificaciones.module').then(

@@ -26,8 +26,9 @@ export class UnidadMedidaApiService {
 		return this._httpClient.delete<IResponse<number>>(url);
 	}
 
-	//	update(idUnidadMedida: number, unidadMedida: ICreateUnidadMedida): Observable<IResponse<number>> {
-	//		const url = URL_UNIDADMEDIDA + '/' + idUnidadMedida;
-	//		return this._httpClient.put<IResponse<number>>(url, unidadMedida);
-	//	}
+	update(idUnidadMedida: number, unidadMedida: ICreateUnidadMedida): Observable<IResponse<number>> {
+		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+		const url = URL_UNIDADMEDIDA + '/' + idUnidadMedida;
+		return this._httpClient.put<IResponse<number>>(url, unidadMedida);
+	}
 }

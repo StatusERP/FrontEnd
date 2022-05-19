@@ -33,9 +33,11 @@ export class AddUnidaMedidaPageComponent {
 		if (this.editData) {
 			this.actionBtn = 'Editar';
 
-			//		this.f.controls['codUnidadMedida'].setValue(this.editData.codUnidadMedida);
-			//		this.f.controls['codUnidadMedida'].disable();
-			//		this.f.controls['descripcion'].setValue(this.editData.descripcion);
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			this.f.controls['codUnidadMedida'].setValue(this.editData.codUnidadMedida);
+			this.f.controls['codUnidadMedida'].disable();
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			this.f.controls['descripcion'].setValue(this.editData.descripcion);
 		}
 	}
 

@@ -1,3 +1,4 @@
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -67,7 +68,8 @@ const materialModules = [
 	MatDatepickerModule,
 	MatTooltipModule,
 	MatCardModule,
-	MatDialogModule
+	MatDialogModule,
+	FlexLayoutModule
 ];
 @NgModule({
 	imports: [CommonModule, ...materialModules],

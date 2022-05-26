@@ -1,1 +1,713 @@
-<p>add-articulo-page works!</p>
+<div fxLayout="row" fxLayoutAlign="center none">
+	<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="30">
+		<mat-form-field appearance="outline">
+			<mat-label>Codigo Articulo</mat-label>
+			<input type="text" matInput placeholder="Codigo Articulo" />
+		</mat-form-field>
+	</div>
+	<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="70">
+		<mat-form-field appearance="outline">
+			<mat-label>Descripcion Articulo</mat-label>
+			<input type="text" matInput placeholder="Descripicon Articulo" />
+		</mat-form-field>
+	</div>
+</div>
+<form class="formulario grey-100">
+	<mat-tab-group mat-align-tabs="center">
+		<mat-tab label="Generales">
+			<div fxLayout="row wrap" fxLayoutAlign="center none">
+				<div
+					fxLayout="row"
+					fxLayout.xs="column"
+					fxLayoutAlign="start stretch"
+					fxFlex="60"
+					fxFlex.xs="94"
+					fxFlex.sm="80"
+					class="generalContenedor"
+				>
+					<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="50">
+						<div class="title_box">
+							<div id="title">Imagen</div>
+							<div id="content">
+								<img style="width: 200px; height: 200px" src="../../../../../../assets/logos/LogoStatusERP.jpeg" />
+								<input hidden (change)="onFileSelected($event)" #fileInput type="file" accept=".jpg,.jpeg,.png" />
+							</div>
+						</div>
+					</div>
+
+					<div fxLayout="row wrap" fxLayoutAlign="center none" fxFlex="50">
+						<div class="title_box">
+							<div id="title">Generales</div>
+							<div id="content">
+								<mat-form-field appearance="outline">
+									<mat-label>Tipo</mat-label>
+									<mat-select style="color: brown" [disabled]="disableSelect.value">
+										<mat-option value="T">Terminado</mat-option>
+										<mat-option value="M">Materia Prima</mat-option>
+										<mat-option value="E">Semielaborado</mat-option>
+										<mat-option value="Z">Mat.Empaque</mat-option>
+										<mat-option value="P">Proceso</mat-option>
+										<mat-option value="R">Reproceso</mat-option>
+										<mat-option value="L">Laboral</mat-option>
+										<mat-option value="O">Otros</mat-option>
+										<mat-option value="E">Suministros</mat-option>
+										<mat-option value="R">Refaccion</mat-option>
+										<mat-option value="S">Servicio</mat-option>
+										<mat-option value="C">Coproducto</mat-option>
+										<mat-option value="Q">Subproducto</mat-option>
+										<mat-option value="D">Desecho</mat-option>
+										<mat-option value="F">Fantasma</mat-option>
+										<mat-option value="K">Kit</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<section class="indicadores">
+									<p><mat-checkbox>Activo</mat-checkbox></p>
+									<p><mat-checkbox>Tienda Linea</mat-checkbox></p>
+									<p><mat-checkbox>Venta Con Tarjeta Credito</mat-checkbox></p>
+								</section>
+							</div>
+						</div>
+
+						<div class="title_box">
+							<div id="title">Codigo Barra Unidad Detalle</div>
+
+							<div id="content">
+								<mat-form-field appearance="outline">
+									<mat-label>Costos</mat-label>
+									<input type="number" matInput placeholder="Decimales para Costo" />
+								</mat-form-field>
+							</div>
+						</div>
+						<div class="title_box">
+							<div id="title">Codigo Barra Unidad Venta</div>
+							<div id="content">
+								<mat-form-field appearance="outline">
+									<mat-label>Costos</mat-label>
+									<input type="number" matInput placeholder="Decimales para Costo" />
+								</mat-form-field>
+							</div>
+						</div>
+					</div>
+
+					<div fxLayout="row wrap" fxLayoutAlign="center none" fxFlex="50">
+						<div class="title_box">
+							<div id="title">Existencia</div>
+							<div id="content">
+								<mat-form-field appearance="outline">
+									<mat-label>Minima</mat-label>
+									<input type="number" matInput placeholder="Existencia Minima" />
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Reorden</mat-label>
+									<input type="number" matInput placeholder="Punto de Reorden" />
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Máxima</mat-label>
+									<input type="number" matInput placeholder="Existencia Máxima" />
+								</mat-form-field>
+							</div>
+						</div>
+						<div class="title_box">
+							<div id="title">Costos</div>
+							<div id="content">
+								<mat-form-field appearance="outline">
+									<mat-label>Fiscal</mat-label>
+									<mat-select [disabled]="disableSelect.value">
+										<mat-option value="E">Estándar</mat-option>
+										<mat-option value="L">PEPS</mat-option>
+										<mat-option value="P">Promedio</mat-option>
+										<mat-option value="S">UEPS</mat-option>
+										<mat-option value="U">Ultimo</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Corporativa</mat-label>
+									<mat-select [disabled]="disableSelect.value">
+										<mat-option value="E">Estándar</mat-option>
+										<mat-option value="L">PEPS</mat-option>
+										<mat-option value="P">Promedio</mat-option>
+										<mat-option value="S">UEPS</mat-option>
+										<mat-option value="U">Ultimo</mat-option>
+									</mat-select>
+								</mat-form-field>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</mat-tab>
+		<mat-tab label="Clasificacion">
+			<div class="generales" fxLayout="row wrap" fxLayoutAlign="center center">
+				<div
+					fxLayout="row"
+					fxLayout.xs="column"
+					fxLayoutAlign="start stretch"
+					fxFlex="60"
+					fxFlex.xs="94"
+					fxFlex.sm="80"
+					class="generalContenedor"
+				>
+					<div class="title_box">
+						<div id="title">Clasificación</div>
+
+						<div id="content">
+							<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="20">
+								<mat-form-field appearance="outline">
+									<mat-label>Clasificacion 1</mat-label>
+									<input type="text" matInput placeholder="Texto de Clasificacion 1" />
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Clasificacion 2</mat-label>
+									<input type="text" matInput placeholder="Texto de Clasificacion 2" />
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Clasificacion 3</mat-label>
+									<input type="text" matInput placeholder="Texto de Clasificacion 3" />
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Clasificacion 4</mat-label>
+									<input type="text" matInput placeholder="Texto de Clasificacion 3" />
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Clasificacion 5</mat-label>
+									<input type="text" matInput placeholder="Texto de Clasificacion 3" />
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Clasificacion 6</mat-label>
+									<input type="text" matInput placeholder="Texto de Clasificacion 3" />
+								</mat-form-field>
+							</div>
+							<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="80">
+								<mat-form-field appearance="outline">
+									<mat-label>Clasificacion 1</mat-label>
+									<input type="text" matInput placeholder="Texto de Clasificacion 1" />
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Clasificacion 2</mat-label>
+									<input type="text" matInput placeholder="Texto de Clasificacion 2" />
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Clasificacion 3</mat-label>
+									<input type="text" matInput placeholder="Texto de Clasificacion 3" />
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Clasificacion 4</mat-label>
+									<input type="text" matInput placeholder="Texto de Clasificacion 3" />
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Clasificacion 5</mat-label>
+									<input type="text" matInput placeholder="Texto de Clasificacion 3" />
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Clasificacion 6</mat-label>
+									<input type="text" matInput placeholder="Texto de Clasificacion 3" />
+								</mat-form-field>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="generales" fxLayout="row wrap" fxLayoutAlign="center center">
+				<div
+					fxLayout="row"
+					fxLayout.xs="column"
+					fxLayoutAlign="start stretch"
+					fxFlex="60"
+					fxFlex.xs="94"
+					fxFlex.sm="80"
+					class="generalContenedor"
+				>
+					<div class="title_box">
+						<div id="title">Clase</div>
+
+						<div id="content">
+							<mat-radio-group class="radio-group">
+								<mat-radio-button class="radio-button" value="A">A</mat-radio-button>
+								<mat-radio-button class="radio-button" value="B">B</mat-radio-button>
+								<mat-radio-button class="radio-button" value="C">C</mat-radio-button>
+								<mat-radio-button class="radio-button" value="D">D</mat-radio-button>
+							</mat-radio-group>
+						</div>
+					</div>
+				</div>
+			</div>
+		</mat-tab>
+		<mat-tab label="Proveedor">
+			<div class="generales" fxLayout="row wrap" fxLayoutAlign="center center">
+				<div
+					fxLayout="row"
+					fxLayout.xs="column"
+					fxLayoutAlign="start stretch"
+					fxFlex="60"
+					fxFlex.xs="94"
+					fxFlex.sm="80"
+					class="generalContenedor"
+				>
+					<div class="title_box">
+						<div id="content">
+							<div fxLayout="row wrap" fxFlex="30">
+								<mat-form-field appearance="outline">
+									<mat-label>Proveedor</mat-label>
+									<input type="text" matInput placeholder="Selecione Proveedor" />
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Pais de Manufactura</mat-label>
+									<input type="text" matInput placeholder="Selecione Pais" />
+								</mat-form-field>
+							</div>
+							<div fxLayout="row wrap" fxFlex="80">
+								<mat-form-field appearance="outline">
+									<mat-label>Nombre Proveedor</mat-label>
+									<input type="text" matInput placeholder="Nombre proveedor" />
+								</mat-form-field>
+								<mat-form-field appearance="outline">
+									<mat-label>Nombre pais</mat-label>
+									<input type="text" matInput placeholder="Nombre Pais" />
+								</mat-form-field>
+							</div>
+						</div>
+						<div id="content">
+							<div fxLayout="row wrap" fxFlex="30">
+								<mat-form-field appearance="outline">
+									<mat-label>Tipo País/Región</mat-label>
+									<input type="text" matInput placeholder="Tipo pais" />
+								</mat-form-field>
+							</div>
+							<div fxLayout="row wrap" fxFlex="30">
+								<mat-form-field appearance="outline">
+									<mat-label>Código Artículo</mat-label>
+									<input type="text" matInput placeholder="Tipo pais" />
+								</mat-form-field>
+							</div>
+						</div>
+
+						<div id="content">
+							<div fxLayout="row wrap" fxFlex="30">
+								<mat-form-field appearance="outline">
+									<mat-label>Orden Mínima</mat-label>
+									<input type="text" matInput placeholder="Cantidad Minima" />
+								</mat-form-field>
+							</div>
+							<div fxLayout="row wrap" fxFlex="30">
+								<mat-form-field appearance="outline">
+									<mat-label>Reabastecimiento</mat-label>
+									<input type="text" matInput placeholder="Reabastecimiento" />
+								</mat-form-field>
+							</div>
+						</div>
+
+						<div id="content">
+							<div fxLayout="row wrap" fxFlex="30">
+								<mat-form-field appearance="outline">
+									<mat-label>Lote Múltiplo</mat-label>
+									<input type="text" matInput placeholder="Lote Multiplo" />
+								</mat-form-field>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</mat-tab>
+		<mat-tab label="Otros">
+			<div class="generales" fxLayout="row wrap" fxLayoutAlign="center center">
+				<div
+					fxLayout="row"
+					fxLayout.xs="column"
+					fxLayoutAlign="start stretch"
+					fxFlex="60"
+					fxFlex.xs="94"
+					fxFlex.sm="80"
+					class="generalContenedor"
+				>
+					<div fxLayout="row wrap" fxLayoutAlign="center none">
+						<div class="title_box">
+							<div id="content">
+								<div fxLayout="row wrap" fxFlex="50">
+									<mat-form-field appearance="outline">
+										<mat-label>Conteo Ciclico</mat-label>
+										<input type="text" matInput placeholder="Conteo Ciclico dias" />
+									</mat-form-field>
+									<mat-form-field appearance="outline">
+										<mat-label>Número de Bultos</mat-label>
+										<input type="text" matInput placeholder="Numero de Búltos" />
+									</mat-form-field>
+								</div>
+								<div fxLayout="row wrap" fxFlex="50">
+									<mat-form-field appearance="outline">
+										<mat-label>GTN</mat-label>
+										<input type="text" matInput placeholder="GTN" />
+									</mat-form-field>
+									<mat-form-field appearance="outline">
+										<mat-label>Manufacturador</mat-label>
+										<input type="text" matInput placeholder="Nombre Manufacturador" />
+									</mat-form-field>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="generales" fxLayout="row wrap" fxLayoutAlign="center center">
+				<div
+					fxLayout="row"
+					fxLayout.xs="column"
+					fxLayoutAlign="start stretch"
+					fxFlex="60"
+					fxFlex.xs="94"
+					fxFlex.sm="80"
+					class="generalContenedor"
+				>
+					<div fxLayout="row wrap" fxLayoutAlign="center none">
+						<div class="title_box">
+							<div id="title">Unidades</div>
+							<div id="content">
+								<div fxLayout="row wrap" fxFlex="50" fxLayoutAlign="center center">
+									<div fxLayout="row wrap" fxFlex="90" fxLayoutAlign="center center">
+										<mat-form-field appearance="outline">
+											<mat-label>Peso Neto</mat-label>
+											<input type="number" matInput placeholder="Peso Neto" />
+										</mat-form-field>
+										<mat-form-field appearance="outline">
+											<mat-label>Peso Bruto</mat-label>
+											<input type="text" matInput placeholder="Peso Bruto" />
+										</mat-form-field>
+										<mat-form-field appearance="outline">
+											<mat-label>Volumen</mat-label>
+											<input type="text" matInput placeholder="Volumen" />
+										</mat-form-field>
+									</div>
+									<div fxLayout="column" fxFlex="10" fxLayoutGap="30px">
+										<p>KB</p>
+										<p>KB</p>
+										<p>L</p>
+									</div>
+								</div>
+
+								<div fxLayout="row wrap" fxFlex="50">
+									<div fxLayout="row wrap" fxFlex="70" fxLayoutAlign="center center">
+										<mat-form-field appearance="outline">
+											<mat-label>Almacenamineto</mat-label>
+											<input type="text" matInput placeholder="Almacenamiento" />
+										</mat-form-field>
+										<mat-form-field appearance="outline">
+											<mat-label>Detalle</mat-label>
+											<input type="text" matInput placeholder="Unidad Detalle" />
+										</mat-form-field>
+										<mat-form-field appearance="outline">
+											<mat-label>Múltiplo Venta</mat-label>
+											<input type="text" matInput placeholder="Múltipo Ventas" />
+										</mat-form-field>
+									</div>
+									<div fxLayout="column" fxFlex="30" fxLayoutAlign="center center">
+										<p>Conversión</p>
+										<mat-form-field appearance="outline">
+											<mat-label>Múltiplo Venta</mat-label>
+											<input type="text" matInput placeholder="Múltipo Ventas" />
+										</mat-form-field>
+										<mat-form-field appearance="outline">
+											<mat-label>Múltiplo Venta</mat-label>
+											<input type="text" matInput placeholder="Múltipo Ventas" />
+										</mat-form-field>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="generales" fxLayout="row wrap" fxLayoutAlign="center center">
+				<div
+					fxLayout="row"
+					fxLayout.xs="column"
+					fxLayoutAlign="start stretch"
+					fxFlex="60"
+					fxFlex.xs="94"
+					fxFlex.sm="80"
+					class="generalContenedor"
+				>
+					<div fxLayout="row wrap" fxLayoutAlign="center none">
+						<div class="title_box">
+							<div id="content">
+								<div fxLayout="row wrap" fxFlex="30">
+									<mat-form-field appearance="outline">
+										<mat-label>Impuesto</mat-label>
+										<input type="text" matInput placeholder="Codigo Impuesto" />
+									</mat-form-field>
+									<mat-form-field appearance="outline">
+										<mat-label>Cuentas</mat-label>
+										<input type="text" matInput placeholder="Cuentas Contables" />
+									</mat-form-field>
+								</div>
+								<div fxLayout="row wrap" fxFlex="70">
+									<mat-form-field appearance="outline">
+										<mat-label>Nombre Impuesto</mat-label>
+										<input type="text" matInput placeholder="GTN" />
+									</mat-form-field>
+									<mat-form-field appearance="outline">
+										<mat-label>Codigo Cuenta Contable</mat-label>
+										<input type="text" matInput placeholder="Nombre Manufacturador" />
+									</mat-form-field>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="generales" fxLayout="row wrap" fxLayoutAlign="center center">
+				<div
+					fxLayout="row"
+					fxLayout.xs="column"
+					fxLayoutAlign="start stretch"
+					fxFlex="60"
+					fxFlex.xs="94"
+					fxFlex.sm="80"
+					class="generalContenedor"
+				>
+					<div fxLayout="row wrap" fxLayoutAlign="center none">
+						<div class="title_box">
+							<div id="title">Retención</div>
+							<div id="content">
+								<div fxLayout="row wrap" fxFlex="30">
+									<mat-form-field appearance="outline">
+										<mat-label>Impuesto</mat-label>
+										<input type="text" matInput placeholder="Codigo Impuesto" />
+									</mat-form-field>
+									<mat-form-field appearance="outline">
+										<mat-label>Cuentas</mat-label>
+										<input type="text" matInput placeholder="Cuentas Contables" />
+									</mat-form-field>
+								</div>
+								<div fxLayout="row wrap" fxFlex="70">
+									<mat-form-field appearance="outline">
+										<mat-label>Nombre Impuesto</mat-label>
+										<input type="text" matInput placeholder="GTN" />
+									</mat-form-field>
+									<mat-form-field appearance="outline">
+										<mat-label>Codigo Cuenta Contable</mat-label>
+										<input type="text" matInput placeholder="Nombre Manufacturador" />
+									</mat-form-field>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="generales" fxLayout="row wrap" fxLayoutAlign="center center">
+				<div
+					fxLayout="row"
+					fxLayout.xs="column"
+					fxLayoutAlign="start stretch"
+					fxFlex="60"
+					fxFlex.xs="94"
+					fxFlex.sm="80"
+					class="generalContenedor"
+				>
+					<div fxLayout="row wrap" fxLayoutAlign="center none">
+						<div class="title_box">
+							<div id="title">Otros</div>
+							<div id="content">
+								<div fxLayout="row wrap" fxFlex="30">
+									<mat-form-field appearance="outline">
+										<mat-label>Estilo</mat-label>
+										<input type="text" matInput placeholder="Digite Codigo Estilo" />
+									</mat-form-field>
+									<mat-form-field appearance="outline">
+										<mat-label>Talla</mat-label>
+										<input type="text" matInput placeholder="Digite Codigo de Talla" />
+									</mat-form-field>
+									<mat-form-field appearance="outline">
+										<mat-label>Color</mat-label>
+										<input type="text" matInput placeholder="Digite Codigo Color" />
+									</mat-form-field>
+								</div>
+								<div fxLayout="row wrap" fxFlex="70">
+									<mat-form-field appearance="outline">
+										<mat-label>Descripcion Estilo</mat-label>
+										<input type="text" matInput placeholder="Descripcion Estilo" />
+									</mat-form-field>
+									<mat-form-field appearance="outline">
+										<mat-label>Descripcion de Talla</mat-label>
+										<input type="text" matInput placeholder="Descripcion de Talla" />
+									</mat-form-field>
+									<mat-form-field appearance="outline">
+										<mat-label>Descripcion de Color</mat-label>
+										<input type="text" matInput placeholder="Descripcion de Color" />
+									</mat-form-field>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</mat-tab>
+		<mat-tab label="Nota">
+			<div class="generales" fxLayout="row wrap" fxLayoutAlign="center center">
+				<div
+					fxLayout="row"
+					fxLayout.xs="column"
+					fxLayoutAlign="start stretch"
+					fxFlex="60"
+					fxFlex.xs="94"
+					fxFlex.sm="80"
+					class="generalContenedor"
+				>
+					<div fxLayout="row wrap" fxLayoutAlign="center none">
+						<div class="title_box">
+							<textarea style="width: 600px; height: 400px" matInput placeholder="Comment"> </textarea>
+							<div id="content"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</mat-tab>
+		<!-- Validar que la empresa Utiliza Lotes para activar la pestaña -->
+		<mat-tab label="Lote">
+			<div class="generales" fxLayout="row wrap" fxLayoutAlign="center center">
+				<div
+					fxLayout="row"
+					fxLayout.xs="column"
+					fxLayoutAlign="start stretch"
+					fxFlex="60"
+					fxFlex.xs="94"
+					fxFlex.sm="80"
+					class="generalContenedor"
+				>
+					<div fxLayout="row wrap" fxLayoutAlign="center none">
+						<div class="title_box">
+							<div id="content">
+								<section class="indicadores">
+									<p><mat-checkbox>Usa Lotes</mat-checkbox></p>
+								</section>
+								<div class="generales" fxLayout="row wrap" fxLayoutAlign="center center">
+									<div fxLayout="row wrap" fxLayoutAlign="center none">
+										<div class="title_box">
+											<div id="content">
+												<section class="indicadores">
+													<p><mat-checkbox>Perecedero</mat-checkbox></p>
+												</section>
+												<section class="indicadores">
+													<p><mat-checkbox>Obliga Cuarentena</mat-checkbox></p>
+												</section>
+												<div fxLayout="row wrap" fxLayoutAlign="center none">
+													<div id="content">
+														<div fxLayout="row wrap" fxFlex="50" fxLayoutAlign="center center">
+															<div fxLayout="row wrap" fxFlex="90" fxLayoutAlign="center center">
+																<mat-form-field appearance="outline">
+																	<mat-label>Minimo de Vida Compras</mat-label>
+																	<input type="number" matInput placeholder="Minimo de Vida Compras" />
+																</mat-form-field>
+																<mat-form-field appearance="outline">
+																	<mat-label>Minimo de Vida Consumo</mat-label>
+																	<input type="number" matInput placeholder="Minimo de Vida Consumo" />
+																</mat-form-field>
+																<mat-form-field appearance="outline">
+																	<mat-label>Minimo de Vida Venta</mat-label>
+																	<input type="number" matInput placeholder="Minimo de Vida Venta" />
+																</mat-form-field>
+															</div>
+															<div fxLayout="column" fxFlex="10" fxLayoutGap="30px">
+																<p>dias</p>
+																<p>dias</p>
+																<p>dias</p>
+															</div>
+														</div>
+
+														<div fxLayout="row wrap" fxFlex="50">
+															<div fxLayout="row wrap" fxFlex="70" fxLayoutAlign="center start">
+																<mat-form-field appearance="outline">
+																	<mat-label>Vida Útil Promedio</mat-label>
+																	<input type="number" matInput placeholder="Vida Útil Promedio" />
+																</mat-form-field>
+																<mat-form-field appearance="outline">
+																	<mat-label>Cuarentena</mat-label>
+																	<input type="number" matInput placeholder="Cuarentena" />
+																</mat-form-field>
+															</div>
+															<div fxLayout="column" fxFlex="30" fxLayoutAlign="start start">
+																<p>dias</p>
+
+																<p>dias</p>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</mat-tab>
+		<mat-tab label="Auditorias">
+			<div class="generales" fxLayout="row wrap" fxLayoutAlign="center center">
+				<div
+					fxLayout="row"
+					fxLayout.xs="column"
+					fxLayoutAlign="start stretch"
+					fxFlex="60"
+					fxFlex.xs="94"
+					fxFlex.sm="80"
+					class="generalContenedor"
+				>
+					<div fxLayout="row wrap" fxLayoutAlign="center none">
+						<div class="title_box">
+							<div id="content">
+								<div fxLayout="row wrap" fxFlex="80" fxLayoutAlign="center center">
+									<div fxLayout="row wrap" fxFlex="30" fxLayoutAlign="center start">
+										<mat-form-field appearance="outline">
+											<mat-label>Usuario Creacion</mat-label>
+											<input type="number" matInput placeholder="Minimo de Vida Compras" />
+										</mat-form-field>
+										<mat-form-field appearance="outline">
+											<mat-label>Usuario Modificacion</mat-label>
+											<input type="number" matInput placeholder="Minimo de Vida Consumo" />
+										</mat-form-field>
+									</div>
+									<div fxLayout="column" fxFlex="70" fxLayoutAlign="center startr">
+										<mat-form-field appearance="outline">
+											<mat-label>Nombre</mat-label>
+											<input type="number" matInput placeholder="Minimo de Vida Consumo" />
+										</mat-form-field>
+										<mat-form-field appearance="outline">
+											<mat-label>Nombre</mat-label>
+											<input type="number" matInput placeholder="Minimo de Vida Consumo" />
+										</mat-form-field>
+									</div>
+								</div>
+
+								<div fxLayout="row wrap" fxFlex="20">
+									<div fxLayout="row wrap" fxFlex="50" fxLayoutAlign="center start">
+										<mat-form-field appearance="outline">
+											<mat-label>Fecha Creacion</mat-label>
+											<input type="number" matInput placeholder="Vida Útil Promedio" />
+										</mat-form-field>
+										<mat-form-field appearance="outline">
+											<mat-label>Fecha Modificacion</mat-label>
+											<input type="number" matInput placeholder="Cuarentena" />
+										</mat-form-field>
+									</div>
+									<div fxLayout="column" fxFlex="50" fxLayoutAlign="start start">
+										<mat-form-field appearance="outline">
+											<mat-label>Hora Creacion</mat-label>
+											<input type="number" matInput placeholder="Minimo de Vida Consumo" />
+										</mat-form-field>
+										<mat-form-field appearance="outline">
+											<mat-label>Hora Modificacion</mat-label>
+											<input type="number" matInput placeholder="Minimo de Vida Consumo" />
+										</mat-form-field>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</mat-tab>
+	</mat-tab-group>
+	<div mat-dialog-actions [align]="'center'" style="margin-bottom: 30px">
+		<button mat-raised-button color="warn">Guardar</button>
+	</div>
+</form>

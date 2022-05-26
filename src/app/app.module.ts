@@ -1,3 +1,4 @@
+import { ROOT_REDUCERS } from './config/app.state';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DefaultModule } from './layouts/default/default.module';
 import { NgModule } from '@angular/core';
@@ -20,6 +21,7 @@ import { SnotifyModule, ToastDefaults, SnotifyService } from 'ng-snotify';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -37,7 +39,8 @@ import { environment } from '../environments/environment';
 		NgxUiLoaderModule,
 		SnotifyModule,
 		MatFormFieldModule,
-		StoreModule.forRoot({}, {}),
+		StoreModule.forRoot(ROOT_REDUCERS),
+		EffectsModule.forRoot([]),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
 	],
 	providers: [

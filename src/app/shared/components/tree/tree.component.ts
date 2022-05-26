@@ -265,7 +265,7 @@ export class TreeComponent implements OnInit {
 	navigateToPage(name: string): void {
 		switch (name) {
 			case '_pais':
-				void this._router.navigateByUrl(PATH_AS_PAGES.pais.withSlash);
+				void this._router.navigateByUrl(PATH_AS_PAGES.pais.onlyPath);
 				break;
 			case '_zona':
 				void this._router.navigateByUrl(PATH_AS_PAGES.zona.onlyPath);
@@ -302,6 +302,9 @@ export class TreeComponent implements OnInit {
 				break;
 			case '_parametrosDelModulo':
 				void this._router.navigateByUrl(PATH_AS_PAGES.parametrosAS.onlyPath);
+				break;
+			case '_periodosContables':
+				void this._router.navigateByUrl(PATH_AS_PAGES.periodosContables.onlyPath);
 				break;
 			case '_unidadDeMedida':
 				void this._router.navigateByUrl(PATH_AS_PAGES.unidadMedida.onlyPath);

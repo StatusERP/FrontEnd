@@ -1,3 +1,4 @@
+import { DefaultRoutingModule } from './default-routing-module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularMaterialModule } from './../../angular-material-modulo';
 import { HomePageComponent } from './../../modules/home/pages/home-page/home-page.component';
@@ -19,7 +20,8 @@ import { MatDividerModule } from '@angular/material/divider';
 		MatSidenavModule,
 		MatDividerModule,
 		AngularMaterialModule,
-		FlexLayoutModule
+		FlexLayoutModule,
+		DefaultRoutingModule
 	]
 })
 export class DefaultModule {}

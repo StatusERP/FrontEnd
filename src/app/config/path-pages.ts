@@ -19,6 +19,15 @@ export const PATHS_AUTH_PAGES = {
 };
 //#endregion
 
+const homePage = 'home';
+
+export const PATHS_HOME_PAGES = {
+	homePage: {
+		withSlash: `/${homePage}`,
+		onLyPath: homePage
+	}
+};
+
 //#region Modulo de Administracion del Sistema
 const modulo_AS = 'as';
 const administracion = 'administracion';
@@ -54,7 +63,7 @@ export const PATH_AS_PAGES = {
 	withSlash: `/${modulo_AS}`,
 	onlyPath: modulo_AS,
 	// /as/areas/pais
-	pais: { withSlash: `/${modulo_AS}/${area}/${paisPage}`, onlyPath: paisPage },
+	pais: { withSlash: `/${modulo_AS}/${tablas}/${area}/${paisPage}`, onlyPath: paisPage },
 	zona: { withSlash: `/${modulo_AS}/${area}/${zonaPage}`, onlyPath: zonaPage },
 	ruta: { withSlash: `/${modulo_AS}/${area}/${rutaPage}`, onlyPath: rutaPage },
 	region: { withSlash: `/${modulo_AS}/${area}/${regionPage}`, onlyPath: regionPage },

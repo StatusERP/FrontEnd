@@ -16,10 +16,9 @@ const routes: Routes = [
 		children: [
 			{
 				path: '',
-
 				component: HomePageComponent
-			},
-
+			}
+			/*
 			{
 				path: PATH_AS_PAGES.onlyPath,
 				loadChildren: () => import('./modules/as/as.module').then((m) => m.AsModule)
@@ -116,6 +115,7 @@ const routes: Routes = [
 				loadChildren: () =>
 					import('./modules/as/tablas/otros/unidad-medida/unidad-medida.module').then((m) => m.UnidadMedidaModule)
 			}
+      */
 		]
 	},
 

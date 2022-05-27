@@ -27,8 +27,6 @@ const routes: Routes = [
 		loadChildren: () => import('../as/tablas/areas/regiones/regiones.module').then((m) => m.RegionesModule)
 	}
 ];
-console.log('asroutingModule');
-
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule]

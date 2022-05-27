@@ -6,6 +6,8 @@ const clasificacionesPage = 'clasificaciones';
 const transaccionesConfigurablesPage = 'transaccionesConfigurables';
 const articuloPage = 'articulo';
 const lotePage = 'lote';
+const paqueteCIPage = 'paqueteCI';
+const consecutivoCIPage = 'consecutivoCI';
 export const PATHS_CI_PAGES = {
 	moduloCI: {
 		withSlash: `/${ModuloCIPage}`,
@@ -38,5 +40,13 @@ export const PATHS_CI_PAGES = {
 	lote: {
 		withSlash: `/${lotePage}`,
 		onLypath: lotePage
+	},
+	paqueteCI: {
+		withSlash: `/${paqueteCIPage}`,
+		onLypath: paqueteCIPage
+	},
+	consecutivoCI: {
+		withSlash: `/${consecutivoCIPage}`,
+		onLypath: consecutivoCIPage
 	}
 };

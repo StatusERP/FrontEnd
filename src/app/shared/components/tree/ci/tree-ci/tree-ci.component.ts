@@ -32,6 +32,50 @@ const TREE_DATA: CiNode[] = [
 		]
 	},
 	{
+		name: 'Transacciones',
+		constante: 'demo',
+		children: [
+			{
+				name: 'Paquete',
+				constante: '_paquete'
+			},
+			{
+				name: 'En Linea',
+				constante: '_enlinea'
+			}
+		]
+	},
+	{
+		name: 'Consulta',
+		constante: 'demo',
+		children: [
+			{
+				name: 'Lotes',
+				constante: '_lote'
+			}
+		]
+	},
+	{
+		name: 'Reporte',
+		constante: 'demo',
+		children: [
+			{
+				name: 'Lotes',
+				constante: '_lote'
+			}
+		]
+	},
+	{
+		name: 'Procesos',
+		constante: 'demo',
+		children: [
+			{
+				name: 'Lotes',
+				constante: '_lote'
+			}
+		]
+	},
+	{
 		name: 'Administración',
 		constante: 'demo',
 		children: [
@@ -83,14 +127,20 @@ export class TreeCiComponent implements OnInit {
 			case '_lote':
 				void this._router.navigateByUrl(PATHS_CI_PAGES.lote.onLypath);
 				break;
+			case '_paquete':
+				void this._router.navigateByUrl(PATHS_CI_PAGES.paqueteCI.onLypath);
+				break;
+			case '_enlinea':
+				void this._router.navigateByUrl(PATHS_CI_PAGES.lote.onLypath);
+				break;
 			case '_parametroModulo':
 				void this._router.navigateByUrl(PATHS_CI_PAGES.parametrosModulo.onLyPath);
 				break;
 			case '_clasificciones':
 				void this._router.navigateByUrl(PATHS_CI_PAGES.clasificaciones.onLypath);
 				break;
-			case 'Cobrador':
-				void this._router.navigateByUrl(PATH_AS_PAGES.cobrador.onlyPath);
+			case '_consecutivos':
+				void this._router.navigateByUrl(PATHS_CI_PAGES.consecutivoCI.onLypath);
 				break;
 			case 'Vendedor':
 				void this._router.navigateByUrl(PATH_AS_PAGES.vendedor.onlyPath);

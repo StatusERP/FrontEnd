@@ -303,6 +303,9 @@ export class TreeComponent implements OnInit {
 			case '_parametrosDelModulo':
 				void this._router.navigateByUrl(PATH_AS_PAGES.parametrosAS.onlyPath);
 				break;
+			case '_periodosContables':
+				void this._router.navigateByUrl(PATH_AS_PAGES.periodosContables.onlyPath);
+				break;
 			case '_unidadDeMedida':
 				void this._router.navigateByUrl(PATH_AS_PAGES.unidadMedida.onlyPath);
 				break;

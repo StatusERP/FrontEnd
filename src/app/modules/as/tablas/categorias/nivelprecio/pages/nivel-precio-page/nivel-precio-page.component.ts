@@ -1,3 +1,8 @@
+import { loadedGlobalesAS } from './../../../../../strore/as.actions';
+import { selectListGlobalesAS } from './../../../../../strore/as.selectors';
+import { AppState } from './../../../../../../../config/app.state';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { AddNivelPrecioPageComponent } from './../add-nivel-precio-page/add-nivel-precio-page.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -14,10 +19,13 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 	styleUrls: ['./nivel-precio-page.component.scss']
 })
 export class NivelPrecioPageComponent implements OnInit, AfterViewInit {
+	globalesAS$: Observable<any> = new Observable();
 	constructor(
 		private _SnotifyService: SnotifyService,
 		private _dialog: MatDialog,
-		private _nivelPrecioApiService: NivelPrecioApiService
+		private _nivelPrecioApiService: NivelPrecioApiService,
+		// eslint-disable-next-line ngrx/no-typed-global-store
+		private _store: Store<AppState>
 	) {}
 	listNivelPrecio = new MatTableDataSource<IResponseNivelPrecio>();
 	displayedColumns: string[] = [
@@ -39,6 +47,7 @@ export class NivelPrecioPageComponent implements OnInit, AfterViewInit {
 	}
 	ngOnInit(): void {
 		this._loadNivelPrecio(1, 10000);
+		this.globalesAS$ = this._store.select(selectListGlobalesAS);
 	}
 
 	private _loadNivelPrecio(page: number, rows: number): void {

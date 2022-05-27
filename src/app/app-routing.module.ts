@@ -87,6 +87,14 @@ const routes: Routes = [
 				loadChildren: () =>
 					import('./modules/as/administracion/administracion.module').then((m) => m.AdministracionModule)
 			},
+			//PeriodosContables
+			{
+				path: PATH_AS_PAGES.periodosContables.onlyPath,
+				loadChildren: () =>
+					import('./modules/as/administracion/periodos-contable/periodos-contable.module').then(
+						(m) => m.PeriodosContableModule
+					)
+			},
 			//Mudulo Control Inventario
 			{
 				path: PATHS_CI_PAGES.moduloCI.onLyPath,

@@ -59,6 +59,7 @@ const bodegaPage = 'bodega';
 const unidadMedidaPage = 'unidadMedida';
 //Administracion
 const parametrosASPage = 'parametrosAS';
+const periodosConatblePage = 'periodosContables';
 export const PATH_AS_PAGES = {
 	withSlash: `/${modulo_AS}`,
 	onlyPath: modulo_AS,
@@ -89,7 +90,8 @@ export const PATH_AS_PAGES = {
 	bodega: { withSlash: `/${modulo_AS}/${otros}/${bodegaPage}`, onlyPath: bodegaPage },
 	unidadMedida: { withSlash: `/${modulo_AS}/${otros}/${unidadMedidaPage}`, onlyPath: unidadMedidaPage },
 	//Administracion/ParametrosModulo
-	parametrosAS: { withSlash: `/${modulo_AS}/${parametrosASPage}`, onlyPath: parametrosASPage }
+	parametrosAS: { withSlash: `/${modulo_AS}/${parametrosASPage}`, onlyPath: parametrosASPage },
+	periodosContables: { withSlash: `/${modulo_AS}/${periodosConatblePage}`, onlyPath: periodosConatblePage }
 };
 
 //#endregion

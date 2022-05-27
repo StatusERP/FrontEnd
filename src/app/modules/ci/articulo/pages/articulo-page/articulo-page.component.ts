@@ -1,3 +1,5 @@
+import { AddArticuloPageComponent } from './../add-articulo-page/add-articulo-page.component';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { IResponseArticulo } from './../../service/articulo-api-model-interface';
@@ -12,7 +14,11 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 	styleUrls: ['./articulo-page.component.scss']
 })
 export class ArticuloPageComponent implements OnInit, AfterViewInit {
-	constructor(private _snotifyService: SnotifyService, private _articuloApiService: ArticuloApiService) {}
+	constructor(
+		private _snotifyService: SnotifyService,
+		private _articuloApiService: ArticuloApiService,
+		private _dialog: MatDialog
+	) {}
 
 	listArticulo = new MatTableDataSource<IResponseArticulo>();
 	displayedColumns: string[] = ['CodArticulo', 'Descripcion', 'actions'];
@@ -63,5 +69,19 @@ export class ArticuloPageComponent implements OnInit, AfterViewInit {
 				}
 			]
 		});
+	}
+	openDialog(): void {
+		this._dialog
+			.open(AddArticuloPageComponent, {
+				//width: '80%'
+				autoFocus: false,
+				maxHeight: '90vh'
+			})
+			.afterClosed()
+			.subscribe((val) => {
+				if (val === 'save') {
+					this._loadArticulo(1, 10000);
+				}
+			});
 	}
 }

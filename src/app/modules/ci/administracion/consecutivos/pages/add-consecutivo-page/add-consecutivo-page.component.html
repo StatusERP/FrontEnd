@@ -1,0 +1,75 @@
+<div fxLayout="row" fxLayoutAlign="center none">
+	<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="30">
+		<mat-form-field appearance="outline">
+			<mat-label>Consecutivo</mat-label>
+			<input type="text" matInput placeholder="Codigo Consecutivo" />
+		</mat-form-field>
+	</div>
+	<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="70">
+		<mat-form-field appearance="outline">
+			<mat-label>Descripcion</mat-label>
+			<input type="text" matInput placeholder="Descripicon Consecutivo" />
+		</mat-form-field>
+	</div>
+</div>
+<form class="formulario grey-100">
+	<div fxLayout="row wrap" fxLayoutAlign="center none">
+		<div
+			fxLayout="row"
+			fxLayout.xs="column"
+			fxLayoutAlign="start stretch"
+			fxFlex="60"
+			fxFlex.xs="94"
+			fxFlex.sm="80"
+			class="generalContenedor"
+		>
+			<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="100">
+				<div class="title_box">
+					<div id="content">
+						<mat-form-field appearance="outline">
+							<mat-label>Máscara</mat-label>
+							<input type="text" matInput placeholder="Máscara" />
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<mat-label>Siguiente Valor</mat-label>
+							<input type="text" matInput placeholder="Siguiente Valor" />
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<mat-label>Consecutivo para</mat-label>
+							<mat-select [disabled]="disableSelect.value">
+								<mat-option value="TINV">Transacciones de Inventario</mat-option>
+								<mat-option value="TPRO">Ordenes de Produccion</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div fxLayout="row wrap" fxLayoutAlign="center none">
+		<div
+			fxLayout="row"
+			fxLayout.xs="column"
+			fxLayoutAlign="start stretch"
+			fxFlex="60"
+			fxFlex.xs="94"
+			fxFlex.sm="80"
+			class="generalContenedor"
+		>
+			<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="100">
+				<div class="title_box">
+					<div id="title">Propiedades</div>
+					<div id="content">
+						<div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+							<p><mat-checkbox>Editable</mat-checkbox></p>
+							<p><mat-checkbox>Asociado con todas las Transacciones Configurables</mat-checkbox></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div mat-dialog-actions [align]="'center'" style="margin-bottom: 30px">
+		<button mat-raised-button color="warn">Guardar</button>
+	</div>
+</form>

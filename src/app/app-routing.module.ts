@@ -112,11 +112,20 @@ const routes: Routes = [
 				loadChildren: () => import('./modules/ci/articulo/articulo.module').then((m) => m.ArticuloModule)
 			},
 			{
+				path: PATHS_CI_PAGES.paqueteCI.onLypath,
+				loadChildren: () => import('./modules/ci/transacciones/paquete/paquete.module').then((m) => m.PaqueteModule)
+			},
+			{
 				path: PATHS_CI_PAGES.clasificaciones.onLypath,
 				loadChildren: () =>
 					import('./modules/ci/administracion/clasificaciones/clasificaciones.module').then(
 						(m) => m.ClasificacionesModule
 					)
+			},
+			{
+				path: PATHS_CI_PAGES.consecutivoCI.onLypath,
+				loadChildren: () =>
+					import('./modules/ci/administracion/consecutivos/consecutivos.module').then((m) => m.ConsecutivosModule)
 			},
 			{
 				path: PATH_AS_PAGES.unidadMedida.onlyPath,

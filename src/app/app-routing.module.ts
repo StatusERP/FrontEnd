@@ -20,123 +20,12 @@ const routes: Routes = [
 			},
 			{
 				path: PATHS_CI_PAGES.moduloCI.onLyPath,
-				loadChildren: () => import('./modules/ci/ci-routing.module').then((m) => m.CiRoutingModule)
+				loadChildren: () => import('./modules/ci/ci.module').then((m) => m.CiModule)
 			},
 			{
 				path: PATH_AS_PAGES.onlyPath,
 				loadChildren: () => import('./modules/as/as.module').then((m) => m.AsModule)
 			}
-			/*
-			{
-				path: PATH_AS_PAGES.pais.onlyPath,
-				loadChildren: () => import('./modules/as/tablas/areas/pais/pais.module').then((m) => m.PaisModule)
-			},
-			{
-				path: PATH_AS_PAGES.zona.onlyPath,
-				loadChildren: () => import('./modules/as/tablas/areas/zonas/zonas.module').then((m) => m.ZonasModule)
-			},
-			{
-				path: PATH_AS_PAGES.ruta.onlyPath,
-				loadChildren: () => import('./modules/as/tablas/areas/rutas/rutas.module').then((m) => m.RutasModule)
-			},
-			{
-				path: PATH_AS_PAGES.cobrador.onlyPath,
-				loadChildren: () =>
-					import('./modules/as/tablas/funcionarios/cobradores/cobradores.module').then((m) => m.CobradoresModule)
-			},
-			{
-				path: PATH_AS_PAGES.vendedor.onlyPath,
-				loadChildren: () =>
-					import('./modules/as/tablas/funcionarios/vendedores/vendedores.module').then((m) => m.VendedoresModule)
-			},
-			{
-				path: PATH_AS_PAGES.responsable.onlyPath,
-				loadChildren: () =>
-					import('./modules/as/tablas/funcionarios/responsables/responsables.module').then((m) => m.ResponsablesModule)
-			},
-			{
-				path: PATH_AS_PAGES.categoriaCliente.onlyPath,
-				loadChildren: () =>
-					import('./modules/as/tablas/categorias/categoriacliente/categoriacliente.module').then(
-						(m) => m.CategoriaclienteModule
-					)
-			},
-			{
-				path: PATH_AS_PAGES.categoriaProveedor.onlyPath,
-				loadChildren: () =>
-					import('./modules/as/tablas/categorias/categoriaproveedor/categoriaproveedor.module').then(
-						(m) => m.CategoriaproveedorModule
-					)
-			},
-			{
-				path: PATH_AS_PAGES.categoriaArticulo.onlyPath,
-				loadChildren: () =>
-					import('./modules/as/tablas/categorias/categoriaarticulo/categoriaarticulo.module').then(
-						(m) => m.CategoriaarticuloModule
-					)
-			},
-			{
-				path: PATH_AS_PAGES.nivelPrecios.onlyPath,
-				loadChildren: () =>
-					import('./modules/as/tablas/categorias/nivelprecio/nivelprecio.module').then((m) => m.NivelprecioModule)
-			},
-			//Otros
-			{
-				path: PATH_AS_PAGES.bodega.onlyPath,
-				loadChildren: () => import('./modules/as/tablas/otros/bodega/bodega.module').then((m) => m.BodegaModule)
-			},
-			//ParametrosAS
-			{
-				path: PATH_AS_PAGES.parametrosAS.onlyPath,
-				loadChildren: () =>
-					import('./modules/as/administracion/administracion.module').then((m) => m.AdministracionModule)
-			},
-			//PeriodosContables
-			{
-				path: PATH_AS_PAGES.periodosContables.onlyPath,
-				loadChildren: () =>
-					import('./modules/as/administracion/periodos-contable/periodos-contable.module').then(
-						(m) => m.PeriodosContableModule
-					)
-			},
-			//Mudulo Control Inventario
-			{
-				path: PATHS_CI_PAGES.moduloCI.onLyPath,
-				loadChildren: () => import('./modules/ci/ci-routing.module').then((m) => m.CiRoutingModule)
-			},
-			{
-				path: PATHS_CI_PAGES.parametrosModulo.onLyPath,
-				loadChildren: () =>
-					import('./modules/ci/administracion/parametros-modulo/parametros-modulo.module').then(
-						(m) => m.ParametrosModuloModule
-					)
-			},
-			{
-				path: PATHS_CI_PAGES.articulo.onLypath,
-				loadChildren: () => import('./modules/ci/articulo/articulo.module').then((m) => m.ArticuloModule)
-			},
-			{
-				path: PATHS_CI_PAGES.paqueteCI.onLypath,
-				loadChildren: () => import('./modules/ci/transacciones/paquete/paquete.module').then((m) => m.PaqueteModule)
-			},
-			{
-				path: PATHS_CI_PAGES.clasificaciones.onLypath,
-				loadChildren: () =>
-					import('./modules/ci/administracion/clasificaciones/clasificaciones.module').then(
-						(m) => m.ClasificacionesModule
-					)
-			},
-			{
-				path: PATHS_CI_PAGES.consecutivoCI.onLypath,
-				loadChildren: () =>
-					import('./modules/ci/administracion/consecutivos/consecutivos.module').then((m) => m.ConsecutivosModule)
-			},
-			{
-				path: PATH_AS_PAGES.unidadMedida.onlyPath,
-				loadChildren: () =>
-					import('./modules/as/tablas/otros/unidad-medida/unidad-medida.module').then((m) => m.UnidadMedidaModule)
-			}
-      */
 		]
 	},
 

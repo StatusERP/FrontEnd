@@ -7,6 +7,7 @@ const transaccionesConfigurablesPage = 'transaccionesConfigurables';
 const articuloPage = 'articulo';
 const lotePage = 'lote';
 const paqueteCIPage = 'paqueteCI';
+const enLineaPage = 'enLinea';
 const consecutivoCIPage = 'consecutivoCI';
 export const PATHS_CI_PAGES = {
 	moduloCI: {
@@ -14,23 +15,23 @@ export const PATHS_CI_PAGES = {
 		onLyPath: ModuloCIPage
 	},
 	parametrosModulo: {
-		withSlash: `/${parametrosModuloPage}`,
+		withSlash: `/${ModuloCIPage}/${parametrosModuloPage}`,
 		onLyPath: parametrosModuloPage
 	},
 	unidadMedida: {
-		withSlash: `/${unidadMedidaPage}`,
+		withSlash: `/${ModuloCIPage}/${unidadMedidaPage}`,
 		onLyPath: unidadMedidaPage
 	},
 	consecutivos: {
-		withSlash: `/${consecutivosPage}`,
+		withSlash: `/${ModuloCIPage}/${consecutivosPage}`,
 		onLypath: consecutivosPage
 	},
 	clasificaciones: {
-		withSlash: `/${clasificacionesPage}`,
+		withSlash: `/${ModuloCIPage}/${clasificacionesPage}`,
 		onLypath: clasificacionesPage
 	},
 	transaccionesConfigurables: {
-		withSlash: `/${transaccionesConfigurablesPage}`,
+		withSlash: `/${ModuloCIPage}/${transaccionesConfigurablesPage}`,
 		onLypath: transaccionesConfigurablesPage
 	},
 	articulo: {
@@ -38,15 +39,20 @@ export const PATHS_CI_PAGES = {
 		onLypath: articuloPage
 	},
 	lote: {
-		withSlash: `/${lotePage}`,
+		withSlash: `/${ModuloCIPage}/${lotePage}`,
 		onLypath: lotePage
 	},
 	paqueteCI: {
-		withSlash: `/${paqueteCIPage}`,
+		withSlash: `/${ModuloCIPage}/${paqueteCIPage}`,
 		onLypath: paqueteCIPage
 	},
+	enLinea: {
+		withSlash: `/${ModuloCIPage}/${enLineaPage}`,
+		onLypath: enLineaPage
+	},
+
 	consecutivoCI: {
-		withSlash: `/${consecutivoCIPage}`,
+		withSlash: `/${ModuloCIPage}/${consecutivoCIPage}`,
 		onLypath: consecutivoCIPage
 	}
 };

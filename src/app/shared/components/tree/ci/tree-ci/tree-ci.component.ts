@@ -122,50 +122,27 @@ export class TreeCiComponent implements OnInit {
 	navigateToPage(name: string): void {
 		switch (name) {
 			case '_articulos':
-				void this._router.navigateByUrl(PATHS_CI_PAGES.articulo.onLypath);
+				void this._router.navigateByUrl(PATHS_CI_PAGES.articulo.withSlash);
 				break;
 			case '_lote':
-				void this._router.navigateByUrl(PATHS_CI_PAGES.lote.onLypath);
+				void this._router.navigateByUrl(PATHS_CI_PAGES.lote.withSlash);
 				break;
 			case '_paquete':
-				void this._router.navigateByUrl(PATHS_CI_PAGES.paqueteCI.onLypath);
+				void this._router.navigateByUrl(PATHS_CI_PAGES.paqueteCI.withSlash);
 				break;
 			case '_enlinea':
-				void this._router.navigateByUrl(PATHS_CI_PAGES.lote.onLypath);
+				void this._router.navigateByUrl(PATHS_CI_PAGES.enLinea.withSlash);
 				break;
 			case '_parametroModulo':
-				void this._router.navigateByUrl(PATHS_CI_PAGES.parametrosModulo.onLyPath);
+				void this._router.navigateByUrl(PATHS_CI_PAGES.parametrosModulo.withSlash);
 				break;
 			case '_clasificciones':
-				void this._router.navigateByUrl(PATHS_CI_PAGES.clasificaciones.onLypath);
+				void this._router.navigateByUrl(PATHS_CI_PAGES.clasificaciones.withSlash);
 				break;
 			case '_consecutivos':
-				void this._router.navigateByUrl(PATHS_CI_PAGES.consecutivoCI.onLypath);
+				void this._router.navigateByUrl(PATHS_CI_PAGES.consecutivoCI.withSlash);
 				break;
-			case 'Vendedor':
-				void this._router.navigateByUrl(PATH_AS_PAGES.vendedor.onlyPath);
-				break;
-			case 'Responsable':
-				void this._router.navigateByUrl(PATH_AS_PAGES.responsable.onlyPath);
-				break;
-			case 'Categoria de Cliente':
-				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaCliente.onlyPath);
-				break;
-			case 'Categoria de Proveedor':
-				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaProveedor.onlyPath);
-				break;
-			case 'Categoria de Articulo':
-				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaArticulo.onlyPath);
-				break;
-			case 'Nivel Precio':
-				void this._router.navigateByUrl(PATH_AS_PAGES.nivelPrecios.onlyPath);
-				break;
-			case 'Bodegas':
-				void this._router.navigateByUrl(PATH_AS_PAGES.bodega.onlyPath);
-				break;
-			case 'Parametros del Modulo':
-				void this._router.navigateByUrl(PATH_AS_PAGES.parametrosAS.onlyPath);
-				break;
+
 			default:
 				break;
 		}

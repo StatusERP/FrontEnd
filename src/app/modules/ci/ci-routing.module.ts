@@ -1,3 +1,4 @@
+import { PATH_AS_PAGES } from '@app/config/path-pages';
 import { PATHS_CI_PAGES } from '@app/config/path-page-ci';
 import { ControlInventarioPageComponent } from './pages/control-inventario-page/control-inventario-page.component';
 import { NgModule } from '@angular/core';
@@ -7,17 +8,54 @@ const routes: Routes = [
 	{
 		path: '',
 		component: ControlInventarioPageComponent,
-		canActivate: [AuthGuard],
-		children: [
-			{
-				path: PATHS_CI_PAGES.articulo.onLypath,
-				loadChildren: () => import('../ci/articulo/articulo.module').then((m) => m.ArticuloModule)
-			}
-		]
+		canActivate: [AuthGuard]
+	},
+	{
+		path: PATHS_CI_PAGES.articulo.onLypath,
+		loadChildren: () => import('../ci/articulo/articulo.module').then((m) => m.ArticuloModule)
+	},
+	{
+		path: PATHS_CI_PAGES.lote.onLypath,
+		loadChildren: () => import('../ci/lote/lote.module').then((m) => m.LoteModule)
+	},
+	{
+		path: PATHS_CI_PAGES.paqueteCI.onLypath,
+		loadChildren: () => import('../ci/transacciones/paquete/paquete.module').then((m) => m.PaqueteModule)
+	},
+	{
+		path: PATHS_CI_PAGES.enLinea.onLypath,
+		loadChildren: () => import('../ci/transacciones/enlinea/enlinea.module').then((m) => m.EnlineaModule)
+	},
+	//Administracion
+	{
+		path: PATH_AS_PAGES.unidadMedida.onlyPath,
+		loadChildren: () =>
+			import('../as/tablas/otros/unidad-medida/unidad-medida.module').then((m) => m.UnidadMedidaModule)
+	},
+	{
+		path: PATHS_CI_PAGES.consecutivoCI.onLypath,
+		loadChildren: () =>
+			import('../ci/administracion/consecutivos/consecutivos.module').then((m) => m.ConsecutivosModule)
+	},
+	{
+		path: PATHS_CI_PAGES.clasificaciones.onLypath,
+		loadChildren: () =>
+			import('../ci/administracion/clasificaciones/clasificaciones.module').then((m) => m.ClasificacionesModule)
+	},
+	{
+		path: PATHS_CI_PAGES.transaccionesConfigurables.onLypath,
+		loadChildren: () =>
+			import('../ci/administracion/transacciones-configurables/transacciones-configurables.module').then(
+				(m) => m.TransaccionesConfigurablesModule
+			)
+	},
+	{
+		path: PATHS_CI_PAGES.parametrosModulo.onLyPath,
+		loadChildren: () =>
+			import('../ci/administracion/parametros-modulo/parametros-modulo.module').then((m) => m.ParametrosModuloModule)
 	}
 ];
 
-console.log(PATHS_CI_PAGES.articulo.withSlash);
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule]

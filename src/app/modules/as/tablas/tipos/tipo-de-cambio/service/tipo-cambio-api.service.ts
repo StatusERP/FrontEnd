@@ -1,4 +1,4 @@
-import { IConsultaTipoCambio } from './service/tipo-cambio-api-model-interface';
+import { IConsultaTipoCambio } from './tipo-cambio-api-model-interface';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';

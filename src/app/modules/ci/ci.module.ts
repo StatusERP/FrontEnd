@@ -1,3 +1,5 @@
+import { RouterModule } from '@angular/router';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { AngularMaterialModule } from './../../angular-material-modulo';

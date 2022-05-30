@@ -17,12 +17,16 @@ const routes: Routes = [
 			{
 				path: '',
 				component: HomePageComponent
-			}
-			/*
+			},
+			{
+				path: PATHS_CI_PAGES.moduloCI.onLyPath,
+				loadChildren: () => import('./modules/ci/ci-routing.module').then((m) => m.CiRoutingModule)
+			},
 			{
 				path: PATH_AS_PAGES.onlyPath,
 				loadChildren: () => import('./modules/as/as.module').then((m) => m.AsModule)
-			},
+			}
+			/*
 			{
 				path: PATH_AS_PAGES.pais.onlyPath,
 				loadChildren: () => import('./modules/as/tablas/areas/pais/pais.module').then((m) => m.PaisModule)

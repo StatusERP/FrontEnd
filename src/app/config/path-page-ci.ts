@@ -1,4 +1,4 @@
-const ModuloCIPage = 'moduloCI';
+const ModuloCIPage = 'ci';
 const parametrosModuloPage = 'parametrosModulo';
 const unidadMedidaPage = 'unidadMedida';
 const consecutivosPage = 'consecutivos';
@@ -34,7 +34,7 @@ export const PATHS_CI_PAGES = {
 		onLypath: transaccionesConfigurablesPage
 	},
 	articulo: {
-		withSlash: `/${articuloPage}`,
+		withSlash: `/${ModuloCIPage}/${articuloPage}`,
 		onLypath: articuloPage
 	},
 	lote: {

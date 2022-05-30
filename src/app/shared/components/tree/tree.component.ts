@@ -72,10 +72,10 @@ const TREE_DATA: AdminNode[] = [
 				children: [
 					{
 						name: 'Centro de Costo',
-						constante: '_centoDeCoso'
+						constante: '_centroDeCosto'
 					},
 					{
-						name: 'Departamneto',
+						name: 'Departamento',
 						constante: '_departamento'
 					},
 					{
@@ -130,19 +130,15 @@ const TREE_DATA: AdminNode[] = [
 					},
 					{
 						name: 'Tipos de cambio',
-						constante: 'tipoDeCambio'
+						constante: '_tipoDeCambio'
 					},
 					{
 						name: 'Condiciones de Pago',
-						constante: 'condicionDePago'
+						constante: '_condicionDePago'
 					},
 					{
 						name: 'Codigos de Impuestos',
 						constante: '_codigoDeImpuestos'
-					},
-					{
-						name: 'Direcciones',
-						constante: '_direcciones'
 					},
 					{
 						name: 'Retenciones',
@@ -154,7 +150,7 @@ const TREE_DATA: AdminNode[] = [
 					},
 					{
 						name: 'Tipo de Impuestos',
-						constante: 'tipoDeImpuestos'
+						constante: '_tipoDeImpuestos'
 					}
 				]
 			},
@@ -164,7 +160,7 @@ const TREE_DATA: AdminNode[] = [
 				children: [
 					{
 						name: 'Entidades Finacieras',
-						constante: '_entidadesFincaieras'
+						constante: '_entidadesFinciera'
 					},
 					{
 						name: 'Tarjetas de Credito',
@@ -173,10 +169,6 @@ const TREE_DATA: AdminNode[] = [
 					{
 						name: 'Bodegas',
 						constante: '_bodegas'
-					},
-					{
-						name: 'Unidades',
-						constante: '_unidades'
 					},
 					{
 						name: 'Unidad de Medida',
@@ -213,10 +205,6 @@ const TREE_DATA: AdminNode[] = [
 					{
 						name: 'Consecutivos Globales',
 						constante: '_consecutivosGlobales'
-					},
-					{
-						name: 'Cargos',
-						constante: '_cargos'
 					}
 				]
 			}
@@ -264,50 +252,128 @@ export class TreeComponent implements OnInit {
 	}
 	navigateToPage(name: string): void {
 		switch (name) {
+			//Seguridad
+			case '_usuario':
+				void this._router.navigateByUrl(PATH_AS_PAGES.usuario.withSlash);
+				break;
+			case '_grupos':
+				void this._router.navigateByUrl(PATH_AS_PAGES.grupo.withSlash);
+				break;
+			//Tablas/areas
 			case '_pais':
-				void this._router.navigateByUrl(PATH_AS_PAGES.pais.onlyPath);
+				void this._router.navigateByUrl(PATH_AS_PAGES.pais.withSlash);
 				break;
 			case '_zona':
-				void this._router.navigateByUrl(PATH_AS_PAGES.zona.onlyPath);
+				void this._router.navigateByUrl(PATH_AS_PAGES.zona.withSlash);
 				break;
 			case '_ruta':
-				void this._router.navigateByUrl(PATH_AS_PAGES.ruta.onlyPath);
+				void this._router.navigateByUrl(PATH_AS_PAGES.ruta.withSlash);
 				break;
 			case '_regiones':
-				void this._router.navigateByUrl(PATH_AS_PAGES.region.onlyPath);
+				void this._router.navigateByUrl(PATH_AS_PAGES.region.withSlash);
 				break;
+			//Tablas/organizacion-ubicacion
+			case '_centroDeCosto':
+				void this._router.navigateByUrl(PATH_AS_PAGES.centroCosto.withSlash);
+				break;
+			case '_departamento':
+				void this._router.navigateByUrl(PATH_AS_PAGES.departamento.withSlash);
+				break;
+			case '_ubicacion':
+				void this._router.navigateByUrl(PATH_AS_PAGES.ubicacion.withSlash);
+				break;
+			//Tablas/funcionarios
 			case '_cobrador':
-				void this._router.navigateByUrl(PATH_AS_PAGES.cobrador.onlyPath);
+				void this._router.navigateByUrl(PATH_AS_PAGES.cobrador.withSlash);
 				break;
 			case '_vendedor':
-				void this._router.navigateByUrl(PATH_AS_PAGES.vendedor.onlyPath);
+				void this._router.navigateByUrl(PATH_AS_PAGES.vendedor.withSlash);
 				break;
 			case '_responsable':
-				void this._router.navigateByUrl(PATH_AS_PAGES.responsable.onlyPath);
+				void this._router.navigateByUrl(PATH_AS_PAGES.responsable.withSlash);
 				break;
+			//Tablas/Categorias
 			case '_categoriaDeCliente':
-				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaCliente.onlyPath);
+				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaCliente.withSlash);
 				break;
 			case '_categoriaDeProveedor':
-				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaProveedor.onlyPath);
+				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaProveedor.withSlash);
 				break;
 			case '_categoriaDeArticulo':
-				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaArticulo.onlyPath);
+				void this._router.navigateByUrl(PATH_AS_PAGES.categoriaArticulo.withSlash);
 				break;
 			case '_nivelPrecio':
-				void this._router.navigateByUrl(PATH_AS_PAGES.nivelPrecios.onlyPath);
+				void this._router.navigateByUrl(PATH_AS_PAGES.nivelPrecios.withSlash);
+				break;
+
+			//Tipos
+			case '_moneda':
+				void this._router.navigateByUrl(PATH_AS_PAGES.moneda.withSlash);
+				break;
+			case '_tipoDeCambio':
+				void this._router.navigateByUrl(PATH_AS_PAGES.tipocambio.withSlash);
+				break;
+			case '_condicionDePago':
+				void this._router.navigateByUrl(PATH_AS_PAGES.condiconPago.withSlash);
+				break;
+			case '_codigoDeImpuestos':
+				void this._router.navigateByUrl(PATH_AS_PAGES.codigoImpuesto.withSlash);
+				break;
+			case '_retenciones':
+				void this._router.navigateByUrl(PATH_AS_PAGES.retencion.withSlash);
+				break;
+			case '_tipoDeAnulacion':
+				void this._router.navigateByUrl(PATH_AS_PAGES.tipoAnulacion.withSlash);
+				break;
+			case '_tipoDeImpuestos':
+				void this._router.navigateByUrl(PATH_AS_PAGES.tipoImpuesto.withSlash);
+				break;
+			//as/tablas/otros
+			case '_entidadesFinciera':
+				void this._router.navigateByUrl(PATH_AS_PAGES.entidadFinaciera.withSlash);
+				break;
+			case '_tarjetasDeCredito':
+				void this._router.navigateByUrl(PATH_AS_PAGES.tarjetaCredito.withSlash);
 				break;
 			case '_bodegas':
-				void this._router.navigateByUrl(PATH_AS_PAGES.bodega.onlyPath);
-				break;
-			case '_parametrosDelModulo':
-				void this._router.navigateByUrl(PATH_AS_PAGES.parametrosAS.onlyPath);
-				break;
-			case '_periodosContables':
-				void this._router.navigateByUrl(PATH_AS_PAGES.periodosContables.onlyPath);
+				void this._router.navigateByUrl(PATH_AS_PAGES.bodega.withSlash);
 				break;
 			case '_unidadDeMedida':
-				void this._router.navigateByUrl(PATH_AS_PAGES.unidadMedida.onlyPath);
+				void this._router.navigateByUrl(PATH_AS_PAGES.unidadMedida.withSlash);
+				break;
+			case '_tipoDeNits':
+				void this._router.navigateByUrl(PATH_AS_PAGES.tipoNit.withSlash);
+				break;
+			case '_nits':
+				void this._router.navigateByUrl(PATH_AS_PAGES.nit.withSlash);
+				break;
+			case '_atributos':
+				void this._router.navigateByUrl(PATH_AS_PAGES.atributos.withSlash);
+				break;
+			case '_aduanas':
+				void this._router.navigateByUrl(PATH_AS_PAGES.aduana.withSlash);
+				break;
+			case '_encargadoDeBodegas':
+				void this._router.navigateByUrl(PATH_AS_PAGES.encagrdoBodega.withSlash);
+				break;
+			case '_consecutivoNcf':
+				void this._router.navigateByUrl(PATH_AS_PAGES.consecNfc.withSlash);
+				break;
+			case '_modeloRetenciones':
+				void this._router.navigateByUrl(PATH_AS_PAGES.modeloRetencion.withSlash);
+				break;
+			case '_consecutivosGlobales':
+				void this._router.navigateByUrl(PATH_AS_PAGES.consecGlo.withSlash);
+				break;
+			//administracion
+			case '_parametosDelModulo':
+				void this._router.navigateByUrl(PATH_AS_PAGES.parametrosAS.withSlash);
+				break;
+			case '_periodosContables':
+				void this._router.navigateByUrl(PATH_AS_PAGES.periodosContables.withSlash);
+				break;
+			case '_cambioDeClaveAcesso':
+				void this._router.navigateByUrl(PATH_AS_PAGES.cambioClave.withSlash);
 				break;
 			default:
 				break;

@@ -31,6 +31,6 @@ export class SidebarComponent implements OnInit {
 		void this._router.navigateByUrl('/as');
 	}
 	CIclick(): void {
-		void this._router.navigateByUrl('/moduloCI');
+		void this._router.navigateByUrl('/ci');
 	}
 }

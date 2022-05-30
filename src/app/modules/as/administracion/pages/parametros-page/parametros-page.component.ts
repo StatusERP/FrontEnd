@@ -1,5 +1,5 @@
 import { IConsultaPais } from './../../../tablas/areas/pais/service/pais-api-model-interface';
-import { TipoCambioApiService } from './../../../tablas/tipos/tipo-de-cambio/tipo-cambio-api.service';
+import { TipoCambioApiService } from '../../../tablas/tipos/tipo-de-cambio/service/tipo-cambio-api.service';
 import { PaisApiService } from './../../../tablas/areas/pais/service/pais-api.service';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';

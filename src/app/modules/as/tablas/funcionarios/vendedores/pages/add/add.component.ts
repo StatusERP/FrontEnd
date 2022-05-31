@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SnotifyService, SnotifyPosition } from 'ng-snotify';
 import { VendedorApiService } from './../../services/vendedor-api.service';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 
 @Component({
 	selector: 'app-add',

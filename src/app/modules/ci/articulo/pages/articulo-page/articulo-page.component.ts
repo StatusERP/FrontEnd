@@ -21,7 +21,7 @@ export class ArticuloPageComponent implements OnInit, AfterViewInit {
 	) {}
 
 	listArticulo = new MatTableDataSource<IResponseArticulo>();
-	displayedColumns: string[] = ['CodArticulo', 'Descripcion', 'actions'];
+	displayedColumns: string[] = ['CodArticulo', 'Descripcion', 'Tipo', 'Activo', 'actions'];
 	@ViewChild(MatSort)
 	sort!: MatSort;
 	@ViewChild(MatPaginator) paginator!: MatPaginator;

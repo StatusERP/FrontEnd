@@ -1,18 +1,20 @@
-<div fxLayout="row" fxLayoutAlign="center none">
-	<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="30">
-		<mat-form-field appearance="outline">
-			<mat-label>Codigo Articulo</mat-label>
-			<input type="text" matInput placeholder="Codigo Articulo" />
-		</mat-form-field>
+<form class="formulario grey-100" [formGroup]="formGroup">
+	<div fxLayout="row" fxLayoutAlign="center none">
+		<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="30">
+			<mat-form-field appearance="outline">
+				<mat-label>Codigo Articulo</mat-label>
+				<input formControlName="codArticulo" type="text" matInput placeholder="Codigo Articulo" />
+				<mat-error *ngIf="formGroup.get('codArticulo')!.hasError('required')">El maximo de 20 Caracteres</mat-error>
+			</mat-form-field>
+		</div>
+		<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="70">
+			<mat-form-field appearance="outline">
+				<mat-label>Descripcion Articulo</mat-label>
+				<input formControlName="descripcion" type="text" matInput placeholder="Descripicon Articulo" />
+				<mat-error *ngIf="formGroup.get('descripcion')!.hasError('required')">El maximo de 120 Caracteres</mat-error>
+			</mat-form-field>
+		</div>
 	</div>
-	<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="70">
-		<mat-form-field appearance="outline">
-			<mat-label>Descripcion Articulo</mat-label>
-			<input type="text" matInput placeholder="Descripicon Articulo" />
-		</mat-form-field>
-	</div>
-</div>
-<form class="formulario grey-100">
 	<mat-tab-group mat-align-tabs="center">
 		<mat-tab label="Generales">
 			<div fxLayout="row wrap" fxLayoutAlign="center none">
@@ -41,7 +43,7 @@
 							<div id="content">
 								<mat-form-field appearance="outline">
 									<mat-label>Tipo</mat-label>
-									<mat-select style="color: brown" [disabled]="disableSelect.value">
+									<mat-select formControlName="tipo" style="color: brown" [disabled]="disableSelect.value">
 										<mat-option value="T">Terminado</mat-option>
 										<mat-option value="M">Materia Prima</mat-option>
 										<mat-option value="E">Semielaborado</mat-option>
@@ -61,9 +63,9 @@
 									</mat-select>
 								</mat-form-field>
 								<section class="indicadores">
-									<p><mat-checkbox>Activo</mat-checkbox></p>
-									<p><mat-checkbox>Tienda Linea</mat-checkbox></p>
-									<p><mat-checkbox>Venta Con Tarjeta Credito</mat-checkbox></p>
+									<p><mat-checkbox formControlName="activo">Activo</mat-checkbox></p>
+									<p><mat-checkbox formControlName="tiendaLinea">Tienda Linea</mat-checkbox></p>
+									<p><mat-checkbox formControlName="ventaTarjeta">Venta Con Tarjeta Credito</mat-checkbox></p>
 								</section>
 							</div>
 						</div>
@@ -74,7 +76,7 @@
 							<div id="content">
 								<mat-form-field appearance="outline">
 									<mat-label>Costos</mat-label>
-									<input type="number" matInput placeholder="Decimales para Costo" />
+									<input formControlName="codBarraDetalle" type="number" matInput placeholder="Decimales para Costo" />
 								</mat-form-field>
 							</div>
 						</div>
@@ -83,7 +85,7 @@
 							<div id="content">
 								<mat-form-field appearance="outline">
 									<mat-label>Costos</mat-label>
-									<input type="number" matInput placeholder="Decimales para Costo" />
+									<input formControlName="codBarraVenta" type="number" matInput placeholder="Decimales para Costo" />
 								</mat-form-field>
 							</div>
 						</div>
@@ -95,15 +97,15 @@
 							<div id="content">
 								<mat-form-field appearance="outline">
 									<mat-label>Minima</mat-label>
-									<input type="number" matInput placeholder="Existencia Minima" />
+									<input formControlName="existenciaMinima" type="number" matInput placeholder="Existencia Minima" />
 								</mat-form-field>
 								<mat-form-field appearance="outline">
 									<mat-label>Reorden</mat-label>
-									<input type="number" matInput placeholder="Punto de Reorden" />
+									<input formControlName="existenciaReorden" type="number" matInput placeholder="Punto de Reorden" />
 								</mat-form-field>
 								<mat-form-field appearance="outline">
 									<mat-label>Máxima</mat-label>
-									<input type="number" matInput placeholder="Existencia Máxima" />
+									<input formControlName="existenciaMaxima" type="number" matInput placeholder="Existencia Máxima" />
 								</mat-form-field>
 							</div>
 						</div>
@@ -112,7 +114,7 @@
 							<div id="content">
 								<mat-form-field appearance="outline">
 									<mat-label>Fiscal</mat-label>
-									<mat-select [disabled]="disableSelect.value">
+									<mat-select formControlName="costoFiscal" [disabled]="disableSelect.value">
 										<mat-option value="E">Estándar</mat-option>
 										<mat-option value="L">PEPS</mat-option>
 										<mat-option value="P">Promedio</mat-option>
@@ -122,7 +124,7 @@
 								</mat-form-field>
 								<mat-form-field appearance="outline">
 									<mat-label>Corporativa</mat-label>
-									<mat-select [disabled]="disableSelect.value">
+									<mat-select formControlName="costoCorporativo" [disabled]="disableSelect.value">
 										<mat-option value="E">Estándar</mat-option>
 										<mat-option value="L">PEPS</mat-option>
 										<mat-option value="P">Promedio</mat-option>
@@ -221,7 +223,7 @@
 						<div id="title">Clase</div>
 
 						<div id="content">
-							<mat-radio-group class="radio-group">
+							<mat-radio-group formControlName="clase" class="radio-group">
 								<mat-radio-button class="radio-button" value="A">A</mat-radio-button>
 								<mat-radio-button class="radio-button" value="B">B</mat-radio-button>
 								<mat-radio-button class="radio-button" value="C">C</mat-radio-button>

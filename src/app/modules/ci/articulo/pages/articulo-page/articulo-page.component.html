@@ -11,16 +11,21 @@
 	<mat-table [dataSource]="listArticulo" matSort>
 		<ng-container matColumnDef="CodArticulo">
 			<mat-header-cell *matHeaderCellDef mat-sort-header>cod-Articulo</mat-header-cell>
-			<mat-cell *matCellDef="let element">{{ element.CodArticulo }}</mat-cell>
+			<mat-cell *matCellDef="let element">{{ element.codArticulo }}</mat-cell>
 		</ng-container>
 		<ng-container matColumnDef="Descripcion">
 			<mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion</mat-header-cell>
-			<mat-cell *matCellDef="let element">{{ element.Descripcion }}</mat-cell>
+			<mat-cell *matCellDef="let element">{{ element.descripcion }}</mat-cell>
 		</ng-container>
-		<ng-container matColumnDef="activo">
+		<ng-container matColumnDef="Tipo">
+			<mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</mat-header-cell>
+
+			<mat-cell *matCellDef="let element">{{ element.tipo }}</mat-cell>
+		</ng-container>
+		<ng-container matColumnDef="Activo">
 			<mat-header-cell *matHeaderCellDef mat-sort-header>Activo</mat-header-cell>
 			<mat-cell *matCellDef="let element">
-				<mat-checkbox type="checkbox" [(ngModel)]="element.activa"></mat-checkbox>
+				<mat-checkbox type="checkbox" [(ngModel)]="element.activo"></mat-checkbox>
 			</mat-cell>
 		</ng-container>
 		<ng-container matColumnDef="actions">

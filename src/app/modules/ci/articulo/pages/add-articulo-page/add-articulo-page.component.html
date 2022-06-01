@@ -263,7 +263,7 @@
 								<mat-form-field appearance="outline">
 									<mat-label>Proveedor</mat-label>
 									<mat-select formControlName="proveedor">
-										<mat-option *ngFor="let item of listImpuesto" [value]="item.id">{{ item.codImpuesto }}</mat-option>
+										<mat-option value="48">Proveedor Demo</mat-option>
 									</mat-select>
 								</mat-form-field>
 								<mat-form-field appearance="outline">
@@ -481,11 +481,11 @@
 								<div fxLayout="row wrap" fxFlex="70">
 									<mat-form-field appearance="outline">
 										<mat-label>Nombre Impuesto</mat-label>
-										<input type="text" matInput placeholder="GTN" />
+										<input type="text" matInput placeholder="Nombre Impuesto" />
 									</mat-form-field>
 									<mat-form-field appearance="outline">
-										<mat-label>Codigo Cuenta Contable</mat-label>
-										<input type="text" matInput placeholder="Nombre Manufacturador" />
+										<mat-label>Nombre Cuenta </mat-label>
+										<input type="text" matInput placeholder="Nombre Impuesto" />
 									</mat-form-field>
 								</div>
 							</div>
@@ -569,29 +569,29 @@
 								<div fxLayout="row wrap" fxFlex="30">
 									<mat-form-field appearance="outline">
 										<mat-label>Estilo</mat-label>
-										<input type="text" matInput placeholder="Digite Codigo Estilo" />
+										<input formControlName="estilo" type="text" matInput placeholder="Digite Codigo Estilo" />
 									</mat-form-field>
 									<mat-form-field appearance="outline">
 										<mat-label>Talla</mat-label>
-										<input type="text" matInput placeholder="Digite Codigo de Talla" />
+										<input formControlName="talla" type="text" matInput placeholder="Digite Codigo de Talla" />
 									</mat-form-field>
 									<mat-form-field appearance="outline">
 										<mat-label>Color</mat-label>
-										<input type="text" matInput placeholder="Digite Codigo Color" />
+										<input formControlName="color" type="text" matInput placeholder="Digite Codigo Color" />
 									</mat-form-field>
 								</div>
 								<div fxLayout="row wrap" fxFlex="70">
 									<mat-form-field appearance="outline">
 										<mat-label>Descripcion Estilo</mat-label>
-										<input type="text" matInput placeholder="Descripcion Estilo" />
+										<input formControlName="nombreEstilo" type="text" matInput placeholder="Descripcion Estilo" />
 									</mat-form-field>
 									<mat-form-field appearance="outline">
 										<mat-label>Descripcion de Talla</mat-label>
-										<input type="text" matInput placeholder="Descripcion de Talla" />
+										<input formControlName="nombreTalla" type="text" matInput placeholder="Descripcion de Talla" />
 									</mat-form-field>
 									<mat-form-field appearance="outline">
 										<mat-label>Descripcion de Color</mat-label>
-										<input type="text" matInput placeholder="Descripcion de Color" />
+										<input formControlName="nombreColor" type="text" matInput placeholder="Descripcion de Color" />
 									</mat-form-field>
 								</div>
 							</div>
@@ -613,8 +613,10 @@
 				>
 					<div fxLayout="row wrap" fxLayoutAlign="center none">
 						<div class="title_box">
-							<textarea style="width: 600px; height: 400px" matInput placeholder="Comment"> </textarea>
-							<div id="content"></div>
+							<div id="content">
+								<textarea formControlName="nota" style="width: 600px; height: 400px" matInput placeholder="Comment">
+								</textarea>
+							</div>
 						</div>
 					</div>
 				</div>

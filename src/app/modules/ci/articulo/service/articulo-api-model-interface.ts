@@ -19,6 +19,8 @@ export interface IRequestCreateArticulo {
 	clasificacion4Id: number;
 	clasificacion5Id: number;
 	clasificacion6Id: number;
+	ClaseABC: string;
+
 	FactorConver1: number;
 	FactorConver2: number;
 	FactorConver3: number;
@@ -42,11 +44,11 @@ export interface IRequestCreateArticulo {
 	CostoDol: number;
 	PrecioBaseLocal: number;
 	PrecioBaseDolar: number;
-	UltimaSalida: Date;
-	UltimoMovimiento: Date;
-	UltimoIngreso: Date;
-	UltimoInventario: Date;
-	ClaseABC: string;
+	UltimaSalida: string;
+	UltimoMovimiento: string;
+	UltimoIngreso: string;
+	UltimoInventario: string;
+	ProveedorId: number;
 	FrecuenciaConteo: number;
 	CodigoBarrasVent: string;
 	CodigoBarrasInvt: string;
@@ -57,11 +59,11 @@ export interface IRequestCreateArticulo {
 	MinVidaConsumo: number;
 	MinVidaVenta: number;
 	VidaUltilPromedio: number;
-	DiasCuaremtema: number;
+	DiasCuaremtena: number;
 	ArticuloDelProv: string;
 	OrdenMinima: number;
 	PlazoReabast: number;
-	LoteMultipo: number;
+	LoteMultiplo: number;
 	Notas: string;
 	UsaNumeroSerie: boolean;
 	ModalidadInvFis: string;
@@ -89,5 +91,4 @@ export interface IRequestCreateArticulo {
 	ImpuestoId: number;
 	UnidadEmpaqueId: number;
 	urlImagen: string;
-	ProveedorId: number;
 }

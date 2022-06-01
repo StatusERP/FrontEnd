@@ -164,6 +164,7 @@ export class AddArticuloPageComponent implements OnInit {
 			return;
 		}
 		this.disableButtonSave = true;
+		this.formGroup.disable();
 		const sendArticulo: IRequestCreateArticulo = {
 			codArticulo: this.codArticuloField.value as string,
 			descripcion: this.descripcionField.value as string,

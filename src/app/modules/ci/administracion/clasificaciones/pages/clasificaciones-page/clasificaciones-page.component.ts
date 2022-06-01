@@ -47,7 +47,7 @@ export class ClasificacionesPageComponent implements AfterViewInit {
 	}
 
 	private _loadDatos(page: number, rows: number): void {
-		this._clasificacionApiService.getZonas(page, rows).subscribe({
+		this._clasificacionApiService.getClasifi(page, rows).subscribe({
 			next: (response) => {
 				this.listDatos.data = response.result;
 			},
@@ -70,7 +70,7 @@ export class ClasificacionesPageComponent implements AfterViewInit {
 					bold: true,
 					action: (toast) => {
 						this._snotifyService.remove(toast.id);
-						this._clasificacionApiService.delete(id).subscribe((response) => {
+						this._clasificacionApiService.getClasifi(id).subscribe((response) => {
 							if (response && response.success) {
 								this._snotifyService.info('El registro ha sido Eliminado');
 								this._loadDatos(1, 100000);

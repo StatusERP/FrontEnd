@@ -10,8 +10,8 @@ export const globalesASReducer = createReducer(
 	on(loadGlobalesAS, (state) => {
 		return { ...state, loading: true };
 	}),
+	// eslint-disable-next-line ngrx/on-function-explicit-return-type
 	on(loadedGlobalesAS, (state, { globales }) => {
-		console.log(globales);
 		return { ...state, loading: false, items: globales };
 	})
 );

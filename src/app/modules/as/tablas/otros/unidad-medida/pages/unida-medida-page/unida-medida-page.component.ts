@@ -1,6 +1,6 @@
 import { AddUnidaMedidaPageComponent } from './../add-unida-medida-page/add-unida-medida-page.component';
 import { MatPaginator } from '@angular/material/paginator';
-import { ICreateUnidadMedida } from './../../service/unidad-medida-api-model-interface';
+import { ICreateUnidadMedida, IResponseUnidadMedida } from './../../service/unidad-medida-api-model-interface';
 import { MatTableDataSource } from '@angular/material/table';
 import { UnidadMedidaApiService } from './../../service/unidad-medida-api.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -20,7 +20,7 @@ export class UnidaMedidaPageComponent implements OnInit, AfterViewInit {
 		private _unidadMedidaApiService: UnidadMedidaApiService
 	) {}
 
-	listDatos = new MatTableDataSource<ICreateUnidadMedida>();
+	listDatos = new MatTableDataSource<IResponseUnidadMedida>();
 	displayedColumns: string[] = ['codUnidadMedida', 'descripcion', 'actions'];
 	@ViewChild(MatSort)
 	sort!: MatSort;

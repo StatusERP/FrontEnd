@@ -11,16 +11,16 @@ const URL_CLASIFICACION = environment.host + '/CI/clasificacionInv';
 })
 export class ClasificacionApiService {
 	constructor(private _httpClient: HttpClient) {}
-	createZona(clasificacion: ICreateClasificacion): Observable<IResponse<number>> {
+	createClasifi(clasificacion: ICreateClasificacion): Observable<IResponse<number>> {
 		return this._httpClient.post<IResponse<number>>(URL_CLASIFICACION, clasificacion);
 	}
-	getZonas(page?: number, rows?: number): Observable<IResponse<IResponseClasificacion[]>> {
+	getClasifi(page?: number, rows?: number): Observable<IResponse<IResponseClasificacion[]>> {
 		let url = URL_CLASIFICACION;
 		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
 		url = url + '?page=' + page + '&rows=' + rows;
 		return this._httpClient.get<IResponse<IResponseClasificacion[]>>(url);
 	}
-	delete(idZona: number): Observable<IResponse<number>> {
+	deleteClasifi(idZona: number): Observable<IResponse<number>> {
 		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
 		const url = URL_CLASIFICACION + '/' + idZona;
 		return this._httpClient.delete<IResponse<number>>(url);

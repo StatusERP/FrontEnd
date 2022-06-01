@@ -68,7 +68,7 @@ export class AddClasificacionesPageComponent {
 		}
 	}
 	private _save(clasificacion: ICreateClasificacion) {
-		this._clasificacionApiService.createZona(clasificacion).subscribe({
+		this._clasificacionApiService.createClasifi(clasificacion).subscribe({
 			next: (response) => {
 				console.log(response);
 
@@ -86,6 +86,7 @@ export class AddClasificacionesPageComponent {
 		});
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	private _edit(clasificacion: ICreateClasificacion) {
 		console.log('actualizar');
 		this.claForm.reset();

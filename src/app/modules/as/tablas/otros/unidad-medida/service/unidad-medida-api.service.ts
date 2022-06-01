@@ -1,4 +1,4 @@
-import { ICreateUnidadMedida } from './unidad-medida-api-model-interface';
+import { ICreateUnidadMedida, IResponseUnidadMedida } from './unidad-medida-api-model-interface';
 import { IResponse } from '@app/shared/api-models-base-interface';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -11,11 +11,11 @@ const URL_UNIDADMEDIDA = environment.host + '/AS/UnidadMedida';
 })
 export class UnidadMedidaApiService {
 	constructor(private _httpClient: HttpClient) {}
-	getUnidadMedida(page?: number, rows?: number): Observable<IResponse<ICreateUnidadMedida[]>> {
+	getUnidadMedida(page?: number, rows?: number): Observable<IResponse<IResponseUnidadMedida[]>> {
 		let url = URL_UNIDADMEDIDA;
 		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
 		url = url + '?page=' + page + '&rows=' + rows;
-		return this._httpClient.get<IResponse<ICreateUnidadMedida[]>>(url);
+		return this._httpClient.get<IResponse<IResponseUnidadMedida[]>>(url);
 	}
 	crearBodega(unidadMedida: ICreateUnidadMedida): Observable<IResponse<number>> {
 		return this._httpClient.post<IResponse<number>>(URL_UNIDADMEDIDA, unidadMedida);

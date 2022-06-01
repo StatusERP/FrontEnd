@@ -1,4 +1,4 @@
-<form class="formulario grey-100" [formGroup]="formGroup">
+<form class="formulario grey-100" [formGroup]="formGroup" (ngSubmit)="onclickArticulo()">
 	<div fxLayout="row" fxLayoutAlign="center none">
 		<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="30">
 			<mat-form-field appearance="outline">
@@ -75,7 +75,7 @@
 
 							<div id="content">
 								<mat-form-field appearance="outline">
-									<mat-label>Costos</mat-label>
+									<mat-label>Codigo Barras Unida Detalle</mat-label>
 									<input formControlName="codBarraDetalle" type="number" matInput placeholder="Decimales para Costo" />
 								</mat-form-field>
 							</div>
@@ -84,7 +84,7 @@
 							<div id="title">Codigo Barra Unidad Venta</div>
 							<div id="content">
 								<mat-form-field appearance="outline">
-									<mat-label>Costos</mat-label>
+									<mat-label>Codigo Barras Unidad Ventas</mat-label>
 									<input formControlName="codBarraVenta" type="number" matInput placeholder="Decimales para Costo" />
 								</mat-form-field>
 							</div>
@@ -156,27 +156,39 @@
 							<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="20">
 								<mat-form-field appearance="outline">
 									<mat-label>Clasificacion 1</mat-label>
-									<input type="text" matInput placeholder="Texto de Clasificacion 1" />
+									<mat-select formControlName="clas1">
+										<mat-option *ngFor="let item of listClasArt" [value]="item.id">{{ item.descripcion }}</mat-option>
+									</mat-select>
 								</mat-form-field>
 								<mat-form-field appearance="outline">
 									<mat-label>Clasificacion 2</mat-label>
-									<input type="text" matInput placeholder="Texto de Clasificacion 2" />
+									<mat-select formControlName="clas2">
+										<mat-option *ngFor="let item of listClasArt" [value]="item.id">{{ item.descripcion }}</mat-option>
+									</mat-select>
 								</mat-form-field>
 								<mat-form-field appearance="outline">
 									<mat-label>Clasificacion 3</mat-label>
-									<input type="text" matInput placeholder="Texto de Clasificacion 3" />
+									<mat-select formControlName="clas3">
+										<mat-option *ngFor="let item of listClasArt" [value]="item.id">{{ item.descripcion }}</mat-option>
+									</mat-select>
 								</mat-form-field>
 								<mat-form-field appearance="outline">
 									<mat-label>Clasificacion 4</mat-label>
-									<input type="text" matInput placeholder="Texto de Clasificacion 3" />
+									<mat-select formControlName="clas4">
+										<mat-option *ngFor="let item of listClasArt" [value]="item.id">{{ item.descripcion }}</mat-option>
+									</mat-select>
 								</mat-form-field>
 								<mat-form-field appearance="outline">
 									<mat-label>Clasificacion 5</mat-label>
-									<input type="text" matInput placeholder="Texto de Clasificacion 3" />
+									<mat-select formControlName="clas5">
+										<mat-option *ngFor="let item of listClasArt" [value]="item.id">{{ item.descripcion }}</mat-option>
+									</mat-select>
 								</mat-form-field>
 								<mat-form-field appearance="outline">
 									<mat-label>Clasificacion 6</mat-label>
-									<input type="text" matInput placeholder="Texto de Clasificacion 3" />
+									<mat-select formControlName="clas6">
+										<mat-option *ngFor="let item of listClasArt" [value]="item.id">{{ item.descripcion }}</mat-option>
+									</mat-select>
 								</mat-form-field>
 							</div>
 							<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="80">
@@ -250,11 +262,17 @@
 							<div fxLayout="row wrap" fxFlex="30">
 								<mat-form-field appearance="outline">
 									<mat-label>Proveedor</mat-label>
-									<input type="text" matInput placeholder="Selecione Proveedor" />
+									<mat-select formControlName="proveedor">
+										<mat-option *ngFor="let item of listImpuesto" [value]="item.id">{{ item.codImpuesto }}</mat-option>
+									</mat-select>
 								</mat-form-field>
 								<mat-form-field appearance="outline">
 									<mat-label>Pais de Manufactura</mat-label>
-									<input type="text" matInput placeholder="Selecione Pais" />
+									<mat-select formControlName="paismanofactura">
+										<mat-option *ngFor="let item of listPais" [value]="item.id"
+											>{{ item.codPais }}-{{ item.nombre }}</mat-option
+										>
+									</mat-select>
 								</mat-form-field>
 							</div>
 							<div fxLayout="row wrap" fxFlex="80">
@@ -278,7 +296,7 @@
 							<div fxLayout="row wrap" fxFlex="30">
 								<mat-form-field appearance="outline">
 									<mat-label>Código Artículo</mat-label>
-									<input type="text" matInput placeholder="Tipo pais" />
+									<input formControlName="codArtProveedor" type="text" matInput placeholder="Tipo pais" />
 								</mat-form-field>
 							</div>
 						</div>
@@ -287,13 +305,13 @@
 							<div fxLayout="row wrap" fxFlex="30">
 								<mat-form-field appearance="outline">
 									<mat-label>Orden Mínima</mat-label>
-									<input type="text" matInput placeholder="Cantidad Minima" />
+									<input formControlName="ordenMinima" type="number" matInput placeholder="Cantidad Minima" />
 								</mat-form-field>
 							</div>
 							<div fxLayout="row wrap" fxFlex="30">
 								<mat-form-field appearance="outline">
 									<mat-label>Reabastecimiento</mat-label>
-									<input type="text" matInput placeholder="Reabastecimiento" />
+									<input formControlName="rebastesimineto" type="number" matInput placeholder="Reabastecimiento" />
 								</mat-form-field>
 							</div>
 						</div>
@@ -302,7 +320,7 @@
 							<div fxLayout="row wrap" fxFlex="30">
 								<mat-form-field appearance="outline">
 									<mat-label>Lote Múltiplo</mat-label>
-									<input type="text" matInput placeholder="Lote Multiplo" />
+									<input formControlName="multiploLote" type="number" matInput placeholder="Lote Multiplo" />
 								</mat-form-field>
 							</div>
 						</div>
@@ -327,17 +345,17 @@
 								<div fxLayout="row wrap" fxFlex="50">
 									<mat-form-field appearance="outline">
 										<mat-label>Conteo Ciclico</mat-label>
-										<input type="text" matInput placeholder="Conteo Ciclico dias" />
+										<input formControlName="conteoCiclico" type="number" matInput placeholder="Conteo Ciclico dias" />
 									</mat-form-field>
 									<mat-form-field appearance="outline">
 										<mat-label>Número de Bultos</mat-label>
-										<input type="text" matInput placeholder="Numero de Búltos" />
+										<input formControlName="numeroBultos" type="number" matInput placeholder="Numero de Búltos" />
 									</mat-form-field>
 								</div>
 								<div fxLayout="row wrap" fxFlex="50">
 									<mat-form-field appearance="outline">
 										<mat-label>GTN</mat-label>
-										<input type="text" matInput placeholder="GTN" />
+										<input formControlName="gtn" type="text" matInput placeholder="GTN" />
 									</mat-form-field>
 									<mat-form-field appearance="outline">
 										<mat-label>Manufacturador</mat-label>
@@ -367,15 +385,15 @@
 									<div fxLayout="row wrap" fxFlex="90" fxLayoutAlign="center center">
 										<mat-form-field appearance="outline">
 											<mat-label>Peso Neto</mat-label>
-											<input type="number" matInput placeholder="Peso Neto" />
+											<input formControlName="pesoNeto" type="number" matInput placeholder="Peso Neto" />
 										</mat-form-field>
 										<mat-form-field appearance="outline">
 											<mat-label>Peso Bruto</mat-label>
-											<input type="text" matInput placeholder="Peso Bruto" />
+											<input formControlName="pesoBruto" type="number" matInput placeholder="Peso Bruto" />
 										</mat-form-field>
 										<mat-form-field appearance="outline">
 											<mat-label>Volumen</mat-label>
-											<input type="text" matInput placeholder="Volumen" />
+											<input formControlName="volumen" type="number" matInput placeholder="Volumen" />
 										</mat-form-field>
 									</div>
 									<div fxLayout="column" fxFlex="10" fxLayoutGap="30px">
@@ -388,27 +406,39 @@
 								<div fxLayout="row wrap" fxFlex="50">
 									<div fxLayout="row wrap" fxFlex="70" fxLayoutAlign="center center">
 										<mat-form-field appearance="outline">
-											<mat-label>Almacenamineto</mat-label>
-											<input type="text" matInput placeholder="Almacenamiento" />
+											<mat-label>Almacenamiento</mat-label>
+											<mat-select formControlName="almacenamiento">
+												<mat-option *ngFor="let item of listUndMedida" [value]="item.id">{{
+													item.codUnidadMedida
+												}}</mat-option>
+											</mat-select>
 										</mat-form-field>
 										<mat-form-field appearance="outline">
-											<mat-label>Detalle</mat-label>
-											<input type="text" matInput placeholder="Unidad Detalle" />
+											<mat-label>Unidad Detalle</mat-label>
+											<mat-select formControlName="detalle">
+												<mat-option *ngFor="let item of listUndMedida" [value]="item.id">{{
+													item.codUnidadMedida
+												}}</mat-option>
+											</mat-select>
 										</mat-form-field>
 										<mat-form-field appearance="outline">
 											<mat-label>Múltiplo Venta</mat-label>
-											<input type="text" matInput placeholder="Múltipo Ventas" />
+											<mat-select formControlName="venta">
+												<mat-option *ngFor="let item of listUndMedida" [value]="item.id">{{
+													item.codUnidadMedida
+												}}</mat-option>
+											</mat-select>
 										</mat-form-field>
 									</div>
 									<div fxLayout="column" fxFlex="30" fxLayoutAlign="center center">
 										<p>Conversión</p>
 										<mat-form-field appearance="outline">
-											<mat-label>Múltiplo Venta</mat-label>
-											<input type="text" matInput placeholder="Múltipo Ventas" />
+											<mat-label>Múltiplo Detalle</mat-label>
+											<input formControlName="multiploDetalle" type="number" matInput placeholder="Múltipo Ventas" />
 										</mat-form-field>
 										<mat-form-field appearance="outline">
 											<mat-label>Múltiplo Venta</mat-label>
-											<input type="text" matInput placeholder="Múltipo Ventas" />
+											<input type="number" formControlName="multiploVenta" matInput placeholder="Múltipo Ventas" />
 										</mat-form-field>
 									</div>
 								</div>
@@ -433,11 +463,19 @@
 								<div fxLayout="row wrap" fxFlex="30">
 									<mat-form-field appearance="outline">
 										<mat-label>Impuesto</mat-label>
-										<input type="text" matInput placeholder="Codigo Impuesto" />
+										<mat-select formControlName="codigoImpuesto">
+											<mat-option *ngFor="let item of listImpuesto" [value]="item.id">{{
+												item.codImpuesto
+											}}</mat-option>
+										</mat-select>
 									</mat-form-field>
 									<mat-form-field appearance="outline">
 										<mat-label>Cuentas</mat-label>
-										<input type="text" matInput placeholder="Cuentas Contables" />
+										<mat-select formControlName="cuenta">
+											<mat-option *ngFor="let item of listImpuesto" [value]="item.id">{{
+												item.codImpuesto
+											}}</mat-option>
+										</mat-select>
 									</mat-form-field>
 								</div>
 								<div fxLayout="row wrap" fxFlex="70">
@@ -471,21 +509,41 @@
 							<div id="content">
 								<div fxLayout="row wrap" fxFlex="30">
 									<mat-form-field appearance="outline">
-										<mat-label>Impuesto</mat-label>
-										<input type="text" matInput placeholder="Codigo Impuesto" />
+										<mat-label>Ventas</mat-label>
+										<mat-select formControlName="retencionVentas">
+											<mat-option *ngFor="let item of listImpuesto" [value]="item.id">{{
+												item.codImpuesto
+											}}</mat-option>
+										</mat-select>
 									</mat-form-field>
 									<mat-form-field appearance="outline">
-										<mat-label>Cuentas</mat-label>
-										<input type="text" matInput placeholder="Cuentas Contables" />
+										<mat-label>Compras</mat-label>
+										<mat-select formControlName="retencionCompras">
+											<mat-option *ngFor="let item of listImpuesto" [value]="item.id">{{
+												item.codImpuesto
+											}}</mat-option>
+										</mat-select>
+									</mat-form-field>
+									<mat-form-field appearance="outline">
+										<mat-label>Modelo</mat-label>
+										<mat-select formControlName="retencionModelo">
+											<mat-option *ngFor="let item of listImpuesto" [value]="item.id">{{
+												item.codImpuesto
+											}}</mat-option>
+										</mat-select>
 									</mat-form-field>
 								</div>
 								<div fxLayout="row wrap" fxFlex="70">
 									<mat-form-field appearance="outline">
-										<mat-label>Nombre Impuesto</mat-label>
+										<mat-label>Retencion Ventas</mat-label>
 										<input type="text" matInput placeholder="GTN" />
 									</mat-form-field>
 									<mat-form-field appearance="outline">
-										<mat-label>Codigo Cuenta Contable</mat-label>
+										<mat-label>Retencion Compras</mat-label>
+										<input type="text" matInput placeholder="Nombre Manufacturador" />
+									</mat-form-field>
+									<mat-form-field appearance="outline">
+										<mat-label>Retencion Modelo</mat-label>
 										<input type="text" matInput placeholder="Nombre Manufacturador" />
 									</mat-form-field>
 								</div>
@@ -578,17 +636,17 @@
 						<div class="title_box">
 							<div id="content">
 								<section class="indicadores">
-									<p><mat-checkbox>Usa Lotes</mat-checkbox></p>
+									<p><mat-checkbox formControlName="usaLote">Usa Lotes</mat-checkbox></p>
 								</section>
 								<div class="generales" fxLayout="row wrap" fxLayoutAlign="center center">
 									<div fxLayout="row wrap" fxLayoutAlign="center none">
 										<div class="title_box">
 											<div id="content">
 												<section class="indicadores">
-													<p><mat-checkbox>Perecedero</mat-checkbox></p>
+													<p><mat-checkbox formControlName="percedero">Perecedero</mat-checkbox></p>
 												</section>
 												<section class="indicadores">
-													<p><mat-checkbox>Obliga Cuarentena</mat-checkbox></p>
+													<p><mat-checkbox formControlName="obligaCuarentena">Obliga Cuarentena</mat-checkbox></p>
 												</section>
 												<div fxLayout="row wrap" fxLayoutAlign="center none">
 													<div id="content">
@@ -596,15 +654,30 @@
 															<div fxLayout="row wrap" fxFlex="90" fxLayoutAlign="center center">
 																<mat-form-field appearance="outline">
 																	<mat-label>Minimo de Vida Compras</mat-label>
-																	<input type="number" matInput placeholder="Minimo de Vida Compras" />
+																	<input
+																		formControlName="mimimoVidaCompra"
+																		type="number"
+																		matInput
+																		placeholder="Minimo de Vida Compras"
+																	/>
 																</mat-form-field>
 																<mat-form-field appearance="outline">
 																	<mat-label>Minimo de Vida Consumo</mat-label>
-																	<input type="number" matInput placeholder="Minimo de Vida Consumo" />
+																	<input
+																		formControlName="mimimoVidaConsumo"
+																		type="number"
+																		matInput
+																		placeholder="Minimo de Vida Consumo"
+																	/>
 																</mat-form-field>
 																<mat-form-field appearance="outline">
 																	<mat-label>Minimo de Vida Venta</mat-label>
-																	<input type="number" matInput placeholder="Minimo de Vida Venta" />
+																	<input
+																		formControlName="mimimoVidaVenta"
+																		type="number"
+																		matInput
+																		placeholder="Minimo de Vida Venta"
+																	/>
 																</mat-form-field>
 															</div>
 															<div fxLayout="column" fxFlex="10" fxLayoutGap="30px">
@@ -618,11 +691,16 @@
 															<div fxLayout="row wrap" fxFlex="70" fxLayoutAlign="center start">
 																<mat-form-field appearance="outline">
 																	<mat-label>Vida Útil Promedio</mat-label>
-																	<input type="number" matInput placeholder="Vida Útil Promedio" />
+																	<input
+																		formControlName="vidaUtilPromedio"
+																		type="number"
+																		matInput
+																		placeholder="Vida Útil Promedio"
+																	/>
 																</mat-form-field>
 																<mat-form-field appearance="outline">
 																	<mat-label>Cuarentena</mat-label>
-																	<input type="number" matInput placeholder="Cuarentena" />
+																	<input formControlName="cuarentena" type="number" matInput placeholder="Cuarentena" />
 																</mat-form-field>
 															</div>
 															<div fxLayout="column" fxFlex="30" fxLayoutAlign="start start">

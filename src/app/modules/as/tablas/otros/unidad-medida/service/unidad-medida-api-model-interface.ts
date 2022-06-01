@@ -1,5 +1,5 @@
 export interface IResponseUnidadMedida {
-	codBodega: string;
+	codUnidadMedida: string;
 	descripcion: string;
 	id: number;
 }

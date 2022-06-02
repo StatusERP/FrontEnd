@@ -1,20 +1,27 @@
 <form class="formulario grey-100" [formGroup]="formGroup" (ngSubmit)="onclickArticulo()">
-	<div fxLayout="row" fxLayoutAlign="center none">
-		<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="30">
-			<mat-form-field appearance="outline">
-				<mat-label>Codigo Articulo</mat-label>
-				<input formControlName="codArticulo" type="text" matInput placeholder="Codigo Articulo" />
-				<mat-error *ngIf="formGroup.get('codArticulo')!.hasError('required')">El maximo de 20 Caracteres</mat-error>
-			</mat-form-field>
-		</div>
-		<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="70">
-			<mat-form-field appearance="outline">
-				<mat-label>Descripcion Articulo</mat-label>
-				<input formControlName="descripcion" type="text" matInput placeholder="Descripicon Articulo" />
-				<mat-error *ngIf="formGroup.get('descripcion')!.hasError('required')">El maximo de 120 Caracteres</mat-error>
-			</mat-form-field>
+	<div class="generalContenedor" fxLayout="row wrap" fxLayoutAlign="center center">
+		<div class="title_box">
+			<div id="content">
+				<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="20">
+					<mat-form-field appearance="outline">
+						<mat-label>Codigo Articulo</mat-label>
+						<input formControlName="codArticulo" type="text" matInput placeholder="Codigo Articulo" />
+						<mat-error *ngIf="formGroup.get('codArticulo')!.hasError('required')">El maximo de 20 Caracteres</mat-error>
+					</mat-form-field>
+				</div>
+				<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="80">
+					<mat-form-field appearance="outline">
+						<mat-label>Descripcion Articulo</mat-label>
+						<input formControlName="descripcion" type="text" matInput placeholder="Descripicon Articulo" />
+						<mat-error *ngIf="formGroup.get('descripcion')!.hasError('required')"
+							>El maximo de 120 Caracteres</mat-error
+						>
+					</mat-form-field>
+				</div>
+			</div>
 		</div>
 	</div>
+
 	<mat-tab-group mat-align-tabs="center">
 		<mat-tab label="Generales">
 			<div fxLayout="row wrap" fxLayoutAlign="center none">
@@ -31,10 +38,14 @@
 						<div class="title_box">
 							<div id="title">Imagen</div>
 							<div id="content">
-								<img style="width: 200px; height: 200px" src="../../../../../../assets/logos/LogoStatusERP.jpeg" />
+								<img *ngIf="imageField.value" [src]="imageField.value" />
 								<input hidden (change)="onFileSelected($event)" #fileInput type="file" accept=".jpg,.jpeg,.png" />
 							</div>
 						</div>
+						<button mat-raised-button color="primary" (click)="fileInput.click()" type="button">
+							<mat-icon>camera</mat-icon>
+							IMAGEN
+						</button>
 					</div>
 
 					<div fxLayout="row wrap" fxLayoutAlign="center none" fxFlex="50">
@@ -349,7 +360,7 @@
 									</mat-form-field>
 									<mat-form-field appearance="outline">
 										<mat-label>Número de Bultos</mat-label>
-										<input formControlName="numeroBultos" type="number" matInput placeholder="Numero de Búltos" />
+										<input formControlName="bultos" type="number" matInput placeholder="Numero de Búltos" />
 									</mat-form-field>
 								</div>
 								<div fxLayout="row wrap" fxFlex="50">
@@ -472,9 +483,7 @@
 									<mat-form-field appearance="outline">
 										<mat-label>Cuentas</mat-label>
 										<mat-select formControlName="cuenta">
-											<mat-option *ngFor="let item of listImpuesto" [value]="item.id">{{
-												item.codImpuesto
-											}}</mat-option>
+											<mat-option *ngFor="let item of listCuenta" [value]="item.id">{{ item.Descripcion }}</mat-option>
 										</mat-select>
 									</mat-form-field>
 								</div>
@@ -645,7 +654,7 @@
 										<div class="title_box">
 											<div id="content">
 												<section class="indicadores">
-													<p><mat-checkbox formControlName="percedero">Perecedero</mat-checkbox></p>
+													<p><mat-checkbox formControlName="perecedero">Perecedero</mat-checkbox></p>
 												</section>
 												<section class="indicadores">
 													<p><mat-checkbox formControlName="obligaCuarentena">Obliga Cuarentena</mat-checkbox></p>

@@ -1,3 +1,4 @@
+import { IResponseCategoriaArticulo } from './../../../../as/tablas/categorias/categoriaarticulo/service/categoria-articulo-api-model-interface';
 import { CRUD_METHOD } from './../../../../../util/enums';
 import { IResponseArticulo, IRequestCreateArticulo } from './../../service/articulo-api-model-interface';
 import { ImpuestoModelConsulta } from './../../../../as/tablas/tipos/codigo-impuesto/model/impuesto-model';
@@ -10,7 +11,7 @@ import { ImpuestoApiService } from './../../../../as/tablas/tipos/codigo-impuest
 import { CategoriaArticuloApiService } from './../../../../as/tablas/categorias/categoriaarticulo/service/categoria-articulo-api.service';
 import { UnidadMedidaApiService } from './../../../../as/tablas/otros/unidad-medida/service/unidad-medida-api.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { SnotifyService } from 'ng-snotify';
+import { SnotifyPosition, SnotifyService } from 'ng-snotify';
 import { ArticuloApiService } from './../../service/articulo-api.service';
 import { FormControl, AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, Inject, OnInit } from '@angular/core';
@@ -46,6 +47,7 @@ export class AddArticuloPageComponent implements OnInit {
 			this._loadPais();
 			this._loadUnidadMedida();
 			this._loadImpuesto();
+			this._loadCuentaArticulo();
 		}, 0);
 	}
 	formGroup!: FormGroup;
@@ -57,6 +59,7 @@ export class AddArticuloPageComponent implements OnInit {
 	listPais: IConsultaPais[] = [];
 	listUndMedida: IResponseUnidadMedida[] = [];
 	listImpuesto: ImpuestoModelConsulta[] = [];
+	listCuenta: IResponseCategoriaArticulo[] = [];
 	private _crudMethod = CRUD_METHOD.SAVE;
 	disableButtonSave = false;
 	private _loadClasificacion(): void {
@@ -64,6 +67,11 @@ export class AddArticuloPageComponent implements OnInit {
 			if (response && response.success) {
 				this.listClasArt = response.result;
 			}
+		});
+	}
+	private _loadCuentaArticulo(): void {
+		this._categoriaArticuloApiService.getCatArticulo(1, 1000).subscribe((response) => {
+			this.listCuenta = response.result;
 		});
 	}
 	private _loadProveedor(): void {
@@ -93,14 +101,15 @@ export class AddArticuloPageComponent implements OnInit {
 		this.formGroup = this._formBuilder.group({
 			codArticulo: [null, [Validators.required, Validators.maxLength(20)]],
 			descripcion: [null, [Validators.required, Validators.maxLength(250)]],
+			image: [null],
 			//Tab Generales
 			tipo: [null, Validators.required],
-			activo: [false],
+			activo: [true],
 			tiendaLinea: [false],
 			ventaTarjeta: [false],
-			existenciaMinima: [null],
-			existenciaReorden: [null],
-			existenciaMaxima: [null],
+			existenciaMinima: [null, Validators.required],
+			existenciaReorden: [null, Validators.required],
+			existenciaMaxima: [null, Validators.required],
 			//	tipoCodBarraDetalle: [null, Validators.required],
 			codBarraDetalle: [null],
 			//	tipoCodBarraVenta: [null, Validators.required],
@@ -127,16 +136,17 @@ export class AddArticuloPageComponent implements OnInit {
 			numeroBultos: [null],
 			gtn: [null],
 			manufactura: [null],
-			pesoNeto: [null],
-			pesoBruto: [null],
-			volumen: [null],
+			pesoNeto: [null, Validators.required],
+			pesoBruto: [null, Validators.required],
+			volumen: [null, Validators.required],
+			bultos: [null, Validators.required],
 			almacenamiento: [null, Validators.required],
 			detalle: [null, Validators.required],
 			venta: [null, Validators.required],
 			multiploDetalle: [null, Validators.required],
 			multiploVenta: [null, Validators.required],
-			codigoImpuesto: [null],
-			cuenta: [null],
+			codigoImpuesto: [null, Validators.required],
+			cuenta: [null, Validators.required],
 			retencionVentas: [null],
 			retencionCompras: [null],
 			retencionModelo: [null],
@@ -158,95 +168,99 @@ export class AddArticuloPageComponent implements OnInit {
 			cuarentena: [null]
 		});
 	}
+
 	onclickArticulo(): void {
-		console.log(this.formGroup.value);
+		console.log(this.formGroup);
 		if (this.formGroup.invalid) {
 			return;
 		}
-		this.disableButtonSave = true;
-		this.formGroup.disable();
-		const sendArticulo: IRequestCreateArticulo = {
-			codArticulo: this.codArticuloField.value as string,
-			descripcion: this.descripcionField.value as string,
-			Tipo: this.tipoField.value as string,
-			TiendaEnLinea: this.tiendaLineaField.value as boolean,
-			VentaTarjetaCredito: this.ventaTarjetaField.value as boolean,
-			PesoNeto: this.pesoNetoField.value as number,
-			PesoBruto: this.pesoBrutoField.value as number,
-			Volumen: this.volumenField.value as number,
-			Bultos: this.numeroBultosField.value as number,
-			CatgoriaArticuloId: this.cuentaField.value as number,
-			FactorEmpaque: this.multiploDetalleField.value as number,
-			FactorVenta: this.multiploVentaField.value as number,
-			ExistenciaMinima: this.existenciaMinimaField.value as number,
-			ExistenciaMaxima: this.existenciaMaximaField.value as number,
-			PuntoDeOrden: this.existenciaReordenField.value as number,
-			CostoLoc: 0,
-			CostoDol: 0,
-			PrecioBaseLocal: 0,
-			PrecioBaseDolar: 0,
-			UltimaSalida: '1980-01-01',
-			UltimoMovimiento: '1980-01-01',
-			UltimoIngreso: '1980-01-01',
-			UltimoInventario: '1980-01-01',
-			ClaseABC: this.claseField.value as string,
-			FrecuenciaConteo: this.conteoCiclicoField.value as number,
-			Activo: this.activoField.value as boolean,
-			UsaLote: this.usaLoteField.value as boolean,
-			ObligaCuarentena: this.obligaCuarentenaField.value as boolean,
-			MinVidaCompra: this.mimimoVidaCompraField.value as number,
-			MinVidaConsumo: this.mimimoVidaConsumoField.value as number,
-			MinVidaVenta: this.mimimoVidaVentaField.value as number,
-			VidaUltilPromedio: this.vidaUtilPromedioField.value as number,
-			DiasCuaremtena: this.cuarentenaField.value as number,
-			OrdenMinima: this.ordenMinimaField.value as number,
-			PlazoReabast: this.rebastesiminetoField.value as number,
-			LoteMultiplo: this.multipoLoteField.value as number,
-			UsaNumeroSerie: false,
-			UsaReglasLocales: false,
-			UnidadAlmacenId: this.almacenamientoField.value as number,
-			unidadVentaId: this.ventaTarjetaField.value as number,
-			Perecedero: this.perecederoField.value as boolean,
-			TipoCosto: this.tipoField.value as string,
-			CostoPromUltimoLoc: 0,
-			CostoPromUltimoDol: 0,
-			EsImpuesto: true,
-			SuguiereMin: true,
-			CalculaPercep: true,
-			ImpuestoId: this.codigoImpuestoField.value as number,
-			UnidadEmpaqueId: 6,
-			ProveedorId: 48,
-			clasificacion1Id: this.clas1Field.value as number,
-			clasificacion2Id: this.clas2Field.value as number,
-			clasificacion3Id: this.clas3Field.value as number,
-			clasificacion4Id: this.clas4Field.value as number,
-			clasificacion5Id: this.clas5Field.value as number,
-			clasificacion6Id: this.clas6Field.value as number,
-			FactorConver1: 1,
-			FactorConver2: 1,
-			FactorConver3: 1,
-			FactorConver4: 1,
-			FactorConver5: 1,
-			FactorConver6: 1,
-			CodigoBarrasVent: this.codBarraVentaField.value as string,
-			CodigoBarrasInvt: this.codBarraDetalleField.value as string,
-			ArticuloDelProv: this.codArtProveedorField.value as string,
-			TipoCodBarraDet: '',
-			TipoCodbarraAlm: '',
-			CodigoRetencion: this.retencionComprasField.value as string,
-			RetencionVenta: this.retencionVentasField.value as string,
-			ModeloRetencion: this.retencionModeloField.value as string,
-			ModalidadInvFis: 'T',
-			Manufacturador: this.manufacturaField.value as string,
-			Estilo: this.estiloField.value as string,
-			Talla: this.tallaField.value as string,
-			Color: this.colorField.value as string,
-			Notas: this.notaField.value as string,
-			urlImagen: this.fileNameField.value as string,
-			PorcPercep: 0,
-			TpoDocIva: ''
-		};
-		this._save(sendArticulo);
+
+		if (!this.ediData) {
+			//		const base64 = (this.imageField.value as string).split(',')[1];
+			const sendArticulo: IRequestCreateArticulo = {
+				codArticulo: this.codArticuloField.value as string,
+				descripcion: this.descripcionField.value as string,
+				tipo: this.tipoField.value as string,
+				tiendaEnLinea: this.tiendaLineaField.value as boolean,
+				ventaTarjetaCredito: this.ventaTarjetaField.value as boolean,
+				pesoNeto: this.pesoNetoField.value as number,
+				pesoBruto: this.pesoBrutoField.value as number,
+				volumen: this.volumenField.value as number,
+				//bultos: this.numeroBultosField.value as number,
+				categoriaArticuloId: this.cuentaField.value as number,
+				factorEmpaque: this.multiploDetalleField.value as number,
+				factorVenta: this.multiploVentaField.value as number,
+				existenciaMinima: this.existenciaMinimaField.value as number,
+				existenciaMaxima: this.existenciaMaximaField.value as number,
+				puntoDeOrden: this.existenciaReordenField.value as number,
+				costoLoc: 0,
+				costoDol: 0,
+				precioBaseLocal: 0,
+				precioBaseDol: 0,
+				ultimaSalida: '1980-01-01',
+				ultimoMovimiento: '1980-01-01',
+				ultimoIngreso: '1980-01-01',
+				ultimoInventario: '1980-01-01',
+				claseABC: this.claseField.value as string,
+				//frecuenciaConteo: this.conteoCiclicoField.value as number,
+				activo: this.activoField.value as boolean,
+				usaLotes: this.usaLoteField.value as boolean,
+				obligaCuarentena: this.obligaCuarentenaField.value as boolean,
+				//minVidaCompra: this.mimimoVidaCompraField.value as number,
+				//minVidaConsumo: this.mimimoVidaConsumoField.value as number,
+				//minVidaVenta: this.mimimoVidaVentaField.value as number,
+				//vidaUtilPromedio: this.vidaUtilPromedioField.value as number,
+				//diasCuarentena: this.cuarentenaField.value as number,
+				ordenMinima: this.ordenMinimaField.value as number,
+				//plazoReabast: this.rebastesiminetoField.value as number,
+				loteMultiplo: this.multipoLoteField.value as number,
+				usaNumerosSerie: false,
+				usaReglasLocales: false,
+				unidadAlmacenId: this.almacenamientoField.value as number,
+				unidadVentaId: this.ventaField.value as number,
+				perecedero: this.perecederoField.value as boolean,
+				tipoCosto: this.tipoField.value as string,
+				costoPromUltimoLoc: 0,
+				costoPromUltimoDol: 0,
+				esImpuesto: true,
+				sugiereMin: true,
+				calculaPercep: true,
+				impuestoId: this.codigoImpuestoField.value as number,
+				unidadEmpaqueId: this.detalleField.value as number,
+				proveedorId: 48,
+				clasificacion1Id: this.clas1Field.value as number,
+				clasificacion2Id: this.clas2Field.value as number,
+				clasificacion3Id: this.clas3Field.value as number,
+				clasificacion4Id: this.clas4Field.value as number,
+				clasificacion5Id: this.clas5Field.value as number,
+				clasificacion6Id: this.clas6Field.value as number,
+				factorConver1: 1,
+				factorConver2: 1,
+				factorConver3: 1,
+				factorConver4: 1,
+				factorConver5: 1,
+				factorConver6: 1,
+				codigoBarrasVent: this.codBarraVentaField.value as string,
+				//	codigoBarrasInvt: this.codBarraDetalleField.value as string,
+				articuloDelProv: this.codArtProveedorField.value as string,
+				//tipoCodBarraDet: '',
+				//tipoCodBarraAlm: '',
+				//codigoRetencion: this.retencionComprasField.value as string,
+				//retencionVenta: this.retencionVentasField.value as string,
+				//modeloRetencion: this.retencionModeloField.value as string,
+				//modalidadInvFis: 'T',
+				//manufacturador: this.manufacturaField.value as string,
+				estilo: this.estiloField.value as string,
+				talla: this.tallaField.value as string,
+				color: this.colorField.value as string
+				//notas: this.notaField.value as string,
+				//urlimagen:base64,
+				//porcPercep: 0,
+				//tipoDocIVA: '',
+				//retencionCompra: this.retencionComprasField.value as string
+			};
+			this._save(sendArticulo);
+		}
 	}
 	private _save(articulo: IRequestCreateArticulo) {
 		this._articuloApiService.createArticulo(articulo).subscribe({
@@ -254,7 +268,13 @@ export class AddArticuloPageComponent implements OnInit {
 				if (response && response.success) {
 					this.formGroup.reset();
 					this._snotifyService.info('El registro se guardo sin problema');
+					this._dialogRef.close('save');
+				} else {
+					this._snotifyService.error(response.errors[0], { position: SnotifyPosition.rightTop });
 				}
+			},
+			error: (e) => {
+				console.log(e);
 			}
 		});
 	}
@@ -262,14 +282,10 @@ export class AddArticuloPageComponent implements OnInit {
 		const htmlInput: HTMLInputElement = event.target as HTMLInputElement;
 		if (htmlInput && htmlInput.files) {
 			const reader = new FileReader();
-			console.log(htmlInput.files);
 
 			reader.readAsDataURL(htmlInput.files[0]);
 			reader.onload = () => {
-				console.log(reader.result);
-
 				const resultImageFile = reader.result!.toString();
-
 				this.fileNameField.setValue(htmlInput.files![0].name);
 				this.imageField.setValue(resultImageFile);
 			};
@@ -387,6 +403,9 @@ export class AddArticuloPageComponent implements OnInit {
 	}
 	get detalleField(): AbstractControl {
 		return this.formGroup.get('detalle')!;
+	}
+	get ventaField(): AbstractControl {
+		return this.formGroup.get('venta')!;
 	}
 	get multiploDetalleField(): AbstractControl {
 		return this.formGroup.get('multiploDetalle')!;

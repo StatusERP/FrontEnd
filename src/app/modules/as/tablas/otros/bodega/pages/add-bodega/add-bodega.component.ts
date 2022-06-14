@@ -33,7 +33,7 @@ export class AddBodegaComponent {
 			codBodega: ['', [Validators.required, Validators.maxLength(4)]],
 			nombre: ['', [Validators.required]],
 			tipo: ['', Validators.required],
-			activa: ['', Validators.required],
+			activa: [true, Validators.required],
 			telefono: ['', Validators.required],
 			direccion: ['', Validators.required]
 		});
@@ -46,7 +46,7 @@ export class AddBodegaComponent {
 			this.bodegaForm.controls['tipo'].setValue(this.editData.tipo);
 			this.bodegaForm.controls['activa'].setValue(this.editData.activa);
 			this.bodegaForm.controls['telefono'].setValue(this.editData.telefono);
-			this.bodegaForm.controls['direccion'].setValue(this.editData.telefono);
+			this.bodegaForm.controls['direccion'].setValue(this.editData.direccion);
 		}
 	}
 	clickSave(): void {
@@ -93,9 +93,16 @@ export class AddBodegaComponent {
 		});
 	}
 	private _edit(bodega: IResponseCreateBodega) {
-		this.bodegaForm.reset();
-		this._snotifyService.info('El registro de actualizo sin problema', { position: SnotifyPosition.rightTop });
-		this._dialogRef.close('update');
+		this._bodegaApiService.update(this.editData.id as number, bodega).subscribe({
+			next: (response) => {
+				this.bodegaForm.reset();
+				this._snotifyService.info('El registro de actualizo sin problema', { position: SnotifyPosition.rightTop });
+				this._dialogRef.close('update');
+			},
+			error: () => {
+				console.log('error');
+			}
+		});
 	}
 	get codBodegaField(): AbstractControl {
 		return this.bodegaForm.get('codBodega')!;

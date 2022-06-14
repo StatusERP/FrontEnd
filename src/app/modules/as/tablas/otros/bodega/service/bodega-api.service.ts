@@ -27,6 +27,10 @@ export class BodegaApiService {
 		const url = URL_BODEGA + '/' + idBodega;
 		return this._httpClient.delete<IResponse<number>>(url);
 	}
+	update(idBodega: number, bodega: IResponseCreateBodega): Observable<IResponse<number>> {
+		const url = URL_BODEGA + '/' + idBodega;
+		return this._httpClient.put<IResponse<number>>(url, bodega);
+	}
 	getBodegaLocalizacion(idBodega: number): Observable<IResponse<IResponseLocaizacionBodega[]>> {
 		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
 		const url = URL_LOCALIZACIONES + '/' + idBodega;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { IResponseCategoriaArticulo } from './../../../../as/tablas/categorias/categoriaarticulo/service/categoria-articulo-api-model-interface';
 import { CRUD_METHOD } from './../../../../../util/enums';
 import { IResponseArticulo, IRequestCreateArticulo } from './../../service/articulo-api-model-interface';
@@ -15,6 +16,7 @@ import { SnotifyPosition, SnotifyService } from 'ng-snotify';
 import { ArticuloApiService } from './../../service/articulo-api.service';
 import { FormControl, AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, Inject, OnInit } from '@angular/core';
+import { formatDate } from '@angular/common';
 
 @Component({
 	selector: 'app-add-articulo-page',
@@ -107,9 +109,9 @@ export class AddArticuloPageComponent implements OnInit {
 			activo: [true],
 			tiendaLinea: [false],
 			ventaTarjeta: [false],
-			existenciaMinima: [null, Validators.required],
-			existenciaReorden: [null, Validators.required],
-			existenciaMaxima: [null, Validators.required],
+			existenciaMinima: [0, Validators.required],
+			existenciaReorden: [0, Validators.required],
+			existenciaMaxima: [0, Validators.required],
 			//	tipoCodBarraDetalle: [null, Validators.required],
 			codBarraDetalle: [null],
 			//	tipoCodBarraVenta: [null, Validators.required],
@@ -132,14 +134,14 @@ export class AddArticuloPageComponent implements OnInit {
 			rebastesimineto: [null, Validators.required],
 			multiploLote: [null, Validators.required],
 			//otros
-			conteoCiclico: [null],
-			numeroBultos: [null],
+			conteoCiclico: [0],
+			numeroBultos: [0],
 			gtn: [null],
 			manufactura: [null],
-			pesoNeto: [null, Validators.required],
-			pesoBruto: [null, Validators.required],
-			volumen: [null, Validators.required],
-			bultos: [null, Validators.required],
+			pesoNeto: [0, Validators.required],
+			pesoBruto: [0, Validators.required],
+			volumen: [0, Validators.required],
+			bultos: [0, Validators.required],
 			almacenamiento: [null, Validators.required],
 			detalle: [null, Validators.required],
 			venta: [null, Validators.required],
@@ -161,20 +163,106 @@ export class AddArticuloPageComponent implements OnInit {
 			usaLote: [false],
 			perecedero: [false],
 			obligaCuarentena: [false],
-			mimimoVidaCompra: [null],
-			mimimoVidaConsumo: [null],
-			mimimoVidaVenta: [null],
-			vidaUtilPromedio: [null],
-			cuarentena: [null]
+			mimimoVidaCompra: [0],
+			mimimoVidaConsumo: [0],
+			mimimoVidaVenta: [0],
+			vidaUtilPromedio: [0],
+			cuarentena: [0],
+			usuarioCreacion: [null],
+			fechaCreacion: [null],
+			usuarioModificacion: [null],
+			fechaModificacion: [null]
 		});
+		if (this.ediData) {
+			this.actionBtn = 'Editar';
+			console.log(this.ediData);
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			this.formGroup.controls['codArticulo'].setValue(this.ediData.codArticulo);
+			this.formGroup.controls['codArticulo'].disable();
+			this.formGroup.controls['descripcion'].setValue(this.ediData.descripcion);
+			this.formGroup.controls['tipo'].setValue(this.ediData.tipo);
+			this.formGroup.controls['activo'].setValue(this.ediData.activo);
+			this.formGroup.controls['tiendaLinea'].setValue(this.ediData.tiendaLinea);
+			this.formGroup.controls['ventaTarjeta'].setValue(this.ediData.ventaTarjeta);
+			this.formGroup.controls['existenciaMinima'].setValue(this.ediData.existenciaMinima);
+			this.formGroup.controls['existenciaMaxima'].setValue(this.ediData.existenciaMaxima);
+			this.formGroup.controls['existenciaReorden'].setValue(this.ediData.puntoDeOrden);
+			this.formGroup.controls['codBarraVenta'].setValue(this.ediData.codigoBarrasVent);
+			this.formGroup.controls['codBarraDetalle'].setValue(this.ediData.codigoBarrasInvt);
+			//Classificaciones
+			this.formGroup.controls['clas1'].setValue(this.ediData.clasificacion1Id);
+			this.formGroup.controls['clas2'].setValue(this.ediData.clasificacion2Id);
+			this.formGroup.controls['clas3'].setValue(this.ediData.clasificacion3Id);
+			this.formGroup.controls['clas4'].setValue(this.ediData.clasificacion4Id);
+			this.formGroup.controls['clas5'].setValue(this.ediData.clasificacion5Id);
+			this.formGroup.controls['clas6'].setValue(this.ediData.clasificacion6Id);
+			this.formGroup.controls['clase'].setValue(this.ediData.claseABC);
+			//Proveedor
+			this.formGroup.controls['proveedor'].setValue(this.ediData.proveedorId);
+			this.formGroup.controls['codArtProveedor'].setValue(this.ediData.articuloDelProv);
+			this.formGroup.controls['ordenMinima'].setValue(this.ediData.ordenMinima);
+			this.formGroup.controls['rebastesimineto'].setValue(this.ediData.plazoReabast);
+			this.formGroup.controls['multiploLote'].setValue(this.ediData.loteMultiplo);
+			//Otros
+			this.formGroup.controls['conteoCiclico'].setValue(this.ediData.frecuenciaConteo);
+			this.formGroup.controls['bultos'].setValue(this.ediData.bultos);
+			this.formGroup.controls['gtn'].setValue(this.ediData.gtn);
+			this.formGroup.controls['manufactura'].setValue(this.ediData.manufacturador);
+			//Unidades
+			this.formGroup.controls['pesoNeto'].setValue(this.ediData.pesoNeto);
+			this.formGroup.controls['pesoBruto'].setValue(this.ediData.pesoBruto);
+			this.formGroup.controls['volumen'].setValue(this.ediData.volumen);
+			this.formGroup.controls['almacenamiento'].setValue(this.ediData.unidadAlmacenId);
+			this.formGroup.controls['detalle'].setValue(this.ediData.unidadEmpaqueId);
+			this.formGroup.controls['venta'].setValue(this.ediData.unidadVentaId);
+			this.formGroup.controls['multiploDetalle'].setValue(this.ediData.factorEmpaque);
+			this.formGroup.controls['multiploVenta'].setValue(this.ediData.factorVenta);
+			//Impuestos
+			this.formGroup.controls['codigoImpuesto'].setValue(this.ediData.impuestoId);
+			this.formGroup.controls['cuenta'].setValue(this.ediData.categoriaArticuloId);
+			//Retenciones
+			this.formGroup.controls['retencionVentas'].setValue(this.ediData.impuestoId);
+			this.formGroup.controls['retencionCompras'].setValue(this.ediData.impuestoId);
+			this.formGroup.controls['retencionModelo'].setValue(this.ediData.impuestoId);
+			//Otros
+			this.formGroup.controls['estilo'].setValue(this.ediData.estilo);
+			this.formGroup.controls['talla'].setValue(this.ediData.talla);
+			this.formGroup.controls['color'].setValue(this.ediData.color);
+			//Notas
+			this.formGroup.controls['nota'].setValue(this.ediData.notas);
+			//Lote
+			this.formGroup.controls['usaLote'].setValue(this.ediData.usaLotes);
+			this.formGroup.controls['perecedero'].setValue(this.ediData.perecedero);
+			this.formGroup.controls['obligaCuarentena'].setValue(this.ediData.obligaCuarentena);
+			this.formGroup.controls['mimimoVidaCompra'].setValue(this.ediData.minVidaCompra);
+			this.formGroup.controls['mimimoVidaConsumo'].setValue(this.ediData.minVidaConsumo);
+			this.formGroup.controls['mimimoVidaVenta'].setValue(this.ediData.minVidaVenta);
+			this.formGroup.controls['vidaUtilPromedio'].setValue(this.ediData.vidaUtilPromedio);
+			this.formGroup.controls['cuarentena'].setValue(this.ediData.diasCuarentena);
+			//usuario
+			this.formGroup.controls['usuarioCreacion'].setValue(this.ediData.usuarioCreacion);
+			this.formGroup.controls['usuarioCreacion'].disable();
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+			this.formGroup.controls['fechaCreacion'].setValue(
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+				formatDate(this.ediData.fechaHoraCreacion, 'dd-MM-yyyy hh:mm:ss', 'en')
+			);
+			this.formGroup.controls['fechaCreacion'].disable();
+
+			this.formGroup.controls['usuarioModificacion'].setValue(this.ediData.usuarioModificacion);
+			this.formGroup.controls['usuarioModificacion'].disable();
+			this.formGroup.controls['fechaModificacion'].setValue(
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+				formatDate(this.ediData.fechaHoraUltModif, 'dd-MM-yyyy hh:mm:ss', 'en')
+			);
+			this.formGroup.controls['fechaModificacion'].disable();
+		}
 	}
 
 	onclickArticulo(): void {
-		console.log(this.formGroup);
 		if (this.formGroup.invalid) {
 			return;
 		}
-
 		if (!this.ediData) {
 			//		const base64 = (this.imageField.value as string).split(',')[1];
 			const sendArticulo: IRequestCreateArticulo = {
@@ -186,7 +274,7 @@ export class AddArticuloPageComponent implements OnInit {
 				pesoNeto: this.pesoNetoField.value as number,
 				pesoBruto: this.pesoBrutoField.value as number,
 				volumen: this.volumenField.value as number,
-				//bultos: this.numeroBultosField.value as number,
+				bultos: this.numeroBultosField.value as number,
 				categoriaArticuloId: this.cuentaField.value as number,
 				factorEmpaque: this.multiploDetalleField.value as number,
 				factorVenta: this.multiploVentaField.value as number,
@@ -202,17 +290,17 @@ export class AddArticuloPageComponent implements OnInit {
 				ultimoIngreso: '1980-01-01',
 				ultimoInventario: '1980-01-01',
 				claseABC: this.claseField.value as string,
-				//frecuenciaConteo: this.conteoCiclicoField.value as number,
+				frecuenciaConteo: this.conteoCiclicoField.value as number,
 				activo: this.activoField.value as boolean,
 				usaLotes: this.usaLoteField.value as boolean,
 				obligaCuarentena: this.obligaCuarentenaField.value as boolean,
-				//minVidaCompra: this.mimimoVidaCompraField.value as number,
-				//minVidaConsumo: this.mimimoVidaConsumoField.value as number,
-				//minVidaVenta: this.mimimoVidaVentaField.value as number,
-				//vidaUtilPromedio: this.vidaUtilPromedioField.value as number,
-				//diasCuarentena: this.cuarentenaField.value as number,
+				minVidaCompra: this.mimimoVidaCompraField.value as number,
+				minVidaConsumo: this.mimimoVidaConsumoField.value as number,
+				minVidaVenta: this.mimimoVidaVentaField.value as number,
+				vidaUtilPromedio: this.vidaUtilPromedioField.value as number,
+				diasCuarentena: this.cuarentenaField.value as number,
 				ordenMinima: this.ordenMinimaField.value as number,
-				//plazoReabast: this.rebastesiminetoField.value as number,
+				plazoReabast: this.rebastesiminetoField.value as number,
 				loteMultiplo: this.multipoLoteField.value as number,
 				usaNumerosSerie: false,
 				usaReglasLocales: false,
@@ -241,7 +329,7 @@ export class AddArticuloPageComponent implements OnInit {
 				factorConver5: 1,
 				factorConver6: 1,
 				codigoBarrasVent: this.codBarraVentaField.value as string,
-				//	codigoBarrasInvt: this.codBarraDetalleField.value as string,
+				codigoBarrasInvt: this.codBarraDetalleField.value as string,
 				articuloDelProv: this.codArtProveedorField.value as string,
 				//tipoCodBarraDet: '',
 				//tipoCodBarraAlm: '',
@@ -249,17 +337,27 @@ export class AddArticuloPageComponent implements OnInit {
 				//retencionVenta: this.retencionVentasField.value as string,
 				//modeloRetencion: this.retencionModeloField.value as string,
 				//modalidadInvFis: 'T',
-				//manufacturador: this.manufacturaField.value as string,
+				manufacturador: this.manufacturaField.value as string,
 				estilo: this.estiloField.value as string,
 				talla: this.tallaField.value as string,
-				color: this.colorField.value as string
-				//notas: this.notaField.value as string,
+				color: this.colorField.value as string,
+				notas: this.notaField.value as string,
 				//urlimagen:base64,
 				//porcPercep: 0,
 				//tipoDocIVA: '',
 				//retencionCompra: this.retencionComprasField.value as string
+				usuarioCreacion: this.usuarioCreacionField.value as string,
+				fechaCreacion: this.fechaCreacionField.value as Date,
+				usuarioModificacion: this.usuarioModificacionField.value as string,
+				fechaModificacion: this.fechaModificacionField.value as Date
 			};
 			this._save(sendArticulo);
+		} else {
+			console.log(this.ediData);
+			this.actionBtn = 'Editar';
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			this.formGroup.controls['codArticulo'].setValue(this.ediData.codArticulo);
+			this.formGroup.controls['codArticulo'].disable();
 		}
 	}
 	private _save(articulo: IRequestCreateArticulo) {
@@ -381,7 +479,7 @@ export class AddArticuloPageComponent implements OnInit {
 		return this.formGroup.get('conteoCiclico')!;
 	}
 	get numeroBultosField(): AbstractControl {
-		return this.formGroup.get('numeroBultos')!;
+		return this.formGroup.get('bultos')!;
 	}
 	get gtnField(): AbstractControl {
 		return this.formGroup.get('gtn')!;
@@ -473,6 +571,18 @@ export class AddArticuloPageComponent implements OnInit {
 	}
 	get cuarentenaField(): AbstractControl {
 		return this.formGroup.get('cuarentena')!;
+	}
+	get usuarioCreacionField(): AbstractControl {
+		return this.formGroup.get('usuarioCreacion')!;
+	}
+	get fechaCreacionField(): AbstractControl {
+		return this.formGroup.get('fechaCreacion')!;
+	}
+	get usuarioModificacionField(): AbstractControl {
+		return this.formGroup.get('usuarioModificacion')!;
+	}
+	get fechaModificacionField(): AbstractControl {
+		return this.formGroup.get('fechaModificacion')!;
 	}
 
 	get imageField(): AbstractControl {

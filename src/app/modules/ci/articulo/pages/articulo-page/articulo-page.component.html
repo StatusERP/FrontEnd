@@ -31,8 +31,11 @@
 		<ng-container matColumnDef="actions">
 			<mat-header-cell *matHeaderCellDef></mat-header-cell>
 			<mat-cell *matCellDef="let element">
-				<button mat-icon-button>
+				<button mat-icon-button (click)="clickEdit(element)">
 					<mat-icon>edit</mat-icon>
+				</button>
+				<button mat-icon-button (click)="clickStore(element)">
+					<mat-icon>store</mat-icon>
 				</button>
 				<button mat-icon-button color="warn" (click)="clickDelete(element.id)"><mat-icon>delete</mat-icon></button>
 			</mat-cell>

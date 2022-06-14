@@ -62,10 +62,13 @@ export class BodegaPageComponent implements OnInit, AfterViewInit {
 			});
 	}
 
-	modalUsuario(): void {
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	modalUsuario(element: any): void {
 		this._dialog
 			.open(UsuariosPageComponent, {
-				width: '30%'
+				width: '30%',
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+				data: element
 			})
 			.afterClosed()
 			.subscribe((val) => {
@@ -122,7 +125,7 @@ export class BodegaPageComponent implements OnInit, AfterViewInit {
 			})
 			.afterClosed()
 			.subscribe((val) => {
-				if (val === 'edit') {
+				if (val === 'update') {
 					this._loadBodega(1, 100000);
 				}
 			});

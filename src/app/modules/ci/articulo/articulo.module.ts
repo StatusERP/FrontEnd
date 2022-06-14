@@ -8,9 +8,10 @@ import { CommonModule } from '@angular/common';
 import { ArticuloRoutingModule } from './articulo-routing.module';
 import { ArticuloPageComponent } from './pages/articulo-page/articulo-page.component';
 import { AddArticuloPageComponent } from './pages/add-articulo-page/add-articulo-page.component';
+import { AddArticuloBodegaPageComponent } from './pages/add-articulo-bodega-page/add-articulo-bodega-page.component';
 
 @NgModule({
-	declarations: [ArticuloPageComponent, AddArticuloPageComponent],
+	declarations: [ArticuloPageComponent, AddArticuloPageComponent, AddArticuloBodegaPageComponent],
 	imports: [
 		CommonModule,
 		ArticuloRoutingModule,

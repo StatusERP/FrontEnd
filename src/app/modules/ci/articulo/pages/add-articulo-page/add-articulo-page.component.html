@@ -87,7 +87,7 @@
 							<div id="content">
 								<mat-form-field appearance="outline">
 									<mat-label>Codigo Barras Unida Detalle</mat-label>
-									<input formControlName="codBarraDetalle" type="number" matInput placeholder="Decimales para Costo" />
+									<input formControlName="codBarraDetalle" type="text" matInput placeholder="Decimales para Costo" />
 								</mat-form-field>
 							</div>
 						</div>
@@ -96,7 +96,7 @@
 							<div id="content">
 								<mat-form-field appearance="outline">
 									<mat-label>Codigo Barras Unidad Ventas</mat-label>
-									<input formControlName="codBarraVenta" type="number" matInput placeholder="Decimales para Costo" />
+									<input formControlName="codBarraVenta" type="text" matInput placeholder="Decimales para Costo" />
 								</mat-form-field>
 							</div>
 						</div>
@@ -370,7 +370,7 @@
 									</mat-form-field>
 									<mat-form-field appearance="outline">
 										<mat-label>Manufacturador</mat-label>
-										<input type="text" matInput placeholder="Nombre Manufacturador" />
+										<input formControlName="manufactura" type="text" matInput placeholder="Nombre Manufacturador" />
 									</mat-form-field>
 								</div>
 							</div>
@@ -747,47 +747,27 @@
 						<div class="title_box">
 							<div id="content">
 								<div fxLayout="row wrap" fxFlex="80" fxLayoutAlign="center center">
-									<div fxLayout="row wrap" fxFlex="30" fxLayoutAlign="center start">
+									<div fxLayout="row wrap" fxFlex="80" fxLayoutAlign="center start">
 										<mat-form-field appearance="outline">
 											<mat-label>Usuario Creacion</mat-label>
-											<input type="number" matInput placeholder="Minimo de Vida Compras" />
+											<input formControlName="usuarioCreacion" type="text" matInput />
 										</mat-form-field>
 										<mat-form-field appearance="outline">
 											<mat-label>Usuario Modificacion</mat-label>
-											<input type="number" matInput placeholder="Minimo de Vida Consumo" />
-										</mat-form-field>
-									</div>
-									<div fxLayout="column" fxFlex="70" fxLayoutAlign="center startr">
-										<mat-form-field appearance="outline">
-											<mat-label>Nombre</mat-label>
-											<input type="number" matInput placeholder="Minimo de Vida Consumo" />
-										</mat-form-field>
-										<mat-form-field appearance="outline">
-											<mat-label>Nombre</mat-label>
-											<input type="number" matInput placeholder="Minimo de Vida Consumo" />
+											<input formControlName="usuarioModificacion" type="text" matInput />
 										</mat-form-field>
 									</div>
 								</div>
 
-								<div fxLayout="row wrap" fxFlex="20">
+								<div fxLayout="row wrap" fxFlex="50">
 									<div fxLayout="row wrap" fxFlex="50" fxLayoutAlign="center start">
 										<mat-form-field appearance="outline">
 											<mat-label>Fecha Creacion</mat-label>
-											<input type="number" matInput placeholder="Vida Útil Promedio" />
+											<input formControlName="fechaCreacion" type="text" matInput />
 										</mat-form-field>
 										<mat-form-field appearance="outline">
 											<mat-label>Fecha Modificacion</mat-label>
-											<input type="number" matInput placeholder="Cuarentena" />
-										</mat-form-field>
-									</div>
-									<div fxLayout="column" fxFlex="50" fxLayoutAlign="start start">
-										<mat-form-field appearance="outline">
-											<mat-label>Hora Creacion</mat-label>
-											<input type="number" matInput placeholder="Minimo de Vida Consumo" />
-										</mat-form-field>
-										<mat-form-field appearance="outline">
-											<mat-label>Hora Modificacion</mat-label>
-											<input type="number" matInput placeholder="Minimo de Vida Consumo" />
+											<input formControlName="fechaModificacion" type="text" matInput />
 										</mat-form-field>
 									</div>
 								</div>
@@ -798,7 +778,9 @@
 			</div>
 		</mat-tab>
 	</mat-tab-group>
-	<div mat-dialog-actions [align]="'center'" style="margin-bottom: 30px">
-		<button mat-raised-button color="warn" type="submit" [disabled]="disableButtonSave">Guardar</button>
+
+	<div mat-dialog-actions [align]="'end'">
+		<button mat-raised-button color="basic" mat-dialog-close>Cerrar</button>
+		<button mat-raised-button color="warn" type="submit" [disabled]="disableButtonSave">{{ actionBtn }}</button>
 	</div>
 </form>

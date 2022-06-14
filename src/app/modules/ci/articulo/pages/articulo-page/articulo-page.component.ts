@@ -1,3 +1,4 @@
+import { AddArticuloBodegaPageComponent } from './../add-articulo-bodega-page/add-articulo-bodega-page.component';
 import { AddArticuloPageComponent } from './../add-articulo-page/add-articulo-page.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -81,6 +82,40 @@ export class ArticuloPageComponent implements OnInit, AfterViewInit {
 			.subscribe((val) => {
 				if (val === 'save') {
 					this._loadArticulo(1, 10000);
+				}
+			});
+	}
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	clickEdit(element: any): void {
+		this._dialog
+			.open(AddArticuloPageComponent, {
+				//width: '30%',
+				autoFocus: false,
+				maxHeight: '90vh',
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+				data: element
+			})
+			.afterClosed()
+			.subscribe((val) => {
+				if (val === 'update') {
+					this._loadArticulo(1, 100000);
+				}
+			});
+	}
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	clickStore(element: any): void {
+		this._dialog
+			.open(AddArticuloBodegaPageComponent, {
+				//width: '30%',
+				autoFocus: false,
+				maxHeight: '90vh',
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+				data: element
+			})
+			.afterClosed()
+			.subscribe((val) => {
+				if (val === 'update') {
+					this._loadArticulo(1, 100000);
 				}
 			});
 	}

@@ -34,6 +34,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableExporterModule } from 'mat-table-exporter';
+
 const materialModules = [
 	CdkTreeModule,
 	MatAutocompleteModule,
@@ -69,7 +71,8 @@ const materialModules = [
 	MatTooltipModule,
 	MatCardModule,
 	MatDialogModule,
-	FlexLayoutModule
+	FlexLayoutModule,
+	MatTableExporterModule
 ];
 @NgModule({
 	imports: [CommonModule, ...materialModules],

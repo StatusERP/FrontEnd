@@ -142,7 +142,9 @@ export class TreeCiComponent implements OnInit {
 			case '_consecutivos':
 				void this._router.navigateByUrl(PATHS_CI_PAGES.consecutivoCI.withSlash);
 				break;
-
+			case '_transaccionesConfigurables':
+				void this._router.navigateByUrl(PATHS_CI_PAGES.transaccionesConfigurables.withSlash);
+				break;
 			default:
 				break;
 		}

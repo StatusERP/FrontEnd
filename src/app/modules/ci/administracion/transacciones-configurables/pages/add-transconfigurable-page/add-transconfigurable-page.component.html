@@ -1,0 +1,76 @@
+<div mat-dialog-content>
+	<form class="formulario grey-100" [formGroup]="Form">
+		<div class="generalContenedor" fxLayout="row wrap" fxLayoutAlign="center center">
+			<div fxLayout="row " fxLayoutAlign="center center" fxFlex="20">
+				<mat-form-field appearance="outline">
+					<mat-label>Codigo de Ajuste</mat-label>
+					<input formControlName="codAjuste" matInput placeholder="Codigo Ajuste" />
+				</mat-form-field>
+			</div>
+			<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="80">
+				<mat-form-field appearance="outline">
+					<mat-label>Descripcion</mat-label>
+					<input formControlName="descripcion" matInput placeholder="Descripcion" />
+				</mat-form-field>
+			</div>
+		</div>
+		<div>
+			<mat-tab-group mat-align-tabs="center">
+				<mat-tab label="General">
+					<div fxLayout="row wrap" fxLayoutAlign="center none">
+						<div
+							fxLayout="row"
+							fxLayout.xs="column"
+							fxLayoutAlign="start stretch"
+							fxFlex="60"
+							fxFlex.xs="94"
+							fxFlex.sm="80"
+							class="generalContenedor"
+						>
+							<div class="generalContenedor">
+								<mat-form-field appearance="outline">
+									<mat-label>Ajuste Base</mat-label>
+									<mat-select formControlName="ajuste">
+										<mat-option value="~AA~">Aprobación</mat-option>
+										<mat-option value="~OO~">Compras</mat-option>
+										<mat-option value="~CC~">Consumo</mat-option>
+										<mat-option value="~SS~">Costo</mat-option>
+										<mat-option value="~FF~">Físico</mat-option>
+										<mat-option value="~MM~">Misceláneo</mat-option>
+										<mat-option value="~PP~">Producción</mat-option>
+										<mat-option value="~II~">Remisión</mat-option>
+										<mat-option value="~RR~">Reservación</mat-option>
+										<mat-option value="~TT~">Traspaso</mat-option>
+										<mat-option value="~NN~">Vencimineto</mat-option>
+										<mat-option value="~VV~">Ventas</mat-option>
+										<mat-option value="~LL~">Traslado(2F)</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<section class="indicadores">
+									<p><mat-checkbox formControlName="activo">Ajuste Configurable Activo</mat-checkbox></p>
+								</section>
+								<div>
+									<mat-label>Funionalidad: </mat-label>
+									<mat-radio-group class="radio-group" formControlName="funcionalidad">
+										<mat-radio-button class="radio-button" value="E">Equivalente</mat-radio-button>
+										<mat-radio-button class="radio-button" value="O">Opuesta</mat-radio-button>
+										<mat-radio-button class="radio-button" value="A">Ambas</mat-radio-button>
+									</mat-radio-group>
+								</div>
+							</div>
+						</div>
+					</div>
+				</mat-tab>
+				<mat-tab label="SubTipos"></mat-tab>
+				<mat-tab label="SubSubTipos"></mat-tab>
+				<mat-tab label="Consecutivos"></mat-tab>
+				<mat-tab label="Privilegios"></mat-tab>
+			</mat-tab-group>
+		</div>
+	</form>
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+	<button mat-raised-button color="basic" mat-dialog-close>Cerrar</button>
+	<button mat-raised-button color="warn">{{ actionBtn }}</button>
+</div>

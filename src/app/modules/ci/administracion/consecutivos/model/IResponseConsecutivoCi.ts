@@ -13,3 +13,18 @@ export interface IResponseConsecutivoCi {
 	UsaTraslado: string;
 	EmailCFDI: string;
 }
+export interface IResponseConsInvAjCon {
+	id: number;
+	consecutivoInvId: number;
+	ajusteConfigId: number;
+}
+export interface ICreateConsInvAjCon {
+	consecutivoInvId: number;
+	ajusteConfigId: number;
+}
+
+export interface IResponseConsUsuario {
+	id: number;
+	CodCosecutivo: number;
+	usuario: number;
+}

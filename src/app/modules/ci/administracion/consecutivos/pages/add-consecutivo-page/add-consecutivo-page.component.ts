@@ -68,7 +68,6 @@ export class AddConsecutivoPageComponent implements OnInit, AfterViewInit {
 		});
 		if (this.editData) {
 			this.actionBtn = 'Editar';
-			console.log(this.editData);
 
 			this.consecutivoForm.controls['codConsecutivo'].setValue(this.editData.codConsecutivo);
 			this.consecutivoForm.controls['codConsecutivo'].disable();

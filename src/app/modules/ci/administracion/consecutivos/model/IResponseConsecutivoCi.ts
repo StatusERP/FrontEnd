@@ -1,7 +1,7 @@
 export interface IResponseConsecutivoCi {
-	CodConsecutivo: string;
+	codConsecutivo: string;
 	UltimoUsuario: string;
-	Descripcion: string;
+	descripcion: string;
 	Mascara: string;
 	SiguienteConsec: string;
 	Editable: string;
@@ -12,17 +12,27 @@ export interface IResponseConsecutivoCi {
 	Tipo: string;
 	UsaTraslado: string;
 	EmailCFDI: string;
+	id: number;
 }
+
 export interface IResponseConsInvAjCon {
 	id: number;
 	consecutivoInvId: number;
 	ajusteConfigId: number;
+	ajusteConfig: { ajusteBase: string };
 }
 export interface ICreateConsInvAjCon {
 	consecutivoInvId: number;
 	ajusteConfigId: number;
 }
 
+export interface ICreateAjsutesConfig {
+	CodAjusteConfig: string;
+	Descripcion: string;
+	AjusteBase: string;
+	Activa: boolean;
+	Ingreso: string;
+}
 export interface IResponseConsUsuario {
 	id: number;
 	CodCosecutivo: number;

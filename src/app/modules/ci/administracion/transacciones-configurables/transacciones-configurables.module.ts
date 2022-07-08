@@ -1,3 +1,4 @@
+import { ObjToArrayPipe } from './pipe/objToArray.pipe';
 import { AddTransconfigurablePageComponent } from './pages/add-transconfigurable-page/add-transconfigurable-page.component';
 import { TransConfigurablePageComponent } from './pages/transConfigurable-page/transConfigurable-page.component';
 import { AngularMaterialModule } from './../../../../angular-material-modulo';
@@ -10,7 +11,7 @@ import { CommonModule } from '@angular/common';
 import { TransaccionesConfigurablesRoutingModule } from './transacciones-configurables-routing.module';
 
 @NgModule({
-	declarations: [TransConfigurablePageComponent, AddTransconfigurablePageComponent],
+	declarations: [TransConfigurablePageComponent, AddTransconfigurablePageComponent, ObjToArrayPipe],
 	imports: [
 		CommonModule,
 		TransaccionesConfigurablesRoutingModule,

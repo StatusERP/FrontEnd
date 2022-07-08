@@ -3,20 +3,20 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { PaqueteciPageComponent } from './paqueteci-page.component';
+import { AddPaqueteUsuarioPageComponent } from './add-paqueteUsuario-page.component';
 
-describe('PaqueteciPageComponent', () => {
-	let component: PaqueteciPageComponent;
-	let fixture: ComponentFixture<PaqueteciPageComponent>;
+describe('AddPaqueteUsuarioPageComponent', () => {
+	let component: AddPaqueteUsuarioPageComponent;
+	let fixture: ComponentFixture<AddPaqueteUsuarioPageComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [PaqueteciPageComponent]
+			declarations: [AddPaqueteUsuarioPageComponent]
 		}).compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(PaqueteciPageComponent);
+		fixture = TestBed.createComponent(AddPaqueteUsuarioPageComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

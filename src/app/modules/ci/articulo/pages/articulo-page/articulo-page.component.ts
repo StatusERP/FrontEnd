@@ -85,6 +85,7 @@ export class ArticuloPageComponent implements OnInit, AfterViewInit {
 				}
 			});
 	}
+
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	clickEdit(element: any): void {
 		this._dialog

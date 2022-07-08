@@ -1,3 +1,4 @@
+import { ICreateAjsutesConfig } from './../../consecutivos/model/IResponseConsecutivoCi';
 import { IResponse } from '@app/shared/api-models-base-interface';
 import { IResponseTransConfigurable } from './../model/transConfigurable-model-interface';
 
@@ -18,5 +19,8 @@ export class TransConfigurableApiService {
 		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
 		url = url + '?page=' + page + '&rows=' + rows;
 		return this._httpClient.get<IResponse<IResponseTransConfigurable[]>>(url);
+	}
+	createAjusteConfif(ajusteConfig: ICreateAjsutesConfig): Observable<IResponse<number>> {
+		return this._httpClient.post<IResponse<number>>(URL_AJSUTECONFIG, ajusteConfig);
 	}
 }

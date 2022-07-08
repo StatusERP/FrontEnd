@@ -49,6 +49,8 @@ mat-form-field{
 }
 #content{
     margin: 1px;
+    align-items: center;
+    justify-content: center;
 }
 .existenciaTotal{
  width: 95%;
@@ -103,4 +105,9 @@ mat-form-field{
   }
   .generalContenedor{
     margin-top: 10px;
+   
+  }
+  .tabContenedor{
+    width: 400 px;
+    height: 350px;
   }

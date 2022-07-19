@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import { Iglobales_AS } from './../model/Globales_AS.interface';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
@@ -12,10 +13,9 @@ const URL_GLOBALES_AS = environment.host + '/AS/GlobalesAS';
 })
 export class GlobalesASApiService {
 	constructor(private _httpClient: HttpClient) {}
-	getGlobalesAS(page?: number, rows?: number): Observable<IResponse<Iglobales_AS[]>> {
-		let url = URL_GLOBALES_AS;
+	getGlobalesAS(): Observable<IResponse<Iglobales_AS[]>> {
 		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-		url = url + '?page=' + page + '&rows=' + rows;
+		let url = URL_GLOBALES_AS;
 		return this._httpClient.get<IResponse<Iglobales_AS[]>>(url);
 	}
 	createGlobalesAS(globalesAS: Iglobales_AS): Observable<IResponse<number>> {

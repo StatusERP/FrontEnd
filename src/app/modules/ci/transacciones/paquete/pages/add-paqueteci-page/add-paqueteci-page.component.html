@@ -1,6 +1,6 @@
-<form class="formulario grey-100" [formGroup]="formPaquete">
-	<div fxLayout="row" fxLayoutAlign="center none">
-		<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="30">
+<form class="formulario" [formGroup]="formPaquete">
+	<div class="formulario_encabezado">
+		<div class="encabezado_consecutivo">
 			<mat-form-field appearance="outline">
 				<mat-label>Consecutivo</mat-label>
 				<mat-select formControlName="codConsecutivo" (selectionChange)="select($event.value)">
@@ -10,147 +10,293 @@
 				</mat-select>
 			</mat-form-field>
 		</div>
-		<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="70">
+		<div class="encabezado_descripcion">
 			<mat-form-field appearance="outline">
 				<mat-label>Descripcion</mat-label>
-				<input formControlName="descripcion" type="text" matInput placeholder="{{consecutivo.id}" />
+				<input formControlName="descripcion" type="text" matInput />
 			</mat-form-field>
 		</div>
 	</div>
-	<mat-tab-group mat-align-tabs="center">
+	<mat-tab-group mat-align-tabs="center" class="container_tab_documento">
 		<mat-tab label="Documento">
-			<div fxLayout="row wrap" fxLayoutAlign="center none">
-				<div
-					fxLayout="row"
-					fxLayout.xs="column"
-					fxLayoutAlign="start stretch"
-					fxFlex="80"
-					fxFlex.xs="94"
-					fxFlex.sm="80"
-					class="tabContenedor"
-				>
-					<div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="100">
-						<div class="title_box">
-							<div id="title">Datos</div>
-							<div id="content">
-								<mat-form-field appearance="outline">
-									<mat-label>Fecha</mat-label>
-									<input formControlName="fecha" type="date" matInput placeholder="Fecha de Transaccion" />
-								</mat-form-field>
-								<mat-form-field appearance="outline">
-									<mat-label>Referencia</mat-label>
-									<textarea formControlName="referencia" style="width: 600px; height: 75px" matInput></textarea>
-								</mat-form-field>
-							</div>
-						</div>
-						<div class="generales" fxLayout="row wrap" fxLayoutAlign="center center">
-							<div
-								fxLayout="row"
-								fxLayout.xs="column"
-								fxLayoutAlign="start stretch"
-								fxFlex="80"
-								fxFlex.xs="94"
-								fxFlex.sm="80"
-								class="generalContenedor"
-							>
-								<div fxLayout="row wrap" fxLayoutAlign="center none">
-									<div class="title_box">
-										<div id="content">
-											<div fxLayout="row wrap" fxFlex="30">
-												<mat-form-field appearance="outline">
-													<mat-label>Usuario</mat-label>
-													<input type="text" matInput placeholder="Nombre Impuesto" />
-												</mat-form-field>
-												<mat-form-field appearance="outline">
-													<mat-label>Fecha Creacion</mat-label>
-													<input type="text" matInput placeholder="Nombre Impuesto" />
-												</mat-form-field>
-											</div>
-											<div fxLayout="row wrap" fxFlex="70">
-												<mat-form-field appearance="outline">
-													<mat-label>Nombre </mat-label>
-													<input type="text" matInput placeholder="Nombre Impuesto" />
-												</mat-form-field>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+			<div class="title_box">
+				<div id="title">Datos</div>
+				<div class="contenedor_box">
+					<div class="box_item1">
+						<mat-form-field appearance="outline">
+							<mat-label>Fecha</mat-label>
+							<input formControlName="fecha" type="date" matInput placeholder="Fecha de Transaccion" />
+						</mat-form-field>
+					</div>
+					<div class="box_item2">
+						<mat-form-field appearance="outline">
+							<mat-label>Referencia</mat-label>
+							<textarea formControlName="referencia" style="width: 600px; height: 75px" matInput></textarea>
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+
+			<div class="title_box">
+				<div class="contenedor__user">
+					<div class="user__usuario">
+						<mat-form-field appearance="outline">
+							<mat-label>Usuario</mat-label>
+							<input type="text" matInput placeholder="Nombre Impuesto" />
+						</mat-form-field>
+					</div>
+					<div class="user__nombre">
+						<mat-form-field appearance="outline">
+							<mat-label>Nombre </mat-label>
+							<input type="text" matInput placeholder="Nombre Impuesto" />
+						</mat-form-field>
+					</div>
+					<div class="user__fechacreacion">
+						<mat-form-field appearance="outline">
+							<mat-label>Fecha Creacion</mat-label>
+							<input type="text" matInput placeholder="Nombre Impuesto" />
+						</mat-form-field>
 					</div>
 				</div>
 			</div>
 		</mat-tab>
 		<mat-tab label="Transacción">
-			<div fxLayout="row wrap" fxLayoutAlign="center none">
-				<div
-					fxLayout="row"
-					fxLayout.xs="column"
-					fxLayoutAlign="start stretch"
-					fxFlex="100"
-					fxFlex.xs="94"
-					fxFlex.sm="80"
-					class="tabContenedor"
-				>
-					<div fxLayout="row wrap" fxLayoutAlign="center start">
+			<div class="contenedor__trans">
+				<div class="title_box">
+					<div class="box__tipo">
+						<div class="tipo__item1">
+							<mat-form-field appearance="outline">
+								<mat-label>Tipo</mat-label>
+								<mat-select formControlName="ajuste" [(ngModel)]="ajusteSelect">
+									<mat-option *ngFor="let asjute of ajuste" [value]="asjute.ajusteConfig.id">{{
+										asjute.ajusteConfig.descripcion
+									}}</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+						<div *ngIf="ajusteSelect === 5" class="tipo__item2">
+							<mat-form-field appearance="outline">
+								<mat-label>Fase</mat-label>
+								<input type="text" matInput placeholder="Fase" />
+							</mat-form-field>
+						</div>
+						<div *ngIf="ajusteSelect === 5" class="tipo__item3">
+							<mat-form-field appearance="outline">
+								<mat-label>Ordern Cambio</mat-label>
+								<input type="text" matInput placeholder="Orden Cambio" />
+							</mat-form-field>
+						</div>
+					</div>
+					<div *ngIf="ajusteSelect === 2" class="box__cuentacontable">
+						<div class="ctrocosto__item1">
+							<mat-form-field appearance="outline">
+								<mat-label>Ctro Costo</mat-label>
+								<input formControlName="tipo" type="text" matInput placeholder="Ctro Costo" />
+							</mat-form-field>
+
+							<mat-checkbox style="padding-left: 10px"></mat-checkbox>
+						</div>
+						<div class="ctacontable__item2">
+							<mat-form-field appearance="outline">
+								<mat-label>Cta.Contable</mat-label>
+								<input type="text" matInput placeholder="Cta.Contable" />
+							</mat-form-field>
+
+							<mat-checkbox style="padding-left: 10px"></mat-checkbox>
+						</div>
+					</div>
+					<div class="box__bodega">
+						<div class="bodega__codigo">
+							<b>Cargardo .....{{ bodega$ | async | json }}</b>
+							<mat-form-field appearance="outline">
+								<mat-label>bodega</mat-label>
+								<mat-select>
+									<mat-option *ngFor="let bodega of bodega$ | async" [value]="bodega.id">
+										{{ bodega }}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+						<div class="bodega__descripcion">
+							<mat-form-field appearance="outline">
+								<mat-label>Descripcion</mat-label>
+								<input type="text" matInput placeholder="Descripcion" />
+							</mat-form-field>
+						</div>
+						<div class="bodega__localizacion">
+							<mat-form-field appearance="outline">
+								<mat-label>Localizacion</mat-label>
+								<mat-select>
+									<mat-option value="01">Nivel 01</mat-option>
+									<mat-option value="02">Nivel 02</mat-option>
+									<mat-option value="02">Nivel 03</mat-option>
+									<mat-option value="02">Nivel 04</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+						<div *ngIf="ajusteSelect === 6" class="bodega__codigodestino">
+							<mat-form-field appearance="outline">
+								<mat-label>Bod.Dest</mat-label>
+								<mat-select>
+									<mat-option value="01">Bodega General</mat-option>
+									<mat-option value="02">Bodega Centro</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+						<div *ngIf="ajusteSelect === 6" class="bodega__descripcion">
+							<mat-form-field appearance="outline">
+								<mat-label>Descripcion</mat-label>
+								<input type="text" matInput placeholder="Descripcion" />
+							</mat-form-field>
+						</div>
+						<div *ngIf="ajusteSelect === 6" class="bodega__localizaciondestino">
+							<mat-form-field appearance="outline">
+								<mat-label>Loc.Destino</mat-label>
+								<mat-select>
+									<mat-option value="01">Nivel 01</mat-option>
+									<mat-option value="02">Nivel 02</mat-option>
+									<mat-option value="02">Nivel 03</mat-option>
+									<mat-option value="02">Nivel 04</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+					</div>
+				</div>
+				<!-- Inicio box Articulo -->
+				<div class="title_box">
+					<div class="box__articulo">
+						<div class="articulo__item1">
+							<mat-form-field appearance="outline">
+								<mat-label>Articulo</mat-label>
+								<mat-select>
+									<mat-option value="01">00001-demo 01</mat-option>
+									<mat-option value="02">00002-demo 02</mat-option>
+									<mat-option value="02">00003-demo 03</mat-option>
+									<mat-option value="02">00004-demo 04</mat-option>
+									<mat-option value="02">...Buscar Articulo..</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+						<div class="articulo__item2">
+							<mat-form-field appearance="outline">
+								<mat-label>Descripcion</mat-label>
+								<input type="text" matInput placeholder="Descripcion" />
+							</mat-form-field>
+						</div>
+					</div>
+				</div>
+				<!-- Fin box Articulo -->
+				<!-- box de cantidad -->
+				<div class="title_box">
+					<div class="box__cantidad">
+						<div class="cantidad__item1">
+							<mat-form-field appearance="outline">
+								<mat-label>Cantidad</mat-label>
+								<input type="text" matInput placeholder="Cantidad" />
+							</mat-form-field>
+						</div>
+						<div class="cantidad__item2">
+							<mat-form-field appearance="outline">
+								<mat-label>Cant.Detalle</mat-label>
+								<input type="text" matInput placeholder="Cantidad Detalle" />
+							</mat-form-field>
+						</div>
+					</div>
+				</div>
+				<!-- Fin box cantidad -->
+				<!-- Inicio box subtipos y lote -->
+				<div class="title_box">
+					<div class="box__cantidad">
+						<div class="cantidad__item1">
+							<mat-form-field appearance="outline">
+								<mat-label>Tipo</mat-label>
+								<mat-select>
+									<mat-option value="01">Disponible</mat-option>
+									<mat-option value="02">Cuarentena</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+						<div class="cantidad__item2">
+							<mat-form-field appearance="outline">
+								<mat-label>S.s. tipo</mat-label>
+								<mat-select>
+									<mat-option value="01">Local</mat-option>
+									<mat-option value="02">Exportacion</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+						<div class="cantidad__item3">
+							<mat-form-field appearance="outline">
+								<mat-label>Lote</mat-label>
+								<mat-select>
+									<mat-option value="01">Lote-01</mat-option>
+									<mat-option value="02">Lote-02</mat-option>
+									<mat-option value="02">Lote-03</mat-option>
+									<mat-option value="02">Lote-04</mat-option>
+									<mat-option value="02">...Buscar Articulo..</mat-option>
+									<mat-option value="02">Nuevo Lote</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+					</div>
+				</div>
+				<!-- Fin box subtipos y lote -->
+				<!-- Inicio box de costo -->
+				<div class="contenedor_costo">
+					<div class="box__costolocal">
 						<div class="title_box">
-							<!-- Inicio Parte Contable -->
+							<div id="title">Costo Unitario Local</div>
 
-							<!-- Fin Parte Contable -->
-
-							<!-- Area de bodega -->
-							<div class="input" fxLayout="row wrap" fxFlex="100" fxLayoutAlign="center start">
-								<div class="input" fxLayout="row wrap" fxFlex="20" fxLayoutAlign="center start">
+							<div class="costo__item">
+								<div class="costo__item1">
 									<mat-form-field appearance="outline">
-										<mat-label>Bodega</mat-label>
-										<input type="number" matInput placeholder="Bodega" />
-									</mat-form-field>
-									<mat-form-field appearance="outline">
-										<mat-label>Bodega Destino</mat-label>
-										<input type="number" matInput placeholder="Bodega Destino" />
+										<mat-label>Fical Local</mat-label>
+										<input type="text" matInput placeholder="Fiscal Local" />
 									</mat-form-field>
 								</div>
+							</div>
+						</div>
+					</div>
+					<div class="box__costodolar">
+						<div class="title_box">
+							<div id="title">Costo Dólar</div>
 
-								<div class="input" fxLayout="row wrap" fxFlex="60" fxLayoutAlign="center start">
+							<div class="costo__item">
+								<div class="costo__item2">
 									<mat-form-field appearance="outline">
-										<mat-label>Nombre</mat-label>
-										<input type="number" matInput placeholder="Nombre de Bodega" />
-									</mat-form-field>
-									<mat-form-field appearance="outline">
-										<mat-label>Nombre</mat-label>
-										<input type="number" matInput placeholder="Nombre de Bodega" />
+										<mat-label>Fical Dólar</mat-label>
+										<input type="text" matInput placeholder="Fiscal Dólar" />
 									</mat-form-field>
 								</div>
-								<div class="input" fxLayout="row wrap" fxFlex="20" fxLayoutAlign="center start">
-									<mat-form-field appearance="outline">
-										<mat-label>Localizacion</mat-label>
-										<input type="number" matInput placeholder="Localizacion" />
-									</mat-form-field>
-									<mat-form-field appearance="outline">
-										<mat-label>Localizacion Destino</mat-label>
-										<input type="number" matInput placeholder="Localizacion Destino" />
-									</mat-form-field>
-								</div>
-								<!-- Fin de bodega -->
 							</div>
 						</div>
 					</div>
 				</div>
+				<!-- Fin box de costo -->
+				<!-- Inicio box Precio -->
+				<div class="title_box">
+					<div class="box__cantidad">
+						<div class="cantidad__item1">
+							<mat-form-field appearance="outline">
+								<mat-label>Precio Unitario Local</mat-label>
+								<input type="text" matInput placeholder="Precio Unitario Local" />
+							</mat-form-field>
+						</div>
+						<div class="cantidad__item2">
+							<mat-form-field appearance="outline">
+								<mat-label>Precio Unitario Dólar</mat-label>
+								<input type="text" matInput placeholder="Precio Unitario Dólar" />
+							</mat-form-field>
+						</div>
+						<div class="butonguardar">
+							<button mat-raised-button color="warn">Guardar Linea</button>
+						</div>
+					</div>
+				</div>
+				<!-- Fin box Precio -->
 			</div>
 		</mat-tab>
-		<mat-tab class="tabContenedor" label="Existencias">
-			<div fxLayout="row wrap" fxLayoutAlign="center none">
-				<div
-					fxLayout="row"
-					fxLayout.xs="column"
-					fxLayoutAlign="start stretch"
-					fxFlex="80"
-					fxFlex.xs="94"
-					fxFlex.sm="80"
-					class="tabContenedor"
-				></div>
-			</div>
-		</mat-tab>
+		<mat-tab class="tabContenedor" label="Existencias"> </mat-tab>
 		<mat-tab class="tabContenedor" label="Líneas">
 			<div fxLayout="row wrap" fxLayoutAlign="center none">
 				<div

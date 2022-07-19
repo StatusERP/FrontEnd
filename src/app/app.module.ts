@@ -1,3 +1,6 @@
+import { bodegaEffect } from './modules/as/tablas/otros/bodega/store/bodega.effects';
+import { globalesCiEffects } from './modules/ci/store/ci.effects';
+import { globalesASEffects } from './modules/as/strore/as.effects';
 import { ROOT_REDUCERS } from './config/app.state';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DefaultModule } from './layouts/default/default.module';
@@ -40,7 +43,7 @@ import { EffectsModule } from '@ngrx/effects';
 		SnotifyModule,
 		MatFormFieldModule,
 		StoreModule.forRoot(ROOT_REDUCERS),
-		EffectsModule.forRoot([]),
+		EffectsModule.forRoot([globalesASEffects, globalesCiEffects, bodegaEffect]),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
 	],
 	providers: [

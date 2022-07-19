@@ -6,13 +6,194 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 5px solid;
+    padding: 5px;
+    font-size: 10px;
  
 }
 
+.formulario_encabezado{
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(12,1fr) ;
+  grid-template-rows: 1fr;
+  gap: 10px;
+}
 
-mat-form-field{  
+.encabezado_consecutivo{
+  grid-column: 4/6;
+}
+.encabezado_descripcion{
+  grid-column: 6/10;
+}
+
+/* container-tab-documento */
+.container_tab_documento{
+  width: 100%;
+}
+.contenedor_box{
+  
+  display: grid;
+  padding: 10px;
+  grid-template-columns: repeat(12,1fr);
+}
+.box_item1{
+  grid-column: 2/4;
+}
+.box_item2{
+  grid-column: 2/10;
+}
+
+/* contenedor de User */
+.contenedor__user{
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+  padding: 10px;
+  gap: 10px;
+  
+}
+.user__usuario{
+  grid-column: 2/4;
+}
+.user__nombre{
+  grid-column: 4/10;
+}
+.user__fechacreacion{
+ grid-row: 2;
+  grid-column: 2/4;
+}
+
+/* Fin de Tab Documento */
+/* Inicio de Transacciones */
+  /* bloque de Tipo */
+.box__tipo{
+  display: grid;
+  gap: 5px;
+  padding-top: 5px;
+  grid-template-columns: repeat(12,1fr);
+}
+.tipo__item1{
+grid-column: 3/6;
+}
+.tipo__item2{
+  grid-column: 7/9;
+}
+.tipo__item3{
+  grid-column: 10/12;
+}
+  /* Fin de Bloque Tipo */
+  /* Inicio de Bloque Cuenta Contable */
+.box__cuentacontable{
+     display: grid;
+     gap: 5px;
+     grid-template-columns: repeat(12,1fr);
+   }
+.ctrocosto__item1{
+     display: flex;
+     flex-direction: row;
+     grid-column: 3/6;
+     align-content: center;
+  align-items: center;
+  
+   }
+   .ctacontable__item2{
+     display: flex;
+     flex-direction: row;
+    grid-column: 10/12;
+    align-content: center;
+  align-items: center;
+  
+   }
+  /* Fin de Bloque Cuenta Contable */
+/* Inicio de Bloque de Bodega */
+.box__bodega{
+  width: 100%;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(12,1fr);
+}
+.bodega__codigo{
+  grid-column: 3/5;
+ 
+}
+.bodega__descripcion{
+  grid-column: 5/10;
+}
+.bodega__localizacion{
+  grid-column: 10/12;
+}
+.bodega__codigodestino{
+ grid-column: 3/5;
+}
+.bodega__localizaciondestino{
+  grid-column: 10/12;
+}
+/* Fin de Bloque de Bodega */
+/* Inicio de Bloque de Articulo */
+.box__articulo{
+  padding-top: 5px;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(12,1fr);
+  
+}
+.articulo__item1{
+  grid-column: 3/5;
+}
+
+.articulo__item2{
+  grid-column: 5/12;
+}
+/* Fin de Bloque de Articulo */
+/* Inicio de bloque de cantidad */
+.box__cantidad{
+  padding-top: 5px;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(12,1fr);
+}
+.cantidad__item1{
+  grid-column: 3/5;
+}
+.cantidad__item2{
+  grid-column: 6/8;
+}
+.cantidad__item3{
+  grid-column: 10/12;
+}
+/* Fin de bloque de cantidad */
+/* Inicio de bloque de costo */
+.contenedor_costo{
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+}
+.box__costolocal{
+  grid-column: 1/6;
+}
+.box__costodolar{
+  grid-column: 7/11;
+}
+.costo__item{
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+}
+.costo__item1{
+  grid-column: 6/11;
+}
+
+.costo__item2{
+  grid-column: 5/11;
+}
+/* Fin de bloque de costo */
+.butonguardar{
+  grid-column:10/12 ;
+  align-content: center;
+  align-items: center;
+}
+/* Fin de Transacciones */
+.mat-form-field{  
         width: 90%;
-        font-size: 12px;
+        font-size: 10px;
         color: colors.$primary-color;
                   
 }

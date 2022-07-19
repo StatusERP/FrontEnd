@@ -77,7 +77,7 @@ export class PaqueteciPageComponent implements OnInit, AfterViewInit {
 	openDialog(): void {
 		this._dialog
 			.open(AddPaqueteciPageComponent, {
-				//width: '80%'
+				width: '60%',
 				autoFocus: false,
 				maxHeight: '90vh'
 			})

@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import { IResponseCreateBodega, IResponseLocaizacionBodega } from './bodega-api-model-interface';
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { IResponseBodega } from './bodega-api-model-interface';
@@ -34,6 +35,10 @@ export class BodegaApiService {
 	getBodegaLocalizacion(idBodega: number): Observable<IResponse<IResponseLocaizacionBodega[]>> {
 		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
 		const url = URL_LOCALIZACIONES + '/' + idBodega;
+		return this._httpClient.get<IResponse<IResponseLocaizacionBodega[]>>(url);
+	}
+	getLocalizacionesAll(): Observable<IResponse<IResponseLocaizacionBodega[]>> {
+		let url = URL_LOCALIZACIONES;
 		return this._httpClient.get<IResponse<IResponseLocaizacionBodega[]>>(url);
 	}
 }

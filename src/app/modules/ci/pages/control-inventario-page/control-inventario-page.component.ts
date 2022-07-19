@@ -1,3 +1,5 @@
+import { loadGlobalesCI } from './../../store/ci.actions';
+import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,4 +7,9 @@ import { Component, OnInit } from '@angular/core';
 	templateUrl: './control-inventario-page.component.html',
 	styleUrls: ['./control-inventario-page.component.scss']
 })
-export class ControlInventarioPageComponent {}
+export class ControlInventarioPageComponent implements OnInit {
+	constructor(private store: Store<any>) {}
+	ngOnInit(): void {
+		this.store.dispatch(loadGlobalesCI());
+	}
+}

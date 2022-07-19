@@ -1,8 +1,8 @@
 import { loadedGlobalesCI, loadGlobalesCI } from './ci.actions';
 import { createReducer, on } from '@ngrx/store';
-import { IGlobalesCIState } from './ci.state';
+import { IGlobalesCI_State } from './ci.state';
 
-export const initialStateGlobalesCI: IGlobalesCIState = { loading: false, datos: [] };
+export const initialStateGlobalesCI: IGlobalesCI_State = { loading: false, datos: [] };
 
 export const globalesCIReducer = createReducer(
 	initialStateGlobalesCI,

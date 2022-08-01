@@ -3,7 +3,7 @@ import {
 	IResponseArticulo,
 	IRequestCreateArticulo,
 	IResquestConsultarArticulo
-} from './../../service/articulo-api-model-interface';
+} from '../../model/articulo-api-model-interface';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { IResponseBodega } from './../../../../as/tablas/otros/bodega/service/bodega-api-model-interface';

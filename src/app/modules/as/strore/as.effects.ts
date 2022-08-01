@@ -11,7 +11,7 @@ export class globalesASEffects {
 			ofType('[GlobalesAS List] Load Globales_AS'),
 			mergeMap(() =>
 				this.globalesASApiService.getGlobalesAS().pipe(
-					map((items) => ({ type: '[GlobalesAS List] Load Globales_AS success', items })),
+					map((datos) => ({ type: '[GlobalesAS List] Load Globales_AS success', globales: datos })),
 					catchError(() => EMPTY)
 				)
 			)

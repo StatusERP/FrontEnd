@@ -2,7 +2,8 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import {
 	IResponseCreateExistenciaBodega,
-	IResponseConsultarExistenciaBodega
+	IResponseConsultarExistenciaBodega,
+	IResponseConsultarArticuloBodega
 } from './existenciaBodega-api-model-interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -20,6 +21,14 @@ export class ExistenciaBodegaApiService {
 		url = url + '?page=' + page + '&rows=' + rows;
 		return this._httpClient.get<IResponse<IResponseConsultarExistenciaBodega[]>>(url);
 	}
+	/* Se muestra los articulos con las bodegas y su detalle de cada una articulo,bodega */
+	getall(page?: number, rows?: number): Observable<IResponse<IResponseConsultarArticuloBodega[]>> {
+		let url = URL_EXISTBODEGA;
+		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+		url = url + '?page=' + page + '&rows=' + rows;
+		return this._httpClient.get<IResponse<IResponseConsultarArticuloBodega[]>>(url);
+	}
+
 	crearExistenciaBodega(existBodega: IResponseCreateExistenciaBodega): Observable<IResponse<number>> {
 		return this._httpClient.post<IResponse<number>>(URL_EXISTBODEGA, existBodega);
 	}

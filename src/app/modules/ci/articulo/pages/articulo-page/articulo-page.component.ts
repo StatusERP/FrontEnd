@@ -3,7 +3,7 @@ import { AddArticuloPageComponent } from './../add-articulo-page/add-articulo-pa
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { IResponseArticulo } from './../../service/articulo-api-model-interface';
+import { IResponseArticulo } from '../../model/articulo-api-model-interface';
 import { MatTableDataSource } from '@angular/material/table';
 import { ArticuloApiService } from './../../service/articulo-api.service';
 import { SnotifyService, SnotifyPosition } from 'ng-snotify';

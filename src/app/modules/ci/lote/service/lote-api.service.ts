@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import { IResponseLote } from './../model/lote-interface';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -10,10 +11,10 @@ const URL_LOTE = environment.host + '/CI/Lote';
 })
 export class LoteApiService {
 	constructor(private _httpClient: HttpClient) {}
-	getLote(page?: number, rows?: number): Observable<IResponse<IResponseLote[]>> {
+	getLote(): Observable<IResponse<IResponseLote[]>> {
 		let url = URL_LOTE;
 		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-		url = url + '?page=' + page + '&rows=' + rows;
+
 		return this._httpClient.get<IResponse<IResponseLote[]>>(url);
 	}
 	deleteLote(idLote: number): Observable<IResponse<number>> {

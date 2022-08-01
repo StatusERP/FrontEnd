@@ -11,7 +11,7 @@ export class bodegaEffect {
 			ofType('[Bodega List] Load Bodega'),
 			mergeMap(() =>
 				this._bodegaApiService.getBodega(1, 1000).pipe(
-					map((resul) => ({ type: '[Bodega List] Load Bodega success', datos: resul.result })),
+					map((datos) => ({ type: '[Bodega List] Load Bodega success', bodega: datos })),
 					catchError(() => EMPTY)
 				)
 			)

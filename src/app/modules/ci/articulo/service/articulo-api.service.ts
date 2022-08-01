@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { IResponse } from '@app/shared/api-models-base-interface';
-import { IResponseArticulo, IRequestCreateArticulo } from './articulo-api-model-interface';
+import { IResponseArticulo, IRequestCreateArticulo } from '../model/articulo-api-model-interface';
 
 const URL_ARTICULO = environment.host + '/CI/Articulo';
 @Injectable({

@@ -10,9 +10,33 @@ import { CommonModule } from '@angular/common';
 
 import { PaqueteRoutingModule } from './paquete-routing.module';
 import { AngularMaterialModule } from '@app/angular-material-modulo';
+import { ConsecutivoComponent } from './componentes/consecutivo/consecutivo.component';
+import { BodegaComponent } from './componentes/bodega/bodega.component';
+import { LocalizacionComponent } from './componentes/localizacion/localizacion.component';
+import { ArticuloComponent } from './componentes/articulo/articulo.component';
+import { LoteComponent } from './componentes/lote/lote.component';
+import { SubtipoComponent } from './componentes/subtipo/subtipo.component';
+import { SubsubtipoComponent } from './componentes/subsubtipo/subsubtipo.component';
+import { TipoComponent } from './componentes/tipo/tipo.component';
+import { CtrocostoComponent } from './componentes/ctrocosto/ctrocosto.component';
+import { CtacontableComponent } from './componentes/ctacontable/ctacontable.component';
 
 @NgModule({
-	declarations: [PaqueteciPageComponent, AddPaqueteciPageComponent, AddPaqueteUsuarioPageComponent],
+	declarations: [
+		PaqueteciPageComponent,
+		AddPaqueteciPageComponent,
+		AddPaqueteUsuarioPageComponent,
+		ConsecutivoComponent,
+		BodegaComponent,
+		LocalizacionComponent,
+		ArticuloComponent,
+		LoteComponent,
+		SubtipoComponent,
+		SubsubtipoComponent,
+		TipoComponent,
+		CtrocostoComponent,
+		CtacontableComponent
+	],
 	imports: [
 		CommonModule,
 		PaqueteRoutingModule,

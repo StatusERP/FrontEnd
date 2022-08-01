@@ -1,3 +1,5 @@
+import { articuloEffects } from './modules/ci/articulo/store/articulo.effects';
+import { localizacionEffect } from './modules/as/tablas/otros/bodega/store/localizaciones/loc.effects';
 import { bodegaEffect } from './modules/as/tablas/otros/bodega/store/bodega.effects';
 import { globalesCiEffects } from './modules/ci/store/ci.effects';
 import { globalesASEffects } from './modules/as/strore/as.effects';
@@ -43,7 +45,7 @@ import { EffectsModule } from '@ngrx/effects';
 		SnotifyModule,
 		MatFormFieldModule,
 		StoreModule.forRoot(ROOT_REDUCERS),
-		EffectsModule.forRoot([globalesASEffects, globalesCiEffects, bodegaEffect]),
+		EffectsModule.forRoot([globalesASEffects, globalesCiEffects, bodegaEffect, localizacionEffect, articuloEffects]),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
 	],
 	providers: [

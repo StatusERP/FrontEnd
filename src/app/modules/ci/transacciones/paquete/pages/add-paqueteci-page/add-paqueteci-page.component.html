@@ -1,9 +1,13 @@
-<form class="formulario" [formGroup]="formPaquete">
+<form class="formulario" [formGroup]="formPaquete" (ngSubmit)="adicionar()">
 	<div class="formulario_encabezado">
 		<div class="encabezado_consecutivo">
 			<mat-form-field appearance="outline">
 				<mat-label>Consecutivo</mat-label>
-				<mat-select formControlName="codConsecutivo" (selectionChange)="select($event.value)">
+				<mat-select
+					formControlName="codConsecutivo"
+					(selectionChange)="selectConsecutivo($event.value)"
+					[(ngModel)]="seleccion"
+				>
 					<mat-option *ngFor="let consecutivo of consecutivos" [value]="consecutivo.id">
 						{{ consecutivo.codConsecutivo }}
 					</mat-option>
@@ -11,10 +15,11 @@
 			</mat-form-field>
 		</div>
 		<div class="encabezado_descripcion">
-			<mat-form-field appearance="outline">
-				<mat-label>Descripcion</mat-label>
-				<input formControlName="descripcion" type="text" matInput />
-			</mat-form-field>
+			<div *ngFor="let selecion of consecutivoselecionado">
+				<mat-form-field appearance="outline">
+					<input formControlName="descripcion" placeholder="{{ selecion.siguienteConsec }}" matInput readonly />
+				</mat-form-field>
+			</div>
 		</div>
 	</div>
 	<mat-tab-group mat-align-tabs="center" class="container_tab_documento">
@@ -42,19 +47,19 @@
 					<div class="user__usuario">
 						<mat-form-field appearance="outline">
 							<mat-label>Usuario</mat-label>
-							<input type="text" matInput placeholder="Nombre Impuesto" />
+							<input type="text" matInput placeholder="Usuario" readonly />
 						</mat-form-field>
 					</div>
 					<div class="user__nombre">
 						<mat-form-field appearance="outline">
 							<mat-label>Nombre </mat-label>
-							<input type="text" matInput placeholder="Nombre Impuesto" />
+							<input type="text" matInput placeholder="Nombre" readonly />
 						</mat-form-field>
 					</div>
 					<div class="user__fechacreacion">
 						<mat-form-field appearance="outline">
 							<mat-label>Fecha Creacion</mat-label>
-							<input type="text" matInput placeholder="Nombre Impuesto" />
+							<input type="text" matInput placeholder="Fecha Creacion" readonly />
 						</mat-form-field>
 					</div>
 				</div>
@@ -67,23 +72,28 @@
 						<div class="tipo__item1">
 							<mat-form-field appearance="outline">
 								<mat-label>Tipo</mat-label>
-								<mat-select formControlName="ajuste" [(ngModel)]="ajusteSelect">
+								<mat-select
+									formControlName="ajuste"
+									[(ngModel)]="ajusteSelect"
+									(selectionChange)="selectTipo($event.value)"
+								>
 									<mat-option *ngFor="let asjute of ajuste" [value]="asjute.ajusteConfig.id">{{
 										asjute.ajusteConfig.descripcion
 									}}</mat-option>
 								</mat-select>
 							</mat-form-field>
 						</div>
+
 						<div *ngIf="ajusteSelect === 5" class="tipo__item2">
 							<mat-form-field appearance="outline">
 								<mat-label>Fase</mat-label>
-								<input type="text" matInput placeholder="Fase" />
+								<input formControlName="fase" type="text" matInput placeholder="Fase" />
 							</mat-form-field>
 						</div>
 						<div *ngIf="ajusteSelect === 5" class="tipo__item3">
 							<mat-form-field appearance="outline">
 								<mat-label>Ordern Cambio</mat-label>
-								<input type="text" matInput placeholder="Orden Cambio" />
+								<input formControlName="ordenCambio" type="text" matInput placeholder="Orden Cambio" />
 							</mat-form-field>
 						</div>
 					</div>
@@ -91,7 +101,7 @@
 						<div class="ctrocosto__item1">
 							<mat-form-field appearance="outline">
 								<mat-label>Ctro Costo</mat-label>
-								<input formControlName="tipo" type="text" matInput placeholder="Ctro Costo" />
+								<input formControlName="centroCosto" type="text" matInput placeholder="Ctro Costo" />
 							</mat-form-field>
 
 							<mat-checkbox style="padding-left: 10px"></mat-checkbox>
@@ -99,7 +109,7 @@
 						<div class="ctacontable__item2">
 							<mat-form-field appearance="outline">
 								<mat-label>Cta.Contable</mat-label>
-								<input type="text" matInput placeholder="Cta.Contable" />
+								<input type="text" formControlName="cuentaContable" matInput placeholder="Cta.Contable" />
 							</mat-form-field>
 
 							<mat-checkbox style="padding-left: 10px"></mat-checkbox>
@@ -107,12 +117,11 @@
 					</div>
 					<div class="box__bodega">
 						<div class="bodega__codigo">
-							<b>Cargardo .....{{ bodega$ | async | json }}</b>
 							<mat-form-field appearance="outline">
 								<mat-label>bodega</mat-label>
-								<mat-select>
-									<mat-option *ngFor="let bodega of bodega$ | async" [value]="bodega.id">
-										{{ bodega }}
+								<mat-select formControlName="bodegaDestino" (selectionChange)="selectBodegaDestino($event.value)">
+									<mat-option *ngFor="let bodega of datosBodega" [value]="bodega.id">
+										{{ bodega.codBodega }}
 									</mat-option>
 								</mat-select>
 							</mat-form-field>
@@ -120,43 +129,42 @@
 						<div class="bodega__descripcion">
 							<mat-form-field appearance="outline">
 								<mat-label>Descripcion</mat-label>
-								<input type="text" matInput placeholder="Descripcion" />
+								<input type="text" matInput readonly />
 							</mat-form-field>
 						</div>
 						<div class="bodega__localizacion">
 							<mat-form-field appearance="outline">
 								<mat-label>Localizacion</mat-label>
-								<mat-select>
-									<mat-option value="01">Nivel 01</mat-option>
-									<mat-option value="02">Nivel 02</mat-option>
-									<mat-option value="02">Nivel 03</mat-option>
-									<mat-option value="02">Nivel 04</mat-option>
+								<mat-select formControlName="locDestino">
+									<mat-option *ngFor="let localizacion of localizaciones" [value]="localizacion.id">
+										{{ localizacion.codLocalizacion }}-{{ localizacion.descripcion }}
+									</mat-option>
 								</mat-select>
 							</mat-form-field>
 						</div>
 						<div *ngIf="ajusteSelect === 6" class="bodega__codigodestino">
 							<mat-form-field appearance="outline">
 								<mat-label>Bod.Dest</mat-label>
-								<mat-select>
-									<mat-option value="01">Bodega General</mat-option>
-									<mat-option value="02">Bodega Centro</mat-option>
+								<mat-select formControlName="bodega" (selectionChange)="selectBodega($event.value)">
+									<mat-option *ngFor="let bodega of datosBodega" [value]="bodega.id">
+										{{ bodega.codBodega }}
+									</mat-option>
 								</mat-select>
 							</mat-form-field>
 						</div>
 						<div *ngIf="ajusteSelect === 6" class="bodega__descripcion">
 							<mat-form-field appearance="outline">
 								<mat-label>Descripcion</mat-label>
-								<input type="text" matInput placeholder="Descripcion" />
+								<input type="text" matInput placeholder="Descripcion" readonly />
 							</mat-form-field>
 						</div>
 						<div *ngIf="ajusteSelect === 6" class="bodega__localizaciondestino">
 							<mat-form-field appearance="outline">
 								<mat-label>Loc.Destino</mat-label>
-								<mat-select>
-									<mat-option value="01">Nivel 01</mat-option>
-									<mat-option value="02">Nivel 02</mat-option>
-									<mat-option value="02">Nivel 03</mat-option>
-									<mat-option value="02">Nivel 04</mat-option>
+								<mat-select formControlName="localizacion">
+									<mat-option *ngFor="let localizacion of localizaciones" [value]="localizacion.id">
+										{{ localizacion.codLocalizacion }}-{{ localizacion.descripcion }}
+									</mat-option>
 								</mat-select>
 							</mat-form-field>
 						</div>
@@ -168,12 +176,10 @@
 						<div class="articulo__item1">
 							<mat-form-field appearance="outline">
 								<mat-label>Articulo</mat-label>
-								<mat-select>
-									<mat-option value="01">00001-demo 01</mat-option>
-									<mat-option value="02">00002-demo 02</mat-option>
-									<mat-option value="02">00003-demo 03</mat-option>
-									<mat-option value="02">00004-demo 04</mat-option>
-									<mat-option value="02">...Buscar Articulo..</mat-option>
+								<mat-select formControlName="articulo" (selectionChange)="selectArticulo($event.value)">
+									<mat-option *ngFor="let articulo of existenciaBodega" [value]="articulo.articulo.id">
+										{{ articulo.articulo.codArticulo }}-{{ articulo.articulo.descripcion }}
+									</mat-option>
 								</mat-select>
 							</mat-form-field>
 						</div>
@@ -192,13 +198,13 @@
 						<div class="cantidad__item1">
 							<mat-form-field appearance="outline">
 								<mat-label>Cantidad</mat-label>
-								<input type="text" matInput placeholder="Cantidad" />
+								<input formControlName="cantidad" type="number" matInput placeholder="Cantidad" />
 							</mat-form-field>
 						</div>
 						<div class="cantidad__item2">
 							<mat-form-field appearance="outline">
 								<mat-label>Cant.Detalle</mat-label>
-								<input type="text" matInput placeholder="Cantidad Detalle" />
+								<input formControlName="cantidadDetalle" type="number" matInput placeholder="Cantidad Detalle" />
 							</mat-form-field>
 						</div>
 					</div>
@@ -210,30 +216,30 @@
 						<div class="cantidad__item1">
 							<mat-form-field appearance="outline">
 								<mat-label>Tipo</mat-label>
-								<mat-select>
-									<mat-option value="01">Disponible</mat-option>
-									<mat-option value="02">Cuarentena</mat-option>
+								<mat-select formControlName="subtipo">
+									<mat-option *ngFor="let ajusteSubtipo of ajusteSubtipo" [value]="ajusteSubtipo.id">
+										{{ ajusteSubtipo.subTipo }}
+									</mat-option>
 								</mat-select>
 							</mat-form-field>
 						</div>
 						<div class="cantidad__item2">
 							<mat-form-field appearance="outline">
 								<mat-label>S.s. tipo</mat-label>
-								<mat-select>
-									<mat-option value="01">Local</mat-option>
-									<mat-option value="02">Exportacion</mat-option>
+								<mat-select formControlName="subsubtipo">
+									<mat-option *ngFor="let ajusteSubSubtipo of ajusteSubSubTipo" [value]="ajusteSubSubtipo.id">
+										{{ ajusteSubSubtipo.subsubtipo }}
+									</mat-option>
 								</mat-select>
 							</mat-form-field>
 						</div>
 						<div class="cantidad__item3">
 							<mat-form-field appearance="outline">
 								<mat-label>Lote</mat-label>
-								<mat-select>
-									<mat-option value="01">Lote-01</mat-option>
-									<mat-option value="02">Lote-02</mat-option>
-									<mat-option value="02">Lote-03</mat-option>
-									<mat-option value="02">Lote-04</mat-option>
-									<mat-option value="02">...Buscar Articulo..</mat-option>
+								<mat-select formControlName="lote">
+									<mat-option *ngFor="let lote of existenciaLote" [value]="lote.lote.id">
+										{{ lote.lote.codLote }}
+									</mat-option>
 									<mat-option value="02">Nuevo Lote</mat-option>
 								</mat-select>
 							</mat-form-field>
@@ -250,8 +256,8 @@
 							<div class="costo__item">
 								<div class="costo__item1">
 									<mat-form-field appearance="outline">
-										<mat-label>Fical Local</mat-label>
-										<input type="text" matInput placeholder="Fiscal Local" />
+										<mat-label>Costo Fical Local</mat-label>
+										<input formControlName="costofiscallocal" type="number" matInput placeholder="Fiscal Local" />
 									</mat-form-field>
 								</div>
 							</div>
@@ -264,8 +270,8 @@
 							<div class="costo__item">
 								<div class="costo__item2">
 									<mat-form-field appearance="outline">
-										<mat-label>Fical Dólar</mat-label>
-										<input type="text" matInput placeholder="Fiscal Dólar" />
+										<mat-label>Costo Fical Dólar</mat-label>
+										<input formControlName="costofiscaldolar" type="number" matInput placeholder="Fiscal Dólar" />
 									</mat-form-field>
 								</div>
 							</div>
@@ -279,13 +285,23 @@
 						<div class="cantidad__item1">
 							<mat-form-field appearance="outline">
 								<mat-label>Precio Unitario Local</mat-label>
-								<input type="text" matInput placeholder="Precio Unitario Local" />
+								<input
+									formControlName="precioUnitarioLocal"
+									type="number"
+									matInput
+									placeholder="Precio Unitario Local"
+								/>
 							</mat-form-field>
 						</div>
 						<div class="cantidad__item2">
 							<mat-form-field appearance="outline">
 								<mat-label>Precio Unitario Dólar</mat-label>
-								<input type="text" matInput placeholder="Precio Unitario Dólar" />
+								<input
+									formControlName="precioUnitarioDolar"
+									type="number"
+									matInput
+									placeholder="Precio Unitario Dólar"
+								/>
 							</mat-form-field>
 						</div>
 						<div class="butonguardar">

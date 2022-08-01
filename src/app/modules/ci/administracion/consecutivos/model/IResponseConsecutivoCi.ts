@@ -3,7 +3,7 @@ export interface IResponseConsecutivoCi {
 	UltimoUsuario: string;
 	descripcion: string;
 	Mascara: string;
-	SiguienteConsec: string;
+	siguienteConsec: string;
 	Editable: string;
 	MultiplesTrans: string;
 	FormatoImp: string;

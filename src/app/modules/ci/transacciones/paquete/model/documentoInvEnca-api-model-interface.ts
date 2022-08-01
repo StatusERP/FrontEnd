@@ -1,3 +1,10 @@
+export interface ICrearDocumnetoInvEnca {
+	documentoInv: string;
+	referencia: string;
+	fechaDocumento: string;
+	consecutivoId: number;
+	paqueteInventarioId: number;
+}
 export interface IConsultaDocumnetoInvEnca {
 	id: number;
 	paqueteInventario: string;
@@ -5,7 +12,7 @@ export interface IConsultaDocumnetoInvEnca {
 	referencia: string;
 	fechaHoraCreacion: string;
 	fechaDocumento: string;
-	selecionado: string;
+	selecionado: boolean;
 	usuario: string;
 	mensajeSistema: string;
 	usuarioApro: string;

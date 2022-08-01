@@ -4,5 +4,5 @@ import { AppState } from '@app/config/app.state';
 import { createSelector } from '@ngrx/store';
 
 export const selectBodegaFeature = (state: AppState) => state.bodega;
-export const selectListBodega = createSelector(selectBodegaFeature, (state: IBodega_State) => state.datos);
-export const selectLoading = createSelector(selectBodegaFeature, (state: IBodega_State) => state.loading);
+export const selectListBodega = createSelector(selectBodegaFeature, (state: IBodega_State) => state.bodega);
+export const selectBodegaLoading = createSelector(selectBodegaFeature, (state: IBodega_State) => state.loading);

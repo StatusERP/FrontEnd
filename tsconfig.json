@@ -10,7 +10,9 @@
       "@interceptors/*":["src/app/interceptors"],
       "@serviceLocal/*":["src/app/services/local"],
       "@shared/*":["src/app/shared"],
-      "@enviroment/*":["src/app/environments"]
+      "@enviroment/*":["src/app/environments"],
+      "@as/*":["src/app/modules/as"],
+      "@ci/*":["src/app/modules/ci"],
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { IResponseCategoriaArticulo } from './../../../../as/tablas/categorias/categoriaarticulo/service/categoria-articulo-api-model-interface';
 import { CRUD_METHOD } from './../../../../../util/enums';
-import { IResponseArticulo, IRequestCreateArticulo } from './../../service/articulo-api-model-interface';
+import { IRequestCreateArticulo } from '../../model/articulo-api-model-interface';
 import { ImpuestoModelConsulta } from './../../../../as/tablas/tipos/codigo-impuesto/model/impuesto-model';
 import { IResponseUnidadMedida } from './../../../../as/tablas/otros/unidad-medida/service/unidad-medida-api-model-interface';
 import { IConsultaPais } from './../../../../as/tablas/areas/pais/service/pais-api-model-interface';
@@ -175,7 +175,7 @@ export class AddArticuloPageComponent implements OnInit {
 		});
 		if (this.ediData) {
 			this.actionBtn = 'Editar';
-			console.log(this.ediData);
+
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			this.formGroup.controls['codArticulo'].setValue(this.ediData.codArticulo);
 			this.formGroup.controls['codArticulo'].disable();

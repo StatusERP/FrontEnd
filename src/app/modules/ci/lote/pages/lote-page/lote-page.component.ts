@@ -38,12 +38,13 @@ export class LotePageComponent implements OnInit, AfterViewInit {
 		this.listLote.sort = this.sort;
 	}
 	ngOnInit(): void {
-		this._loadLote(1, 100000);
+		this._loadLote();
 	}
-	private _loadLote(page: number, rows: number): void {
-		this._loteApiService.getLote(page, rows).subscribe({
+	private _loadLote(): void {
+		this._loteApiService.getLote().subscribe({
 			next: (response) => {
 				this.listLote.data = response.result;
+				console.log(response);
 			},
 			error: () => {
 				console.log('erro');
@@ -66,7 +67,7 @@ export class LotePageComponent implements OnInit, AfterViewInit {
 						this._loteApiService.deleteLote(id).subscribe((response) => {
 							if (response && response.success) {
 								this._snotifyService.info('El registro ha sido Eliminado');
-								this._loadLote(1, 100000);
+								this._loadLote();
 							}
 						});
 					}

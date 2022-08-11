@@ -4,10 +4,12 @@ export interface ICrearDocumnetoInvEnca {
 	fechaDocumento: string;
 	consecutivoId: number;
 	paqueteInventarioId: number;
+	usuario: string;
+	mensajeSistema: string;
 }
 export interface IConsultaDocumnetoInvEnca {
 	id: number;
-	paqueteInventario: string;
+	paqueteInventarioId: number;
 	documentoInv: string;
 	referencia: string;
 	fechaHoraCreacion: string;
@@ -19,4 +21,7 @@ export interface IConsultaDocumnetoInvEnca {
 	fechaHoraAprob: string;
 	aprobado: boolean;
 	consecutivoId: number;
+	consecutivoInv: {
+		codConsecutivo: string;
+	};
 }

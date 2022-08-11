@@ -1,3 +1,4 @@
+/* eslint-disable no-self-assign */
 import { IConsultaPaqueteInvApiModel, ICreatePaqueteInv } from './../model/paqueteInv-api-model-interface';
 import { IConsultaDocumnetoInvEnca } from './../model/documentoInvEnca-api-model-interface';
 import { IResponse } from './../../../../../shared/api-models-base-interface';
@@ -7,17 +8,17 @@ import { environment } from './../../../../../../environments/environment';
 import { Injectable } from '@angular/core';
 
 const URL_DOCUMENTOINVENC = environment.host + '/CI/DocumentoInvEnc';
-const URL_DOCUMENTOINVDET = environment.host + '/CI/DocumentoInvDet';
+//const URL_DOCUMENTOINVDET = environment.host + '/CI/DocumentoInvDet';
 const URL_PAQUETEINV = environment.host + '/CI/PaqueteInv';
 @Injectable({
 	providedIn: 'root'
 })
 export class PaqueteciApiService {
 	constructor(private _hhtpClient: HttpClient) {}
-	getDocumnetoInvEnc(page?: number, rows?: number): Observable<IResponse<IConsultaDocumnetoInvEnca[]>> {
+	getDocumnetoInvEnc(): Observable<IResponse<IConsultaDocumnetoInvEnca[]>> {
 		let url = URL_DOCUMENTOINVENC;
 		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-		url = url + '?page=' + page + '&rows=' + rows;
+		url = url;
 		return this._hhtpClient.get<IResponse<IConsultaDocumnetoInvEnca[]>>(url);
 	}
 	getPaqueteInv(page?: number, rows?: number): Observable<IResponse<IConsultaPaqueteInvApiModel[]>> {

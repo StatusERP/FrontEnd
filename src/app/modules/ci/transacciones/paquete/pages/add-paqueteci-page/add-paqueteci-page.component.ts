@@ -1,3 +1,15 @@
+import { ICrearDocumnetoInvDet } from './../../model/documentoInvDet-api-model-interface';
+import { SnotifyService, SnotifyPosition } from 'ng-snotify';
+
+import { DocumentoInvEncaApiService } from './../../service/documentoInvEnca-api.service';
+import { DocumentoInvDetApiService } from './../../service/documentoInvDet-api.service';
+/* eslint-disable ngrx/avoid-dispatching-multiple-actions-sequentially */
+import { loadLocalizacionAccion } from './../../../../../as/tablas/otros/bodega/store/localizaciones/loc.actions';
+import { loadBodegaAccion } from './../../../../../as/tablas/otros/bodega/store/bodega.actions';
+import { loadArticuloAccion } from './../../../../articulo/store/articulo.actions';
+import { loadGlobalesCI } from './../../../../store/ci.actions';
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ICrearDocumnetoInvEnca } from './../../model/documentoInvEnca-api-model-interface';
 import { IResponseExistenciaLote } from './../../../../lote/model/existenciaLote-interface';
 import { ExistenciaLoteApiService } from './../../../../lote/service/existenciaLote-api.service';
@@ -30,7 +42,7 @@ import {
 } from './../../../../administracion/consecutivos/model/IResponseConsecutivoCi';
 import { ConsecutivoApiService } from './../../../../administracion/consecutivos/service/consecutivo-api.service';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
 	selector: 'app-add-paqueteci-page',
@@ -46,8 +58,13 @@ export class AddPaqueteciPageComponent implements OnInit {
 		private _ajusteSubSubTipoApiService: AjusteSubSubTipoApiService,
 		private _existenciaBodegaApiService: ExistenciaBodegaApiService,
 		private _existenciaLoteApiService: ExistenciaLoteApiService,
+		private _documentoInvDetApiService: DocumentoInvDetApiService,
+		private _DocumentoInvEncaApiService: DocumentoInvEncaApiService,
+		private _snotifyService: SnotifyService,
 		// eslint-disable-next-line ngrx/no-typed-global-store
-		private store: Store<AppState>
+		private store: Store<AppState>,
+		@Inject(MAT_DIALOG_DATA) public editData: any,
+		private _dialogRef: MatDialogRef<AddPaqueteciPageComponent>
 	) {
 		this._loadFormulario();
 	}
@@ -60,6 +77,10 @@ export class AddPaqueteciPageComponent implements OnInit {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 
 		setTimeout(() => {
+			this.store.dispatch(loadGlobalesCI());
+			this.store.dispatch(loadArticuloAccion());
+			this.store.dispatch(loadBodegaAccion());
+			this.store.dispatch(loadLocalizacionAccion());
 			this._loadConsecutivo(1, 10000);
 			this.bodega$ = this.store.select(selectListBodega);
 			this.bodega$.subscribe((res) => {
@@ -80,16 +101,21 @@ export class AddPaqueteciPageComponent implements OnInit {
 	localizaciones: IResponseLocaizacionBodega[] = [];
 	locDestino: IResponseLocaizacionBodega[] = [];
 	existenciaBodega: IResponseConsultarArticuloBodega[] = [];
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	ArrayDetalle: ICrearDocumnetoInvDet[] = [];
 	idBodega!: number;
+	documentoInv!: string;
+	codAjusteConfig!: string;
 	existenciaLote: IResponseExistenciaLote[] = [];
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	seleccion: any;
 	// eslint-disable-next-line @typescript-eslint/ban-types
 	ajusteSelect: Number | undefined;
+	linea!: number;
+	idDocumentoEnca!: number;
 	private _loadFormulario(): void {
 		this.formPaquete = this._formBuilder.group({
 			codConsecutivo: ['', Validators.required],
-
 			descripcion: [''],
 			fecha: [null, Validators.required],
 			referencia: [null, Validators.required],
@@ -100,6 +126,8 @@ export class AddPaqueteciPageComponent implements OnInit {
 			cuentaContable: [null],
 			bodegaDestino: ['', Validators.required],
 			locDestino: ['', Validators.required],
+			bodega: [null],
+			localizacion: [null],
 			articulo: ['', Validators.required],
 			cantidad: [0.0, Validators.required],
 			cantidadDetalle: [0.0, Validators.required],
@@ -121,6 +149,7 @@ export class AddPaqueteciPageComponent implements OnInit {
 	}
 
 	selectTipo(id: number): void {
+		console.log(id);
 		/* consultamos ajusteSubtipo */
 		this._ajusteSubtipoApiService.getAjusteSubTipo().subscribe({
 			next: (response) => {
@@ -195,7 +224,6 @@ export class AddPaqueteciPageComponent implements OnInit {
 	}
 	/* consultamos lote relacioando con articulo,bodega  y localizacion */
 	selectArticulo(id: number): void {
-		console.log(id);
 		this._existenciaLoteApiService.getexitenicaLote().subscribe({
 			next: (response) => {
 				const existenciaLoteNew = response.result;
@@ -206,35 +234,160 @@ export class AddPaqueteciPageComponent implements OnInit {
 						f.localizacion.id == (this.locDestinoField.value as number)
 				);
 
-				console.log('Loteexistencia', _existenciaLoteNew);
 				this.existenciaLote = _existenciaLoteNew;
 			}
 		});
 	}
+	guardar(): void {
+		//this.addArrayDetalle();
+		this.adicionar();
+	}
+	//Guardamos en una array detalle de transaccion
+	addArrayDetalle(): void {
+		for (let i = 0; i < this.consecutivoselecionado.length; i++) {
+			const element = this.consecutivoselecionado[i];
+			this.documentoInv = element.siguienteConsec;
+		}
+		for (let index = 0; index < this.ajuste.length; index++) {
+			const element = this.ajuste[index];
+			this.codAjusteConfig = element.ajusteConfig.ajusteBase;
+		}
 
+		if (this.ajusteSelect != 6) {
+			const c: any = null; // Ok
+			this.ArrayDetalle.push({
+				documentoInvEncId: 1,
+				lineadocinv: 0,
+				tipo: this.codAjusteConfig,
+				subtipo: this.subTipoField.value as string,
+				subsubtipo: this.subsubTipoField.value as string,
+				cantidad: this.cantidadField.value as number,
+				costototaldolar: this.costofiscalDolarField.value as number,
+				costototallocal: this.costofiscallocalField.value as number,
+				preciototaldolar: this.precioUnitarioDolarField.value as number,
+				preciototallocal: this.precioUnitarioLocalField.value as number,
+				consecutivoId: this.codConsecutivoField.value as number,
+				ajusteconfigId: this.ajusteField.value as number,
+				articuloid: this.articuloField.value as number,
+				bodegadestinoid: c,
+				locdestinoid: c,
+				bodegaid: this.bodegaDestinoField.value as number,
+				localizacionid: this.locDestinoField.value as number,
+				centrocuentaid: c,
+				loteId: this.loteField.value as number,
+				paqueteinventarioid: this.editData,
+				tipoPagoId: 1
+			});
+		}
+		console.log(this.ArrayDetalle);
+	}
 	//Guardamos
 	adicionar(): void {
 		/* validamos que los campos esten llenos segun requerido    */
-		console.log('entramos a adicionar');
-		console.log(this.formPaquete);
+
+		for (let i = 0; i < this.consecutivoselecionado.length; i++) {
+			const element = this.consecutivoselecionado[i];
+			this.documentoInv = element.siguienteConsec;
+		}
+
 		if (this.formPaquete.invalid) {
 			return;
 		}
 		/* Enviamos encabezado a la tabla documentoInvEnca */
 		const sendDocumentoInvEnca: ICrearDocumnetoInvEnca = {
-			documentoInv: 'doc-255',
+			documentoInv: this.documentoInv,
 			referencia: this.referenciaField.value as string,
 			fechaDocumento: this.fechaField.value as string,
-			consecutivoId: 1,
-			paqueteInventarioId: 2
+			consecutivoId: this.codConsecutivoField.value as number,
+			paqueteInventarioId: this.editData,
+			usuario: 'crv@gmail.com',
+			mensajeSistema: ''
 		};
 		this._save(sendDocumentoInvEnca);
 	}
 
 	_save(documentoInvEnca: ICrearDocumnetoInvEnca): void {
-		console.log(documentoInvEnca);
+		if (this.idDocumentoEnca == null) {
+			this.linea = 0;
+			this.linea += 1;
+			console.log('Primera vez para encabezado y detalle', this.linea);
+			this._DocumentoInvEncaApiService.create(documentoInvEnca).subscribe({
+				next: (response) => {
+					if (response && response.success) {
+						this.idDocumentoEnca = response.result;
+						this._adicionarDetalle();
+						this._snotifyService.info('El registro se guardo sin problema');
+						//	this._dialogRef.close('save');
+					} else {
+						this._snotifyService.error(response.errors[0], { position: SnotifyPosition.rightTop });
+					}
+				},
+				error: (e) => {
+					console.log(e);
+				}
+			});
+		} else {
+			this.linea = this.linea + 1;
+			this._adicionarDetalle();
+		}
 	}
 
+	_adicionarDetalle(): void {
+		for (let i = 0; i < this.consecutivoselecionado.length; i++) {
+			const element = this.consecutivoselecionado[i];
+			this.documentoInv = element.siguienteConsec;
+		}
+		for (let index = 0; index < this.ajuste.length; index++) {
+			const element = this.ajuste[index];
+			this.codAjusteConfig = element.ajusteConfig.ajusteBase;
+		}
+
+		if (this.ajusteSelect != 6) {
+			const c: any = null; // Ok
+			console.log(this.linea);
+			const data: ICrearDocumnetoInvDet = {
+				documentoInvEncId: this.idDocumentoEnca,
+				lineadocinv: this.linea,
+				tipo: this.codAjusteConfig,
+				subtipo: this.subTipoField.value as string,
+				subsubtipo: this.subsubTipoField.value as string,
+				cantidad: this.cantidadField.value as number,
+				costototaldolar: this.costofiscalDolarField.value as number,
+				costototallocal: this.costofiscallocalField.value as number,
+				preciototaldolar: this.precioUnitarioDolarField.value as number,
+				preciototallocal: this.precioUnitarioLocalField.value as number,
+				consecutivoId: this.codConsecutivoField.value as number,
+				ajusteconfigId: this.ajusteField.value as number,
+				articuloid: this.articuloField.value as number,
+				bodegadestinoid: c,
+				locdestinoid: c,
+				bodegaid: this.bodegaDestinoField.value as number,
+				localizacionid: this.locDestinoField.value as number,
+				centrocuentaid: c,
+				loteId: this.loteField.value as number,
+				paqueteinventarioid: this.editData,
+				tipoPagoId: 1
+			};
+			this._savedetalle(data);
+		}
+	}
+
+	_savedetalle(datos: ICrearDocumnetoInvDet): void {
+		console.log('Guardar detalle', datos);
+		this._documentoInvDetApiService.create(datos).subscribe({
+			next: (response) => {
+				if (response && response.success) {
+					//this.formPaquete.reset();
+					this._snotifyService.info('El registro se guardo sin problema');
+				} else {
+					this._snotifyService.error(response.errors[0], { position: SnotifyPosition.rightTop });
+				}
+			},
+			error: (e) => {
+				console.log(e);
+			}
+		});
+	}
 	get bodegaField(): AbstractControl {
 		return this.formPaquete.get('bodega')!;
 	}
@@ -286,7 +439,7 @@ export class AddPaqueteciPageComponent implements OnInit {
 		return this.formPaquete.get('articulo')!;
 	}
 	get cantidadField(): AbstractControl {
-		return this.formPaquete.get('cantiad')!;
+		return this.formPaquete.get('cantidad')!;
 	}
 
 	get cantidadDetalleField(): AbstractControl {

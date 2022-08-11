@@ -1,5 +1,5 @@
 export interface ICrearDocumnetoInvDet {
-	documentoInv: string;
+	documentoInvEncId: number;
 	lineadocinv: number;
 	tipo: string;
 	subtipo: string;
@@ -9,20 +9,15 @@ export interface ICrearDocumnetoInvDet {
 	costototaldolar: number;
 	preciototallocal: number;
 	preciototaldolar: number;
-	secuencia: string;
-	unidaddistribucionId: number;
 	consecutivoId: number;
-	cai: string;
 	ajusteconfigId: number;
 	articuloid: number;
 	bodegadestinoid: number;
 	bodegaid: number;
 	centrocuentaid: number;
-	doctributarioid: number;
 	locdestinoid: number;
 	localizacionid: number;
 	loteId: number;
-	tipoOperacionId: number;
-	tipopagoid: number;
 	paqueteinventarioid: number;
+	tipoPagoId: number;
 }

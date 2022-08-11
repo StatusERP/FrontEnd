@@ -17,7 +17,12 @@
 		<div class="encabezado_descripcion">
 			<div *ngFor="let selecion of consecutivoselecionado">
 				<mat-form-field appearance="outline">
-					<input formControlName="descripcion" placeholder="{{ selecion.siguienteConsec }}" matInput readonly />
+					<input
+						formControlName="descripcion"
+						value="{{ selecion.siguienteConsec }}"
+						placeholder="{{ selecion.siguienteConsec }}"
+						matInput
+					/>
 				</mat-form-field>
 			</div>
 		</div>
@@ -198,7 +203,7 @@
 						<div class="cantidad__item1">
 							<mat-form-field appearance="outline">
 								<mat-label>Cantidad</mat-label>
-								<input formControlName="cantidad" type="number" matInput placeholder="Cantidad" />
+								<input type="text" formControlName="cantidad" appKzMaskCurrency matInput placeholder="Cantidad" />
 							</mat-form-field>
 						</div>
 						<div class="cantidad__item2">
@@ -217,7 +222,7 @@
 							<mat-form-field appearance="outline">
 								<mat-label>Tipo</mat-label>
 								<mat-select formControlName="subtipo">
-									<mat-option *ngFor="let ajusteSubtipo of ajusteSubtipo" [value]="ajusteSubtipo.id">
+									<mat-option *ngFor="let ajusteSubtipo of ajusteSubtipo" [value]="ajusteSubtipo.subTipo">
 										{{ ajusteSubtipo.subTipo }}
 									</mat-option>
 								</mat-select>
@@ -227,7 +232,7 @@
 							<mat-form-field appearance="outline">
 								<mat-label>S.s. tipo</mat-label>
 								<mat-select formControlName="subsubtipo">
-									<mat-option *ngFor="let ajusteSubSubtipo of ajusteSubSubTipo" [value]="ajusteSubSubtipo.id">
+									<mat-option *ngFor="let ajusteSubSubtipo of ajusteSubSubTipo" [value]="ajusteSubSubtipo.subsubtipo">
 										{{ ajusteSubSubtipo.subsubtipo }}
 									</mat-option>
 								</mat-select>
@@ -257,7 +262,14 @@
 								<div class="costo__item1">
 									<mat-form-field appearance="outline">
 										<mat-label>Costo Fical Local</mat-label>
-										<input formControlName="costofiscallocal" type="number" matInput placeholder="Fiscal Local" />
+
+										<input
+											value="number"
+											formControlName="costofiscallocal"
+											type="number"
+											matInput
+											placeholder="Fiscal Local"
+										/>
 									</mat-form-field>
 								</div>
 							</div>
@@ -305,7 +317,7 @@
 							</mat-form-field>
 						</div>
 						<div class="butonguardar">
-							<button mat-raised-button color="warn">Guardar Linea</button>
+							<button mat-raised-button color="warn" type="button" (click)="guardar()">Guardar Linea</button>
 						</div>
 					</div>
 				</div>
@@ -328,7 +340,7 @@
 		</mat-tab>
 	</mat-tab-group>
 	<div mat-dialog-actions [align]="'end'">
-		<button mat-raised-button color="warn">{{ actionBtn }}</button>
+		<button mat-raised-button type="button" color="warn">{{ actionBtn }}</button>
 		<button mat-raised-button color="basic" mat-dialog-close>Cerrar</button>
 	</div>
 </form>

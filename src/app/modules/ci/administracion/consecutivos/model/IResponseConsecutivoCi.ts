@@ -19,7 +19,7 @@ export interface IResponseConsInvAjCon {
 	id: number;
 	consecutivoInvId: number;
 	ajusteConfigId: number;
-	ajusteConfig: { ajusteBase: string; descripcion: string; id: number };
+	ajusteConfig: { codAjusteConfig: string; ajusteBase: string; descripcion: string; id: number };
 }
 export interface ICreateConsInvAjCon {
 	consecutivoInvId: number;

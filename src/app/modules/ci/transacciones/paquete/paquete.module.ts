@@ -1,3 +1,5 @@
+import { KzMaskCurrencyDirective } from './../../../../shared/directivas/kz-mask-currency.directive';
+import { KzMaskDirective } from './../../../../shared/directivas/kz-mask.directive';
 import { ObjToArrayPipe } from './../../administracion/transacciones-configurables/pipe/objToArray.pipe';
 import { AddPaqueteUsuarioPageComponent } from './pages/add-paqueteUsuario-page/add-paqueteUsuario-page.component';
 import { AddPaqueteciPageComponent } from './pages/add-paqueteci-page/add-paqueteci-page.component';
@@ -35,7 +37,9 @@ import { CtacontableComponent } from './componentes/ctacontable/ctacontable.comp
 		SubsubtipoComponent,
 		TipoComponent,
 		CtrocostoComponent,
-		CtacontableComponent
+		CtacontableComponent,
+		KzMaskDirective,
+		KzMaskCurrencyDirective
 	],
 	imports: [
 		CommonModule,

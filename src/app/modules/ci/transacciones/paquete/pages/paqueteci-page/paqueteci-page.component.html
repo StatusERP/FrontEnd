@@ -3,7 +3,7 @@
 		<div id="content">
 			<mat-form-field appearance="outline">
 				<mat-label>Paquete Usuario</mat-label>
-				<mat-select [(value)]="selected">
+				<mat-select [(value)]="selected" (selectionChange)="selectPaquete($event.value)">
 					<mat-option *ngFor="let paquete of paquetes" [value]="paquete.id">
 						{{ paquete.codPaqueteInv }}-{{ paquete.descripcion }}
 					</mat-option>
@@ -17,7 +17,7 @@
 </form>
 
 <div class="search-div" fxLayout="row" fxLayoutAlign="end end">
-	<button *ngIf="selected !== ''" mat-raised-button color="warn" (click)="openDialog()">
+	<button *ngIf="selected !== ''" mat-raised-button color="warn" (click)="openDialog(selected)">
 		<mat-icon>add</mat-icon>Crear
 	</button>
 </div>
@@ -31,24 +31,24 @@
 	<mat-table [dataSource]="listDoc" matSort>
 		<ng-container matColumnDef="Consecutivo">
 			<mat-header-cell *matHeaderCellDef mat-sort-header>Consecutivo</mat-header-cell>
-			<mat-cell *matCellDef="let element">{{ element.codArticulo }}</mat-cell>
+			<mat-cell *matCellDef="let element">{{ element.documentoInv }}</mat-cell>
 		</ng-container>
 		<ng-container matColumnDef="Documento">
 			<mat-header-cell *matHeaderCellDef mat-sort-header>Documento</mat-header-cell>
-			<mat-cell *matCellDef="let element">{{ element.descripcion }}</mat-cell>
+			<mat-cell *matCellDef="let element">{{ element.consecutivoInv.codConsecutivo }}</mat-cell>
 		</ng-container>
 		<ng-container matColumnDef="FechaDoc">
 			<mat-header-cell *matHeaderCellDef mat-sort-header>Fecha-Doc</mat-header-cell>
 
-			<mat-cell *matCellDef="let element">{{ element.tipo }}</mat-cell>
+			<mat-cell *matCellDef="let element">{{ element.fechaDocumento | date: 'dd/MM/yyyy' }}</mat-cell>
 		</ng-container>
 		<ng-container matColumnDef="Referencia">
 			<mat-header-cell *matHeaderCellDef mat-sort-header>Referencia</mat-header-cell>
-			<mat-cell *matCellDef="let element">{{ element.tipo }}</mat-cell>
+			<mat-cell *matCellDef="let element">{{ element.referencia }}</mat-cell>
 		</ng-container>
 		<ng-container matColumnDef="Usuario">
 			<mat-header-cell *matHeaderCellDef mat-sort-header>Usuario</mat-header-cell>
-			<mat-cell *matCellDef="let element">{{ element.tipo }}</mat-cell>
+			<mat-cell *matCellDef="let element">{{ element.usuario }}</mat-cell>
 		</ng-container>
 		<ng-container matColumnDef="Estatus">
 			<mat-header-cell *matHeaderCellDef mat-sort-header>Estatus</mat-header-cell>
@@ -59,6 +59,9 @@
 		<ng-container matColumnDef="actions">
 			<mat-header-cell *matHeaderCellDef></mat-header-cell>
 			<mat-cell *matCellDef="let element">
+				<button mat-icon-button (click)="clickAplicar(element)">
+					<mat-icon>approval</mat-icon>
+				</button>
 				<button mat-icon-button (click)="clickEdit(element)">
 					<mat-icon>edit</mat-icon>
 				</button>

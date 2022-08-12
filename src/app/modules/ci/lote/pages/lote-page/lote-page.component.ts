@@ -1,3 +1,4 @@
+import { EditLotePageComponent } from './../edit-lote-page/edit-lote-page.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { IResponseLote } from './../../model/lote-interface';
@@ -20,8 +21,8 @@ export class LotePageComponent implements OnInit, AfterViewInit {
 	) {}
 	listLote = new MatTableDataSource<IResponseLote>();
 	displayedColumns: string[] = [
-		'Articulo',
 		'Lote',
+		'Articulo',
 		'Descripcion',
 		'Perecedero',
 		'Vencimiento',
@@ -54,6 +55,28 @@ export class LotePageComponent implements OnInit, AfterViewInit {
 	applyFilter(event: Event): void {
 		const filterValue = (event.target as HTMLInputElement).value;
 		this.listLote.filter = filterValue.trim().toLowerCase();
+	}
+
+	clickAplicar(datos: number): void {
+		console.log(datos);
+	}
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	clickEdit(datos: any): void {
+		console.log(datos);
+		this._dialog
+			.open(EditLotePageComponent, {
+				width: '30%',
+				autoFocus: false,
+				maxHeight: '90vh',
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+				data: datos
+			})
+			.afterClosed()
+			.subscribe((val) => {
+				if (val === 'sava') {
+					this._loadLote();
+				}
+			});
 	}
 	clickDelete(id: number): void {
 		this._snotifyService.confirm('Esta seguro de eliminar el registro?', {

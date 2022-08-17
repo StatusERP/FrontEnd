@@ -245,9 +245,11 @@
 									<mat-option *ngFor="let lote of existenciaLote" [value]="lote.lote.id">
 										{{ lote.lote.codLote }}
 									</mat-option>
-									<mat-option value="02">Nuevo Lote</mat-option>
 								</mat-select>
 							</mat-form-field>
+						</div>
+						<div>
+							<button mat-raised-button type="button" color="warn" (click)="lote()">Lote</button>
 						</div>
 					</div>
 				</div>

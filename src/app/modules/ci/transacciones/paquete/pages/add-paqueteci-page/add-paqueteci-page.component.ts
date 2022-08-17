@@ -1,3 +1,4 @@
+import { AddLotePageComponent } from './../../../../lote/add-lote-page/add-lote-page.component';
 import { ICrearDocumnetoInvDet } from './../../model/documentoInvDet-api-model-interface';
 import { SnotifyService, SnotifyPosition } from 'ng-snotify';
 
@@ -9,7 +10,7 @@ import { loadBodegaAccion } from './../../../../../as/tablas/otros/bodega/store/
 import { loadArticuloAccion } from './../../../../articulo/store/articulo.actions';
 import { loadGlobalesCI } from './../../../../store/ci.actions';
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { ICrearDocumnetoInvEnca } from './../../model/documentoInvEnca-api-model-interface';
 import { IResponseExistenciaLote } from './../../../../lote/model/existenciaLote-interface';
 import { ExistenciaLoteApiService } from './../../../../lote/service/existenciaLote-api.service';
@@ -64,7 +65,8 @@ export class AddPaqueteciPageComponent implements OnInit {
 		// eslint-disable-next-line ngrx/no-typed-global-store
 		private store: Store<AppState>,
 		@Inject(MAT_DIALOG_DATA) public editData: any,
-		private _dialogRef: MatDialogRef<AddPaqueteciPageComponent>
+		private _dialogRef: MatDialogRef<AddPaqueteciPageComponent>,
+		private _matDialog: MatDialog
 	) {
 		this._loadFormulario();
 	}
@@ -332,6 +334,13 @@ export class AddPaqueteciPageComponent implements OnInit {
 		}
 	}
 
+	lote(): void {
+		this._matDialog.open(AddLotePageComponent, {
+			width: '30%',
+			autoFocus: true,
+			maxHeight: '90vh'
+		});
+	}
 	_adicionarDetalle(): void {
 		for (let i = 0; i < this.consecutivoselecionado.length; i++) {
 			const element = this.consecutivoselecionado[i];

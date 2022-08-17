@@ -22,6 +22,7 @@ import { SubsubtipoComponent } from './componentes/subsubtipo/subsubtipo.compone
 import { TipoComponent } from './componentes/tipo/tipo.component';
 import { CtrocostoComponent } from './componentes/ctrocosto/ctrocosto.component';
 import { CtacontableComponent } from './componentes/ctacontable/ctacontable.component';
+import { AddLotePageComponent } from './pages/add-lote-page/add-lote-page.component';
 
 @NgModule({
 	declarations: [
@@ -39,7 +40,8 @@ import { CtacontableComponent } from './componentes/ctacontable/ctacontable.comp
 		CtrocostoComponent,
 		CtacontableComponent,
 		KzMaskDirective,
-		KzMaskCurrencyDirective
+		KzMaskCurrencyDirective,
+		AddLotePageComponent
 	],
 	imports: [
 		CommonModule,

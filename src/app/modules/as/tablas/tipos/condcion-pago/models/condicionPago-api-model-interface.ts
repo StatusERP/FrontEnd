@@ -1,5 +1,5 @@
 export interface ICondicionPagoCreate {
-	codCondiconPago: string;
+	codCondicionPago: string;
 	descripcion: string;
 	diasNeto: number;
 	pagosParciales: boolean;
@@ -25,8 +25,7 @@ export interface ICondicionPagoConsulta {
 	activa: boolean;
 }
 export interface ICondicionPagoEdit {
-	id: number;
-	codCondiconPago: string;
+	codCondicionPago: string;
 	descripcion: string;
 	diasNeto: number;
 	pagosParciales: boolean;

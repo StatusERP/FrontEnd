@@ -17,9 +17,18 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { TreeComponent } from './components/tree/tree.component';
 import { TreeCiComponent } from './components/tree/ci/tree-ci/tree-ci.component';
+import { SeparadorDirective } from './directivas/separador.directive';
 
 @NgModule({
-	declarations: [AreaComponent, HeaderComponent, FooterComponent, SidebarComponent, TreeComponent, TreeCiComponent],
+	declarations: [
+		AreaComponent,
+		HeaderComponent,
+		FooterComponent,
+		SidebarComponent,
+		TreeComponent,
+		TreeCiComponent,
+		SeparadorDirective
+	],
 	imports: [
 		MatListModule,
 		MatMenuModule,

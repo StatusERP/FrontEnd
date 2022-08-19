@@ -100,7 +100,6 @@ export class AddcondicionpagoPageComponent {
 			plazo: ['']
 		});
 		if (this.editData) {
-			console.log(this.editData);
 			this.actionBtn = 'Editar';
 			this.codicionPagoForm.controls['codCondicionPago'].setValue(this.editData.codCondicionPago);
 			this.codicionPagoForm.controls['codCondicionPago'].disable();

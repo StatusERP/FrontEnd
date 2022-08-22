@@ -353,7 +353,6 @@ export class AddArticuloPageComponent implements OnInit {
 			};
 			this._save(sendArticulo);
 		} else {
-			console.log(this.ediData);
 			this.actionBtn = 'Editar';
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			this.formGroup.controls['codArticulo'].setValue(this.ediData.codArticulo);

@@ -46,6 +46,7 @@ export class CondicionpagoPageComponent implements OnInit, AfterViewInit {
 	private _loadCondicionPago(page: number, rows: number): void {
 		this._condicionPagoApiService.getCondicionPago(page, rows).subscribe({
 			next: (response) => {
+				console.log(response.result);
 				this.lista.data = response.result;
 			},
 			error: () => {

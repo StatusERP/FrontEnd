@@ -1,10 +1,10 @@
 export interface IResponseNivelPrecio {
 	Id: number;
-	codNivelprecio: string;
+	codNivelPrecio: string;
 	esquemaTrabajo: string;
 	sugerirDescuento: boolean;
 	condicionPagoId: number;
-	monedaId: number;
+	moneda: string;
 }
 
 export interface IRequestCreateNivelPrecio {
@@ -12,5 +12,5 @@ export interface IRequestCreateNivelPrecio {
 	esquemaTrabajo: string;
 	sugerirDescuento: boolean;
 	condicionPagoId: number;
-	monedaId: number;
+	moneda: string;
 }

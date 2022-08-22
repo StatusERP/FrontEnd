@@ -11,23 +11,34 @@
 	<mat-table [dataSource]="listNivelPrecio" matSort>
 		<ng-container matColumnDef="CodNivelPrecio">
 			<mat-header-cell *matHeaderCellDef mat-sort-header>Cod-Nivel-Precio</mat-header-cell>
-			<mat-cell *matCellDef="let element">{{ element.CodNivelPrecio }}</mat-cell>
+			<mat-cell *matCellDef="let element">{{ element.codNivelPrecio }}</mat-cell>
 		</ng-container>
 		<ng-container matColumnDef="EsquemaTrabajo">
 			<mat-header-cell *matHeaderCellDef mat-sort-header>esquema</mat-header-cell>
-			<mat-cell *matCellDef="let element">{{ element.EsquemaTrabajo }}</mat-cell>
+			<mat-cell *matCellDef="let element" [ngSwitch]="element.esquemaTrabajo">
+				<ng-container *ngSwitchCase="'K'"> NORMAL </ng-container>
+				<ng-container *ngSwitchCase="'M'"> MARGEN </ng-container>
+				<ng-container *ngSwitchCase="'N'"> MARKUP </ng-container>
+				<ng-container *ngSwitchCase="'X'"> MULTIPLICADOR </ng-container>
+			</mat-cell>
 		</ng-container>
-		<ng-container matColumnDef="MonedaId">
+		<ng-container matColumnDef="Moneda">
 			<mat-header-cell *matHeaderCellDef mat-sort-header>Moneda</mat-header-cell>
-			<mat-cell *matCellDef="let element">{{ element.MonedaId }}</mat-cell>
+			<mat-cell *matCellDef="let element" [ngSwitch]="element.moneda">
+				<ng-container *ngSwitchCase="'L'"> Local </ng-container>
+				<ng-container *ngSwitchCase="'D'"> Dólar </ng-container>
+			</mat-cell>
 		</ng-container>
 		<ng-container matColumnDef="CondicionPagoId">
 			<mat-header-cell *matHeaderCellDef mat-sort-header>Condicion Pago</mat-header-cell>
-			<mat-cell *matCellDef="let element">{{ element.CondicionPagoIdId }}</mat-cell>
+			<mat-cell *matCellDef="let element">{{ element.condicionPagoId }}</mat-cell>
 		</ng-container>
 		<ng-container matColumnDef="SugerirDescuento">
 			<mat-header-cell *matHeaderCellDef mat-sort-header>Sugerir Descuento</mat-header-cell>
-			<mat-cell *matCellDef="let element">{{ element.SugerirDescuento }}</mat-cell>
+
+			<mat-cell *matCellDef="let element">
+				<mat-checkbox type="checkbox" [(ngModel)]="element.sugerirDescuento"></mat-checkbox>
+			</mat-cell>
 		</ng-container>
 		<ng-container matColumnDef="actions">
 			<mat-header-cell *matHeaderCellDef></mat-header-cell>

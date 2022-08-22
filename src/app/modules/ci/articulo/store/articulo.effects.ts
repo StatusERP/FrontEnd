@@ -7,6 +7,7 @@ import { map, mergeMap, catchError } from 'rxjs/operators';
 export class articuloEffects {
 	articulo$ = createEffect(() => {
 		return this.actions$.pipe(
+			// eslint-disable-next-line ngrx/prefer-action-creator-in-of-type
 			ofType('[Articulo List] Load Articulo'),
 			mergeMap(() =>
 				this._articuloApiService.getArticulo(1, 1000).pipe(

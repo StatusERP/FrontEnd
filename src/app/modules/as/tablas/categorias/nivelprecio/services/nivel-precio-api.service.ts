@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { IResponse } from '@app/shared/api-models-base-interface';
 import { IResponseNivelPrecio, IRequestCreateNivelPrecio } from './nivel-precio-api-model-interface';
 
-const URL_NIVELPRECIO = environment.host + '/AS/NivelPrecio';
+const URL_NIVELPRECIO = environment.host + '/FA/NivelPrecio';
 @Injectable({
 	providedIn: 'root'
 })

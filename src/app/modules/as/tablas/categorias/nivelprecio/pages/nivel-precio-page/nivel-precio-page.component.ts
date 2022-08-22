@@ -1,8 +1,3 @@
-import { Iglobales_AS } from './../../../../../model/Globales_AS.interface';
-import { loadedGlobalesAS } from './../../../../../strore/as.actions';
-import { selectListGlobalesAS } from './../../../../../strore/as.selectors';
-import { AppState } from './../../../../../../../config/app.state';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AddNivelPrecioPageComponent } from './../add-nivel-precio-page/add-nivel-precio-page.component';
 import { MatPaginator } from '@angular/material/paginator';
@@ -25,19 +20,14 @@ export class NivelPrecioPageComponent implements OnInit, AfterViewInit {
 	constructor(
 		private _SnotifyService: SnotifyService,
 		private _dialog: MatDialog,
-		private _nivelPrecioApiService: NivelPrecioApiService,
-		// eslint-disable-next-line ngrx/no-typed-global-store
-		// eslint-disable-next-line ngrx/use-consistent-global-store-name
-		private _store: Store<AppState>
-	) {
-		this.globalesAS$ = this._store.select(selectListGlobalesAS);
-	}
+		private _nivelPrecioApiService: NivelPrecioApiService
+	) {}
 	listNivelPrecio = new MatTableDataSource<IResponseNivelPrecio>();
 	dataGlobalesAS: [] | undefined;
 	displayedColumns: string[] = [
 		'CodNivelPrecio',
 		'EsquemaTrabajo',
-		'MonedaId',
+		'Moneda',
 		'CondicionPagoId',
 		'SugerirDescuento',
 		'actions'
@@ -52,17 +42,13 @@ export class NivelPrecioPageComponent implements OnInit, AfterViewInit {
 		this.listNivelPrecio.sort = this.sort;
 	}
 	ngOnInit(): void {
-		this.globalesAS$.subscribe((values) => {
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			this.dataGlobalesAS = values;
-		});
 		this._loadNivelPrecio(1, 10000);
 	}
 
 	private _loadNivelPrecio(page: number, rows: number): void {
 		this._nivelPrecioApiService.getNivelPrecio(page, rows).subscribe({
 			next: (response) => {
-				//	console.log(response);
+				console.log(response.result);
 				this.listNivelPrecio.data = response.result;
 			},
 			error: () => {

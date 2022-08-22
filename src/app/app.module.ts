@@ -1,3 +1,4 @@
+import { condicionPagoEffects } from './modules/as/tablas/tipos/condcion-pago/store/condiconPago.effects';
 import { articuloEffects } from './modules/ci/articulo/store/articulo.effects';
 import { localizacionEffect } from './modules/as/tablas/otros/bodega/store/localizaciones/loc.effects';
 import { bodegaEffect } from './modules/as/tablas/otros/bodega/store/bodega.effects';
@@ -45,7 +46,14 @@ import { EffectsModule } from '@ngrx/effects';
 		SnotifyModule,
 		MatFormFieldModule,
 		StoreModule.forRoot(ROOT_REDUCERS),
-		EffectsModule.forRoot([globalesASEffects, globalesCiEffects, bodegaEffect, localizacionEffect, articuloEffects]),
+		EffectsModule.forRoot([
+			globalesASEffects,
+			globalesCiEffects,
+			bodegaEffect,
+			localizacionEffect,
+			articuloEffects,
+			condicionPagoEffects
+		]),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
 	],
 	providers: [

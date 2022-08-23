@@ -3,14 +3,7 @@
 	<form class="formulario grey-100" [formGroup]="formNivelPrecio">
 		<mat-form-field appearance="outline">
 			<mat-label>Nivel Precio</mat-label>
-			<input
-				type="text"
-				[(ngModel)]="inputValue"
-				(ngModelChange)="inputValue = $event.toUpperCase()"
-				formControlName="nivelPrecio"
-				matInput
-				placeholder="Nivel Precio"
-			/>
+			<input type="text" formControlName="nivelPrecio" matInput placeholder="Nivel Precio" />
 			<mat-error *ngIf="formNivelPrecio.get('nivelPrecio')!.hasError('required')">El Campo es requerido</mat-error>
 			<mat-error *ngIf="formNivelPrecio.get('nivelPrecio')!.hasError('maxLength')">El Correo no es valido</mat-error>
 		</mat-form-field>
@@ -32,7 +25,7 @@
 		</mat-form-field>
 		<mat-form-field appearance="outline">
 			<mat-label>Condición Pago</mat-label>
-			<mat-select formControlName="condPago">
+			<mat-select formControlName="condPago" style="color: brown" [disabled]="disableSelect.value">
 				<mat-option *ngFor="let condicionPago of condicionPago" [value]="condicionPago.id">
 					{{ condicionPago.codCondicionPago }}-{{ condicionPago.descripcion }}
 				</mat-option>

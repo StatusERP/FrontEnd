@@ -1,9 +1,10 @@
 export interface IResponseNivelPrecio {
-	Id: number;
+	id: number;
 	codNivelPrecio: string;
 	esquemaTrabajo: string;
 	sugerirDescuento: boolean;
 	condicionPagoId: number;
+	condicionPago: { id: number; codCondicionPago: string; descripcion: string };
 	moneda: string;
 }
 

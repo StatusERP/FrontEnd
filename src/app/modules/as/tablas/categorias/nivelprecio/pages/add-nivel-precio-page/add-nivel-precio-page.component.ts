@@ -60,8 +60,12 @@ export class AddNivelPrecioPageComponent implements OnInit {
 		if (this.ediData) {
 			this.actionBtn = 'Editar';
 			this.formNivelPrecio.controls['nivelPrecio'].setValue(this.ediData.codNivelPrecio);
+			this.formNivelPrecio.controls['nivelPrecio'].disable();
 			this.formNivelPrecio.controls['moneda'].setValue(this.ediData.moneda);
 			this.formNivelPrecio.controls['esquema'].setValue(this.ediData.esquemaTrabajo);
+			if (this.ediData.condicionPagoId) {
+				this.formNivelPrecio.controls['condPago'].setValue(this.ediData.condicionPago.codCondicionPago);
+			}
 		}
 	}
 	clickSave(): void {
@@ -77,11 +81,19 @@ export class AddNivelPrecioPageComponent implements OnInit {
 				sugerirDescuento: true
 			};
 			this._save(sendDatos);
+		} else {
+			const sendDatos: IRequestCreateNivelPrecio = {
+				codNivelprecio: this.nivelPrecioField.value as string,
+				moneda: this.monedaField.value as string,
+				esquemaTrabajo: this.esquemaField.value as string,
+				condicionPagoId: this.condPagoField.value as number,
+				sugerirDescuento: true
+			};
+			this._update(sendDatos);
 		}
 	}
 
 	private _save(datos: IRequestCreateNivelPrecio) {
-		console.log(datos);
 		this._nivelPrecioApiService.createNivelPrecio(datos).subscribe({
 			next: (response) => {
 				if (response.success) {
@@ -91,6 +103,18 @@ export class AddNivelPrecioPageComponent implements OnInit {
 				} else {
 					this._snotifyService.error(response.errors[0], { position: SnotifyPosition.rightTop });
 				}
+			}
+		});
+	}
+	private _update(datos: IRequestCreateNivelPrecio) {
+		this._nivelPrecioApiService.updateNivelprecio(this.ediData.id, datos).subscribe({
+			next: (response) => {
+				this.formNivelPrecio.reset();
+				this._snotifyService.info('El registro se actualizo con existo', { position: SnotifyPosition.rightTop });
+				this._dialogRef.close('update');
+			},
+			error: () => {
+				console.log('erro');
 			}
 		});
 	}

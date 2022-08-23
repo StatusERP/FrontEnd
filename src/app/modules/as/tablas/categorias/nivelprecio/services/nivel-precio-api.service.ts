@@ -11,10 +11,11 @@ const URL_NIVELPRECIO = environment.host + '/FA/NivelPrecio';
 })
 export class NivelPrecioApiService {
 	constructor(private _httpClient: HttpClient) {}
-	getNivelPrecio(page?: number, rows?: number): Observable<IResponse<IResponseNivelPrecio[]>> {
+	getNivelPrecio(): Observable<IResponse<IResponseNivelPrecio[]>> {
 		let url = URL_NIVELPRECIO;
 		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-		url = url + '?page=' + page + '&rows=' + rows;
+		// eslint-disable-next-line no-self-assign
+		url = url;
 		return this._httpClient.get<IResponse<IResponseNivelPrecio[]>>(url);
 	}
 	createNivelPrecio(nivelPrecio: IRequestCreateNivelPrecio): Observable<IResponse<number>> {
@@ -24,5 +25,10 @@ export class NivelPrecioApiService {
 		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
 		const url = URL_NIVELPRECIO + '/' + idNivelprecio;
 		return this._httpClient.delete<IResponse<number>>(url);
+	}
+	updateNivelprecio(id: number, datos: IRequestCreateNivelPrecio): Observable<IResponse<number>> {
+		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+		const url = URL_NIVELPRECIO + '/' + id;
+		return this._httpClient.put<IResponse<number>>(url, datos);
 	}
 }

@@ -42,13 +42,12 @@ export class NivelPrecioPageComponent implements OnInit, AfterViewInit {
 		this.listNivelPrecio.sort = this.sort;
 	}
 	ngOnInit(): void {
-		this._loadNivelPrecio(1, 10000);
+		this._loadNivelPrecio();
 	}
 
-	private _loadNivelPrecio(page: number, rows: number): void {
-		this._nivelPrecioApiService.getNivelPrecio(page, rows).subscribe({
+	private _loadNivelPrecio(): void {
+		this._nivelPrecioApiService.getNivelPrecio().subscribe({
 			next: (response) => {
-				console.log(response.result);
 				this.listNivelPrecio.data = response.result;
 			},
 			error: () => {
@@ -64,7 +63,7 @@ export class NivelPrecioPageComponent implements OnInit, AfterViewInit {
 			.afterClosed()
 			.subscribe((val) => {
 				if (val === 'save') {
-					this._loadNivelPrecio(1, 10000);
+					this._loadNivelPrecio();
 				}
 			});
 	}
@@ -84,7 +83,7 @@ export class NivelPrecioPageComponent implements OnInit, AfterViewInit {
 						this._nivelPrecioApiService.deleteNivelprecios(id).subscribe((response) => {
 							if (response && response.success) {
 								this._SnotifyService.info('El registro ha sido Eliminado');
-								this._loadNivelPrecio(1, 100000);
+								this._loadNivelPrecio();
 							}
 						});
 					}
@@ -105,8 +104,8 @@ export class NivelPrecioPageComponent implements OnInit, AfterViewInit {
 			})
 			.afterClosed()
 			.subscribe((val) => {
-				if (val === 'edit') {
-					this._loadNivelPrecio(1, 100000);
+				if (val === 'update') {
+					this._loadNivelPrecio();
 				}
 			});
 	}

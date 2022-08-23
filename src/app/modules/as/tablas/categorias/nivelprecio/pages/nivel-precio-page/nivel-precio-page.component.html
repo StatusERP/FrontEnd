@@ -31,7 +31,12 @@
 		</ng-container>
 		<ng-container matColumnDef="CondicionPagoId">
 			<mat-header-cell *matHeaderCellDef mat-sort-header>Condicion Pago</mat-header-cell>
-			<mat-cell *matCellDef="let element">{{ element.condicionPagoId }}</mat-cell>
+			<mat-cell *matCellDef="let element">
+				<ng-container *ngIf="element.condicionPagoId">
+					{{ element.condicionPago.codCondicionPago }}
+				</ng-container>
+				<ng-container *ngIf="!element.condicionPagoId"></ng-container>
+			</mat-cell>
 		</ng-container>
 		<ng-container matColumnDef="SugerirDescuento">
 			<mat-header-cell *matHeaderCellDef mat-sort-header>Sugerir Descuento</mat-header-cell>

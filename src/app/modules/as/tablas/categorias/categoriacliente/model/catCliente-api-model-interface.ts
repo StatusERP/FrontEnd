@@ -1,9 +1,8 @@
 export interface IResponseCatCliente {
-	codCategoriaCliente: string;
-	descripcion: string;
+	id: number;
+	descripcion: 'string';
 }
 
 export interface IRequestCreateCatCliente {
-	codCategoriaCliente: string;
 	descripcion: string;
 }

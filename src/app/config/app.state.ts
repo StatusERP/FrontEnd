@@ -1,3 +1,5 @@
+import { loteReducer } from './../modules/ci/lote/store/lote.reducer';
+import { ILoteState } from './../modules/ci/lote/store/lote.state';
 import { exsitenciaBodegaReducer } from './../modules/as/tablas/otros/bodega/store/existenciaBodega/existenciaBodega.reducer';
 import { IExistenciaBodegaState } from './../modules/as/tablas/otros/bodega/store/existenciaBodega/existenciaBodega.state';
 import { ICondicionPagoState } from './../modules/as/tablas/tipos/condcion-pago/store/condiconPago.state';
@@ -22,6 +24,7 @@ export interface AppState {
 	articulo: IArticuloCI_State;
 	condicionPago: ICondicionPagoState;
 	existenciaBodega: IExistenciaBodegaState;
+	lote: ILoteState;
 }
 
 export const ROOT_REDUCERS: ActionReducerMap<AppState> = {
@@ -31,5 +34,6 @@ export const ROOT_REDUCERS: ActionReducerMap<AppState> = {
 	localizacion: localizacionReducer,
 	articulo: articuloReducer,
 	condicionPago: CondicionPagoReducer,
-	existenciaBodega: exsitenciaBodegaReducer
+	existenciaBodega: exsitenciaBodegaReducer,
+	lote: loteReducer
 };

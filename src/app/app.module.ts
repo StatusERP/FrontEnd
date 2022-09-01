@@ -1,3 +1,4 @@
+import { loteEffects } from './modules/ci/lote/store/lote.effects';
 import { existenciaBodegaEffect } from './modules/as/tablas/otros/bodega/store/existenciaBodega/existenciaBodega.effects';
 import { condicionPagoEffects } from './modules/as/tablas/tipos/condcion-pago/store/condiconPago.effects';
 import { articuloEffects } from './modules/ci/articulo/store/articulo.effects';
@@ -56,7 +57,8 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 			localizacionEffect,
 			articuloEffects,
 			condicionPagoEffects,
-			existenciaBodegaEffect
+			existenciaBodegaEffect,
+			loteEffects
 		]),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
 	],

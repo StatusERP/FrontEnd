@@ -1,3 +1,4 @@
+import { existenciaBodegaEffect } from './modules/as/tablas/otros/bodega/store/existenciaBodega/existenciaBodega.effects';
 import { condicionPagoEffects } from './modules/as/tablas/tipos/condcion-pago/store/condiconPago.effects';
 import { articuloEffects } from './modules/ci/articulo/store/articulo.effects';
 import { localizacionEffect } from './modules/as/tablas/otros/bodega/store/localizaciones/loc.effects';
@@ -28,6 +29,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -45,6 +47,7 @@ import { EffectsModule } from '@ngrx/effects';
 		NgxUiLoaderModule,
 		SnotifyModule,
 		MatFormFieldModule,
+		CurrencyMaskModule,
 		StoreModule.forRoot(ROOT_REDUCERS),
 		EffectsModule.forRoot([
 			globalesASEffects,
@@ -52,7 +55,8 @@ import { EffectsModule } from '@ngrx/effects';
 			bodegaEffect,
 			localizacionEffect,
 			articuloEffects,
-			condicionPagoEffects
+			condicionPagoEffects,
+			existenciaBodegaEffect
 		]),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
 	],

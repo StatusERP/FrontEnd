@@ -203,13 +203,31 @@
 						<div class="cantidad__item1">
 							<mat-form-field appearance="outline">
 								<mat-label>Cantidad</mat-label>
-								<input type="text" formControlName="cantidad" appKzMaskCurrency matInput placeholder="Cantidad" />
+								<input type="text" formControlName="cantidad" matInput placeholder="Cantidad" appDecimal />
+								<mat-error *ngIf="formPaquete.get('cantidad')!.hasError('required')"
+									>La cantidad es requerido</mat-error
+								>
+								<mat-error *ngIf="formPaquete.get('cantidad')!.hasError('pattern')"
+									>El Formato no es correcto</mat-error
+								>
 							</mat-form-field>
 						</div>
 						<div class="cantidad__item2">
 							<mat-form-field appearance="outline">
 								<mat-label>Cant.Detalle</mat-label>
-								<input formControlName="cantidadDetalle" type="number" matInput placeholder="Cantidad Detalle" />
+								<input
+									formControlName="cantidadDetalle"
+									type="number"
+									matInput
+									placeholder="Cantidad Detalle"
+									appDecimal
+								/>
+								<mat-error *ngIf="formPaquete.get('cantidadDetalle')!.hasError('required')"
+									>La cantidad es requerido</mat-error
+								>
+								<mat-error *ngIf="formPaquete.get('cantidadDetalle')!.hasError('pattern')"
+									>El Formato no es correcto</mat-error
+								>
 							</mat-form-field>
 						</div>
 					</div>
@@ -266,9 +284,17 @@
 										<mat-label>Costo Fical Local</mat-label>
 
 										<input
-											value="number"
+											currencyMask
+											[options]="{
+												prefix: '$ ',
+												thousands: ',',
+												decimal: '.',
+												precision: '4',
+												suffix: '',
+												align: 'right',
+												allowNegative: true
+											}"
 											formControlName="costofiscallocal"
-											type="number"
 											matInput
 											placeholder="Fiscal Local"
 										/>

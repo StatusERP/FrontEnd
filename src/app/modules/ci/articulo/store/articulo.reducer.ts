@@ -11,7 +11,6 @@ export const articuloReducer = createReducer(
 	}),
 	// eslint-disable-next-line ngrx/on-function-explicit-return-type
 	on(loadedArticuloAccion, (state, { articulo }) => {
-		console.log('ARTICULOS', articulo);
 		return { ...state, loading: false, articulo };
 	})
 );

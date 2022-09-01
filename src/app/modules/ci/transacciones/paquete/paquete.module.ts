@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 import { PaqueteRoutingModule } from './paquete-routing.module';
 import { AngularMaterialModule } from '@app/angular-material-modulo';
@@ -23,6 +23,8 @@ import { TipoComponent } from './componentes/tipo/tipo.component';
 import { CtrocostoComponent } from './componentes/ctrocosto/ctrocosto.component';
 import { CtacontableComponent } from './componentes/ctacontable/ctacontable.component';
 import { AddLotePageComponent } from './pages/add-lote-page/add-lote-page.component';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { DecimalDirective } from '@app/shared/directivas/decimal.directive';
 
 @NgModule({
 	declarations: [
@@ -41,7 +43,8 @@ import { AddLotePageComponent } from './pages/add-lote-page/add-lote-page.compon
 		CtacontableComponent,
 		KzMaskDirective,
 		KzMaskCurrencyDirective,
-		AddLotePageComponent
+		AddLotePageComponent,
+		DecimalDirective
 	],
 	imports: [
 		CommonModule,
@@ -50,7 +53,9 @@ import { AddLotePageComponent } from './pages/add-lote-page/add-lote-page.compon
 		FormsModule,
 		MatTableModule,
 		MatIconModule,
-		ReactiveFormsModule
-	]
+		ReactiveFormsModule,
+		CurrencyMaskModule
+	],
+	providers: [CurrencyPipe]
 })
 export class PaqueteModule {}

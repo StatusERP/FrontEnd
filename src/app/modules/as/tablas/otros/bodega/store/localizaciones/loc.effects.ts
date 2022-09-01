@@ -8,6 +8,7 @@ import { EMPTY } from 'rxjs';
 export class localizacionEffect {
 	loadLocalizacion$ = createEffect(() => {
 		return this.actions$.pipe(
+			// eslint-disable-next-line ngrx/prefer-action-creator-in-of-type
 			ofType('[Localizacion List] Load Localizacion'),
 			mergeMap(() =>
 				this._bodegaApiService.getLocalizacionesAll().pipe(

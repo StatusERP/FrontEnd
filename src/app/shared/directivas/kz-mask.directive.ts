@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -17,7 +18,7 @@ export class KzMaskDirective implements ControlValueAccessor {
 	@Input('appKzMask') appKsMask!: string;
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	writeValue(obj: any): void {
-		this.onChange = obj;
+		console.log('demo');
 	}
 	registerOnChange(fn: any): void {
 		this.onChange = fn;
@@ -28,10 +29,13 @@ export class KzMaskDirective implements ControlValueAccessor {
 
 	@HostListener('keyup', ['$event'])
 	onKeyup($event: any) {
-		let valor = $event.target.value.replace(/\D/g, '');
-		const pad = this.appKsMask.replace(/\D/g, '').replace(/9/g, '-');
+		// eslint-disable-next-line no-var
+		var valor = $event.target.value.replace(/\D/g, '');
+		// eslint-disable-next-line no-var
+		var pad = this.appKsMask.replace(/\D/g, '').replace(/9/g, '_');
 		// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-		const valorMask = valor + pad.substring(0, pad.length - valor.length);
+		// eslint-disable-next-line no-var
+		var valorMask = valor + pad.substring(0, pad.length - valor.length);
 		//Retorna caso presion backspace
 		if ($event.keyCode === 8) {
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-call
@@ -51,7 +55,7 @@ export class KzMaskDirective implements ControlValueAccessor {
 			}
 		}
 		if (valor.indexOf('-') > -1) {
-			valor = valor.substr(0, valor.indexOf('-'));
+			valor = valor.substr(0, valor.indexOf('_'));
 		}
 		$event.target.value = valor;
 	}

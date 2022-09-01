@@ -1,3 +1,11 @@
+import {
+	loadedExistenciaBodega,
+	loadExistenciaBodega
+} from './../../../../../as/tablas/otros/bodega/store/existenciaBodega/existenciaBodega.actions';
+import { selectListExistenciaBodega } from './../../../../../as/tablas/otros/bodega/store/existenciaBodega/existenciaBodega.selectors';
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { CurrencyPipe } from '@angular/common';
 import { AddLotePageComponent } from './../../../../lote/add-lote-page/add-lote-page.component';
 import { ICrearDocumnetoInvDet } from './../../model/documentoInvDet-api-model-interface';
 import { SnotifyService, SnotifyPosition } from 'ng-snotify';
@@ -44,6 +52,7 @@ import {
 import { ConsecutivoApiService } from './../../../../administracion/consecutivos/service/consecutivo-api.service';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
 	selector: 'app-add-paqueteci-page',
@@ -62,6 +71,7 @@ export class AddPaqueteciPageComponent implements OnInit {
 		private _documentoInvDetApiService: DocumentoInvDetApiService,
 		private _DocumentoInvEncaApiService: DocumentoInvEncaApiService,
 		private _snotifyService: SnotifyService,
+		private _currencyPipe: CurrencyPipe,
 		// eslint-disable-next-line ngrx/no-typed-global-store
 		private store: Store<AppState>,
 		@Inject(MAT_DIALOG_DATA) public editData: any,
@@ -74,6 +84,7 @@ export class AddPaqueteciPageComponent implements OnInit {
 	loading$: Observable<boolean> = new Observable();
 	bodega$: Observable<any> = new Observable();
 	localizacion$: Observable<any> = new Observable();
+	existenciaBodega$: Observable<any> = new Observable();
 	datosBodega: IResponseBodega[] = [];
 	ngOnInit(): void {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -83,6 +94,7 @@ export class AddPaqueteciPageComponent implements OnInit {
 			this.store.dispatch(loadArticuloAccion());
 			this.store.dispatch(loadBodegaAccion());
 			this.store.dispatch(loadLocalizacionAccion());
+			this.store.dispatch(loadExistenciaBodega());
 			this._loadConsecutivo(1, 10000);
 			this.bodega$ = this.store.select(selectListBodega);
 			this.bodega$.subscribe((res) => {
@@ -101,8 +113,11 @@ export class AddPaqueteciPageComponent implements OnInit {
 	ajusteSubtipo: IResponseAjusteSubTipo[] = [];
 	ajusteSubSubTipo: IResponseAjusteSubSubTipo[] = [];
 	localizaciones: IResponseLocaizacionBodega[] = [];
+	localizacionesNew: IResponseLocaizacionBodega[] = [];
+
 	locDestino: IResponseLocaizacionBodega[] = [];
 	existenciaBodega: IResponseConsultarArticuloBodega[] = [];
+	existenciaBodegaNew: IResponseConsultarArticuloBodega[] = [];
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	ArrayDetalle: ICrearDocumnetoInvDet[] = [];
 	idBodega!: number;
@@ -115,7 +130,10 @@ export class AddPaqueteciPageComponent implements OnInit {
 	ajusteSelect: Number | undefined;
 	linea!: number;
 	idDocumentoEnca!: number;
+
 	private _loadFormulario(): void {
+		// eslint-disable-next-line no-useless-escape
+		const regexPattern = '^-?[0-9]\\d*(\\.\\d{1,3})?$';
 		this.formPaquete = this._formBuilder.group({
 			codConsecutivo: ['', Validators.required],
 			descripcion: [''],
@@ -131,8 +149,8 @@ export class AddPaqueteciPageComponent implements OnInit {
 			bodega: [null],
 			localizacion: [null],
 			articulo: ['', Validators.required],
-			cantidad: [0.0, Validators.required],
-			cantidadDetalle: [0.0, Validators.required],
+			cantidad: [0.0, [Validators.required, Validators.pattern(regexPattern)]],
+			cantidadDetalle: [0.0, [Validators.required, Validators.pattern(regexPattern)]],
 			subtipo: ['', Validators.required],
 			subsubtipo: ['', Validators.required],
 			lote: ['', Validators.required],
@@ -151,7 +169,6 @@ export class AddPaqueteciPageComponent implements OnInit {
 	}
 
 	selectTipo(id: number): void {
-		console.log(id);
 		/* consultamos ajusteSubtipo */
 		this._ajusteSubtipoApiService.getAjusteSubTipo().subscribe({
 			next: (response) => {
@@ -188,23 +205,27 @@ export class AddPaqueteciPageComponent implements OnInit {
 	selectBodegaDestino(id: number): void {
 		/* buscamos las localizaciones a esa bodega */
 		this.idBodega = id;
-		this._bodegaService.getLocalizacionesAll().subscribe({
-			next: (response) => {
-				const localizacionesNew = response.result;
-				const _localizaciones = localizacionesNew.filter((p) => p.bodegaId == id);
-				this.localizaciones = _localizaciones;
-			}
+		this.localizacion$ = this.store.select(selectListLocalizacion);
+		this.localizacion$.subscribe((res) => {
+			const localizacionesNew = res.result;
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+			const _localizaciones = localizacionesNew.filter((p: { bodegaId: number }) => p.bodegaId == id);
+			this.localizaciones = _localizaciones;
 		});
+
 		/* buscar los articulos que estan en existencia bodega */
-		this._existenciaBodegaApiService.getall(1, 10000).subscribe({
-			next: (response) => {
-				const existenciabodegaNew = response.result;
-				const _existencisBodega = existenciabodegaNew.filter((b) => b.bodegaId == id);
-				this.existenciaBodega = _existencisBodega;
-			}
+
+		this.existenciaBodega$ = this.store.select(selectListExistenciaBodega);
+		this.existenciaBodega$.subscribe((res) => {
+			const existenciaBodegaNew = res.result;
+			console.log('existencia bodega', res);
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+			const _existencisBodega = existenciaBodegaNew.filter((b: { bodegaId: number }) => b.bodegaId == id);
+			this.existenciaBodega = _existencisBodega;
 		});
 	}
 
+	//Bodega para traspaso
 	selectBodega(id: number): void {
 		/* buscamos las localizaciones a esa bodega */
 		this.idBodega = id;

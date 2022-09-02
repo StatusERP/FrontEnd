@@ -18,6 +18,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { TreeComponent } from './components/tree/tree.component';
 import { TreeCiComponent } from './components/tree/ci/tree-ci/tree-ci.component';
 import { SeparadorDirective } from './directivas/separador.directive';
+import { NumberOnlyDirective } from './directivas/number-only.directive';
 
 @NgModule({
 	declarations: [

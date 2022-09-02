@@ -1,7 +1,8 @@
-import {
-	loadedExistenciaBodega,
-	loadExistenciaBodega
-} from './../../../../../as/tablas/otros/bodega/store/existenciaBodega/existenciaBodega.actions';
+import { Iglobales_CI } from './../../../../model/globales_CI.interface';
+import { selectListGlobalesCI } from './../../../../store/ci.selectors';
+import { selectListLote } from './../../../../lote/store/lote.selectors';
+import { loadLoteAccion } from './../../../../lote/store/lote.actions';
+import { loadExistenciaBodega } from './../../../../../as/tablas/otros/bodega/store/existenciaBodega/existenciaBodega.actions';
 import { selectListExistenciaBodega } from './../../../../../as/tablas/otros/bodega/store/existenciaBodega/existenciaBodega.selectors';
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -22,11 +23,7 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dial
 import { ICrearDocumnetoInvEnca } from './../../model/documentoInvEnca-api-model-interface';
 import { IResponseExistenciaLote } from './../../../../lote/model/existenciaLote-interface';
 import { ExistenciaLoteApiService } from './../../../../lote/service/existenciaLote-api.service';
-import {
-	IResponseConsultarExistenciaBodega,
-	IResponseConsultarArticuloBodega
-} from './../../../../../as/tablas/otros/bodega/service/existenciaBodega-api-model-interface';
-import { IResponseArticulo } from '../../../../articulo/model/articulo-api-model-interface';
+import { IResponseConsultarArticuloBodega } from './../../../../../as/tablas/otros/bodega/service/existenciaBodega-api-model-interface';
 import { ExistenciaBodegaApiService } from './../../../../../as/tablas/otros/bodega/service/existenciaBodega-api.service';
 import { selectListLocalizacion } from './../../../../../as/tablas/otros/bodega/store/localizaciones/loc.selectors';
 import { IResponseAjusteSubSubTipo } from './../../../../administracion/transacciones-configurables/model/ajusteSubSubTipo-model-interface';
@@ -52,7 +49,6 @@ import {
 import { ConsecutivoApiService } from './../../../../administracion/consecutivos/service/consecutivo-api.service';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
-import { ThisReceiver } from '@angular/compiler';
 
 @Component({
 	selector: 'app-add-paqueteci-page',
@@ -85,7 +81,10 @@ export class AddPaqueteciPageComponent implements OnInit {
 	bodega$: Observable<any> = new Observable();
 	localizacion$: Observable<any> = new Observable();
 	existenciaBodega$: Observable<any> = new Observable();
+	lote$: Observable<any> = new Observable();
+	globalesCI$: Observable<any> = new Observable();
 	datosBodega: IResponseBodega[] = [];
+	globalesCI: Iglobales_CI[] = [];
 	ngOnInit(): void {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 
@@ -95,7 +94,14 @@ export class AddPaqueteciPageComponent implements OnInit {
 			this.store.dispatch(loadBodegaAccion());
 			this.store.dispatch(loadLocalizacionAccion());
 			this.store.dispatch(loadExistenciaBodega());
+			this.store.dispatch(loadLoteAccion());
 			this._loadConsecutivo(1, 10000);
+			//Leemos los parametros del modulo
+			this.globalesCI$ = this.store.select(selectListGlobalesCI);
+			this.globalesCI$.subscribe((res) => {
+				const { result } = res;
+				this.globalesCI = result;
+			});
 			this.bodega$ = this.store.select(selectListBodega);
 			this.bodega$.subscribe((res) => {
 				const { result } = res;
@@ -124,6 +130,7 @@ export class AddPaqueteciPageComponent implements OnInit {
 	documentoInv!: string;
 	codAjusteConfig!: string;
 	existenciaLote: IResponseExistenciaLote[] = [];
+	existenciaLoteNew: IResponseExistenciaLote[] = [];
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	seleccion: any;
 	// eslint-disable-next-line @typescript-eslint/ban-types
@@ -133,6 +140,7 @@ export class AddPaqueteciPageComponent implements OnInit {
 
 	private _loadFormulario(): void {
 		// eslint-disable-next-line no-useless-escape
+		console.log('globlaesCI', this.globalesCI);
 		const regexPattern = '^-?[0-9]\\d*(\\.\\d{1,3})?$';
 		this.formPaquete = this._formBuilder.group({
 			codConsecutivo: ['', Validators.required],
@@ -218,7 +226,6 @@ export class AddPaqueteciPageComponent implements OnInit {
 		this.existenciaBodega$ = this.store.select(selectListExistenciaBodega);
 		this.existenciaBodega$.subscribe((res) => {
 			const existenciaBodegaNew = res.result;
-			console.log('existencia bodega', res);
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 			const _existencisBodega = existenciaBodegaNew.filter((b: { bodegaId: number }) => b.bodegaId == id);
 			this.existenciaBodega = _existencisBodega;
@@ -247,18 +254,18 @@ export class AddPaqueteciPageComponent implements OnInit {
 	}
 	/* consultamos lote relacioando con articulo,bodega  y localizacion */
 	selectArticulo(id: number): void {
-		this._existenciaLoteApiService.getexitenicaLote().subscribe({
-			next: (response) => {
-				const existenciaLoteNew = response.result;
-				const _existenciaLoteNew = existenciaLoteNew.filter(
-					(f) =>
-						f.articulo.id == id &&
-						f.bodega.id == this.idBodega &&
-						f.localizacion.id == (this.locDestinoField.value as number)
-				);
+		this.lote$ = this.store.select(selectListLote);
+		this.lote$.subscribe((res) => {
+			const existenciaLoteNew = res.result;
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+			const _existenciaLoteNew = existenciaLoteNew.filter(
+				(f: { articulo: { id: number }; bodega: { id: number }; localizacion: { id: number } }) =>
+					f.articulo.id == id &&
+					f.bodega.id == this.idBodega &&
+					f.localizacion.id == (this.locDestinoField.value as number)
+			);
 
-				this.existenciaLote = _existenciaLoteNew;
-			}
+			this.existenciaLote = _existenciaLoteNew;
 		});
 	}
 	guardar(): void {

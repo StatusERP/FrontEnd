@@ -31,9 +31,11 @@ export class ParametrosModuloPageComponent implements OnInit {
 
 	private _loadFormGroup(): void {
 		this.globalesCIForm = this._formBuilder.group({
-			costoDecimal: ['', Validators.required],
-			existenciaDecimal: ['', Validators.required],
-			pesoDecimal: ['', Validators.required],
+			// eslint-disable-next-line no-useless-escape
+			costoDecimal: ['0', Validators.required],
+			existenciaDecimal: ['0', Validators.required],
+			pesoDecimal: ['0', Validators.required],
+
 			unidadPeso: ['', Validators.required],
 			unidadVolumen: ['', Validators.required],
 			usaLocalizaciones: ['', Validators.required],
@@ -59,12 +61,12 @@ export class ParametrosModuloPageComponent implements OnInit {
 			fechaInicioTrans: ['', Validators.required],
 			integracionCont: ['', Validators.required],
 			modAplicAsiento: ['', Validators.required],
-			nombreClasif1: ['', Validators.required],
-			nombreClasif2: ['', Validators.required],
-			nombreClasif3: ['', Validators.required],
-			nombreClasif4: ['', Validators.required],
-			nombreClasif5: ['', Validators.required],
-			nombreClasif6: ['', Validators.required],
+			nombreClasif1: ['', [Validators.required, Validators.maxLength(25)]],
+			nombreClasif2: ['', [Validators.required, Validators.maxLength(25)]],
+			nombreClasif3: ['', [Validators.required, Validators.maxLength(25)]],
+			nombreClasif4: ['', [Validators.required, Validators.maxLength(25)]],
+			nombreClasif5: ['', [Validators.required, Validators.maxLength(25)]],
+			nombreClasif6: ['', [Validators.required, Validators.maxLength(25)]],
 			paqueteId: ['', Validators.required],
 			tipoAsientoId: ['', Validators.required],
 			asistenciaAutomatica: ['', Validators.required],
@@ -85,7 +87,13 @@ export class ParametrosModuloPageComponent implements OnInit {
 			usaConsecutivos: ['', Validators.required],
 			usaUnidadDistr: ['', Validators.required],
 			usarAprobacion: ['', Validators.required],
-			usarNumeroSerie: ['', Validators.required]
+			usarNumeroSerie: ['', Validators.required],
+			cuarentena: ['', Validators.required],
+			disponible: ['', Validators.required],
+			reservada: ['', Validators.required],
+			vencida: ['', Validators.required],
+			email: ['', Validators.required],
+			tipo: ['', Validators.required]
 		});
 
 		if (this.globalesCI.length === 0) {

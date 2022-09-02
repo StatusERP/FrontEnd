@@ -311,7 +311,7 @@
 								<div class="costo__item2">
 									<mat-form-field appearance="outline">
 										<mat-label>Costo Fical Dólar</mat-label>
-										<input formControlName="costofiscaldolar" type="number" matInput placeholder="Fiscal Dólar" />
+										<input formControlName="costofiscaldolar" appKzMaskCurrency="{decimal:'.',milhar:','}" matInput />
 									</mat-form-field>
 								</div>
 							</div>

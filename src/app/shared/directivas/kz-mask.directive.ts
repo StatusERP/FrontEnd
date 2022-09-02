@@ -29,6 +29,7 @@ export class KzMaskDirective implements ControlValueAccessor {
 
 	@HostListener('keyup', ['$event'])
 	onKeyup($event: any) {
+		console.log('keyup', $event);
 		// eslint-disable-next-line no-var
 		var valor = $event.target.value.replace(/\D/g, '');
 		// eslint-disable-next-line no-var
@@ -54,13 +55,14 @@ export class KzMaskDirective implements ControlValueAccessor {
 				valor += valorMask[valorMaskPos++];
 			}
 		}
-		if (valor.indexOf('-') > -1) {
+		if (valor.indexOf('_') > -1) {
 			valor = valor.substr(0, valor.indexOf('_'));
 		}
 		$event.target.value = valor;
 	}
 	@HostListener('blur', ['$event'])
 	onBlur($event: any) {
+		console.log('Blur', $event);
 		if ($event.target.value.length === this.appKsMask.length) {
 			return;
 		}

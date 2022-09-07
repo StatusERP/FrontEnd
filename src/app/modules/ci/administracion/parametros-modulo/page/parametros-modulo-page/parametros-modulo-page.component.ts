@@ -37,16 +37,15 @@ export class ParametrosModuloPageComponent implements OnInit {
 			costoDecimal: ['0', Validators.required],
 			existenciaDecimal: ['0', Validators.required],
 			pesoDecimal: ['0', Validators.required],
-			costoFiscal: ['P', Validators.required],
-			costoCorporativo: ['U', Validators.required],
-			costoIngresoEspecial: ['P', Validators.required],
+			costoFiscal: ['P', Validators.required], //pendiente
+			costoCorporativo: ['U', Validators.required], //pendiente
+			costoIngresoEspecial: ['P', Validators.required], //pendiente
 			unidadPeso: ['', Validators.required],
 			unidadVolumen: ['', Validators.required],
-			cuarentena: ['', Validators.required],
-			disponible: ['', Validators.required],
-			reservada: ['', Validators.required],
-			vencida: ['', Validators.required],
-			modAplicAsiento: ['', Validators.required],
+			cuarentena: ['', Validators.required], //pendiente
+			disponible: ['', Validators.required], //pendiente
+			reservada: ['', Validators.required], //pendiente
+			vencida: ['', Validators.required], //pendiente
 			nombreClasif1: ['', [Validators.required, Validators.maxLength(25)]],
 			nombreClasif2: ['', [Validators.required, Validators.maxLength(25)]],
 			nombreClasif3: ['', [Validators.required, Validators.maxLength(25)]],
@@ -59,13 +58,13 @@ export class ParametrosModuloPageComponent implements OnInit {
 			usaLocalizaciones: [false, Validators.required],
 			usaCodigoBarras: [false, Validators.required],
 			usaAprobacion: [false, Validators.required],
-			relaArticuloProveedor: [false, Validators.required],
-			resExistenciaDocumento: [false, Validators.required],
-			kits: [false, Validators.required],
-			redondearUnidadDetalle: [false, Validators.required],
+			relaArticuloProveedor: [false, Validators.required], //pendiente
+			resExistenciaDocumento: [false, Validators.required], //pendiente
+			kits: [false, Validators.required], //pendiente
+			redondearUnidadDetalle: [false, Validators.required], //pendiente
 			transaccionesXUsuario: [false, Validators.required],
 			UsaConsecutivosPorDocumento: [false, Validators.required],
-			manejaEstandar: [false, Validators.required],
+			manejaEstandar: [false, Validators.required], //pendiente
 			usaNumeroSerie: [false, Validators.required],
 			lineaMaxTrans: ['', Validators.required],
 			//Fin
@@ -75,9 +74,9 @@ export class ParametrosModuloPageComponent implements OnInit {
 			descripcionPaquete: [''],
 			tipoAsientoId: ['', Validators.required],
 			descripcionAsiento: [''],
-			generacionAsientoVisual: [false, Validators.required],
-			generacionAsientoModificar: [false, Validators.required],
-			generacionAsientoAplicar: [false, Validators.required],
+			generacionAsientoVisual: [false, Validators.required], //pendiente
+			generacionAsientoModificar: [false, Validators.required], //pendiente
+			generacionAsientoAplicar: [false, Validators.required], //pendiente
 
 			//Fin
 			//Tab Ajuste
@@ -105,13 +104,8 @@ export class ParametrosModuloPageComponent implements OnInit {
 			modalidadUso: ['', Validators.required],
 			usaConsecutivos: ['', Validators.required],
 			usaUnidadDistr: ['', Validators.required],
-			prioridadBusqueda: ['', Validators.required],
+			prioridadBusqueda: ['', Validators.required]
 			//Fin
-
-			usarNumeroSerie: ['', Validators.required],
-
-			email: ['', Validators.required],
-			tipo: ['', Validators.required]
 		});
 
 		if (this.globalesCI.length === 0) {
@@ -135,10 +129,12 @@ export class ParametrosModuloPageComponent implements OnInit {
 	}
 
 	save(): void {
-		/*const datos: Iglobales_CI = {
-		 	CostosDec: this.costoDecimalField.value as number,
+		/* 		const datos: Iglobales_CI = {
+			//Tab Generales
+			CostosDec: this.costoDecimalField.value as number,
 			ExistenciasDec: this.existenciaDecimalField.value as number,
 			PesosDec: this.pesoDecimalField.value as number,
+			
 			UnidadPeso: this.unidadPesoField.value as string,
 			UnidadVolumen: this.unidadVolumenField.value as string,
 			UsaLocalizacion: this.usaLocalizacionesField.value as boolean,
@@ -146,6 +142,8 @@ export class ParametrosModuloPageComponent implements OnInit {
 		}; */
 		console.log('Guardar');
 	}
+
+	//Tab General
 	get costoDecimalField(): AbstractControl {
 		return this.globalesCIForm.get('costoDecimal')!;
 	}
@@ -155,15 +153,141 @@ export class ParametrosModuloPageComponent implements OnInit {
 	get pesoDecimalField(): AbstractControl {
 		return this.globalesCIForm.get('pesoDecimal')!;
 	}
+	get costoFiscalField(): AbstractControl {
+		return this.globalesCIForm.get('costoFiscal')!;
+	}
+	get costoCorporativoField(): AbstractControl {
+		return this.globalesCIForm.get('costoCorporativo')!;
+	}
+
+	get costoIngresoEspecialField(): AbstractControl {
+		return this.globalesCIForm.get('costoIngresoEspecial')!;
+	}
+
 	get unidadPesoField(): AbstractControl {
 		return this.globalesCIForm.get('unidadPeso')!;
 	}
 	get unidadVolumenField(): AbstractControl {
 		return this.globalesCIForm.get('unidadVolumen')!;
 	}
+
+	get cuarentenaField(): AbstractControl {
+		return this.globalesCIForm.get('cuarentena')!;
+	}
+
+	get disponibleField(): AbstractControl {
+		return this.globalesCIForm.get('disponible')!;
+	}
+
+	get reservadaField(): AbstractControl {
+		return this.globalesCIForm.get('reservada')!;
+	}
+	get vencidadField(): AbstractControl {
+		return this.globalesCIForm.get('vencidad')!;
+	}
+
+	get nombreClasif1Field(): AbstractControl {
+		return this.globalesCIForm.get('nombreClasif1')!;
+	}
+	get nombreClasif12Field(): AbstractControl {
+		return this.globalesCIForm.get('nombreClasif2')!;
+	}
+	get nombreClasif3Field(): AbstractControl {
+		return this.globalesCIForm.get('nombreClasif3')!;
+	}
+	get nombreClasif4Field(): AbstractControl {
+		return this.globalesCIForm.get('nombreClasif4')!;
+	}
+	get nombreClasif5Field(): AbstractControl {
+		return this.globalesCIForm.get('nombreClasif5')!;
+	}
+	get nombreClasif6Field(): AbstractControl {
+		return this.globalesCIForm.get('nombreClasif6')!;
+	}
+	//Fin Tab
+	//Tag Indicadores
+	get integracionContField(): AbstractControl {
+		return this.globalesCIForm.get('integracionCont')!;
+	}
 	get usaLocalizacionesField(): AbstractControl {
 		return this.globalesCIForm.get('usaLocalizaciones')!;
 	}
+	get usaCodigoBarrasField(): AbstractControl {
+		return this.globalesCIForm.get('usaCodigoBarras')!;
+	}
+	get usarAprobacionField(): AbstractControl {
+		return this.globalesCIForm.get('usarAprobacion')!;
+	}
+
+	get relaArticuloProveedorField(): AbstractControl {
+		return this.globalesCIForm.get('relaArticuloProveedor')!;
+	}
+
+	get resExistenciaDocumentoField(): AbstractControl {
+		return this.globalesCIForm.get('resExistenciaDocumento')!;
+	}
+
+	get kitsField(): AbstractControl {
+		return this.globalesCIForm.get('kits')!;
+	}
+
+	get redondearUnidadDetalleField(): AbstractControl {
+		return this.globalesCIForm.get('redondearUnidadDetalle')!;
+	}
+
+	get UsaConsecutivosPorDocumentoField(): AbstractControl {
+		return this.globalesCIForm.get('UsaConsecutivosPorDocumento')!;
+	}
+
+	get transacXusuarioField(): AbstractControl {
+		return this.globalesCIForm.get('transacXusuario')!;
+	}
+
+	get manejaEstandarField(): AbstractControl {
+		return this.globalesCIForm.get('manejaEstandar')!;
+	}
+
+	get usarNumeroSerieField(): AbstractControl {
+		return this.globalesCIForm.get('usarNumeroSerie')!;
+	}
+
+	get lienaMaxTransField(): AbstractControl {
+		return this.globalesCIForm.get('lienaMaxTrans')!;
+	}
+
+	get tipoAsientoIdField(): AbstractControl {
+		return this.globalesCIForm.get('tipoAsientoId')!;
+	}
+
+	get paqueteIdField(): AbstractControl {
+		return this.globalesCIForm.get('paqueteId')!;
+	}
+
+	get generacionAsientoVisualField(): AbstractControl {
+		return this.globalesCIForm.get('generacionAsientoVisual')!;
+	}
+	get generacionAsientoModificarField(): AbstractControl {
+		return this.globalesCIForm.get('generacionAsientoModificar')!;
+	}
+	get generacionAsientoAplicarField(): AbstractControl {
+		return this.globalesCIForm.get('generacionAsientoAplicar')!;
+	}
+	//Fin
+
+	//Tab Ajustes
+
+	get asntAjuVentField(): AbstractControl {
+		return this.globalesCIForm.get('asntAjuVent')!;
+	}
+
+	get astnAjuFisicoField(): AbstractControl {
+		return this.globalesCIForm.get('astnAjuFisico')!;
+	}
+
+	get asntAjuConsumoField(): AbstractControl {
+		return this.globalesCIForm.get('asntAjuConsumo')!;
+	}
+
 	get AjustarConteoField(): AbstractControl {
 		return this.globalesCIForm.get('AjustarConteo')!;
 	}
@@ -173,16 +297,11 @@ export class ParametrosModuloPageComponent implements OnInit {
 	get asntAjuComprasField(): AbstractControl {
 		return this.globalesCIForm.get('asntAjuCompras')!;
 	}
-	get asntAjuConsumoField(): AbstractControl {
-		return this.globalesCIForm.get('asntAjuConsumo')!;
-	}
 
 	get asntAjuCostoField(): AbstractControl {
 		return this.globalesCIForm.get('asntAjuCosto')!;
 	}
-	get astnAjuFisicoField(): AbstractControl {
-		return this.globalesCIForm.get('astnAjuFisico')!;
-	}
+
 	get asntAjuMiscelanField(): AbstractControl {
 		return this.globalesCIForm.get('asntAjuMiscelan')!;
 	}
@@ -192,9 +311,7 @@ export class ParametrosModuloPageComponent implements OnInit {
 	get asntAjuVencimField(): AbstractControl {
 		return this.globalesCIForm.get('asntAjuVencim')!;
 	}
-	get asntAjuVentField(): AbstractControl {
-		return this.globalesCIForm.get('asntAjuVent')!;
-	}
+
 	get ctrEnTransaccionField(): AbstractControl {
 		return this.globalesCIForm.get('ctrEnTransaccion')!;
 	}
@@ -211,36 +328,11 @@ export class ParametrosModuloPageComponent implements OnInit {
 	get fechaInicioTrans(): AbstractControl {
 		return this.globalesCIForm.get('fechaInicioTrans')!;
 	}
-	get integracionContField(): AbstractControl {
-		return this.globalesCIForm.get('integracionCont')!;
-	}
+
 	get modAplicAsientoField(): AbstractControl {
 		return this.globalesCIForm.get('modAplicAsiento')!;
 	}
-	get nombreClasif1Field(): AbstractControl {
-		return this.globalesCIForm.get('nombreClasif1')!;
-	}
-	get nombreClasif12Field(): AbstractControl {
-		return this.globalesCIForm.get('nombreClasif2')!;
-	}
-	get nombreClasif3Field(): AbstractControl {
-		return this.globalesCIForm.get('nombreClasif1')!;
-	}
-	get nombreClasif4Field(): AbstractControl {
-		return this.globalesCIForm.get('nombreClasif4')!;
-	}
-	get nombreClasif5Field(): AbstractControl {
-		return this.globalesCIForm.get('nombreClasif5')!;
-	}
-	get nombreClasif6Field(): AbstractControl {
-		return this.globalesCIForm.get('nombreClasif6')!;
-	}
-	get paqueteIdField(): AbstractControl {
-		return this.globalesCIForm.get('paqueteId')!;
-	}
-	get tipoAsientoIdField(): AbstractControl {
-		return this.globalesCIForm.get('tipoAsientoId')!;
-	}
+
 	get asistenciaAutomaticaField(): AbstractControl {
 		return this.globalesCIForm.get('asistenciaAutomatica')!;
 	}
@@ -254,25 +346,18 @@ export class ParametrosModuloPageComponent implements OnInit {
 	get EAN18ReglaLocalField(): AbstractControl {
 		return this.globalesCIForm.get('EAN18ReglaLocal')!;
 	}
-	get lienaMaxTransField(): AbstractControl {
-		return this.globalesCIForm.get('lienaMaxTrans')!;
-	}
+
 	get modalidadUsoField(): AbstractControl {
 		return this.globalesCIForm.get('modalidadUso')!;
 	}
 	get prioridadBusquedaField(): AbstractControl {
 		return this.globalesCIForm.get('prioridadBusqueda')!;
 	}
-	get transacXusuarioField(): AbstractControl {
-		return this.globalesCIForm.get('transacXusuario')!;
-	}
 
 	get UCC12ReglaLocalField(): AbstractControl {
 		return this.globalesCIForm.get('UCC12ReglaLocal')!;
 	}
-	get usaCodigoBarrasField(): AbstractControl {
-		return this.globalesCIForm.get('usaCodigoBarras')!;
-	}
+
 	get usaCodigoEAN13Field(): AbstractControl {
 		return this.globalesCIForm.get('usaCodigoEAN13')!;
 	}
@@ -293,11 +378,5 @@ export class ParametrosModuloPageComponent implements OnInit {
 	}
 	get usaUnidadDistrField(): AbstractControl {
 		return this.globalesCIForm.get('usaUnidadDistr')!;
-	}
-	get usarAprobacionField(): AbstractControl {
-		return this.globalesCIForm.get('usarAprobacion')!;
-	}
-	get usarNumeroSerieField(): AbstractControl {
-		return this.globalesCIForm.get('usarNumeroSerie')!;
 	}
 }

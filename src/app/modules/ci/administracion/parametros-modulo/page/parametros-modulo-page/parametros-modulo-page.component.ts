@@ -1,3 +1,4 @@
+import { Iglobales_CI } from './../../../../model/globales_CI.interface';
 import { ICreateGlobalesCI } from './../../service/parametros-ci-api-model-interface';
 import { ParametrosCIApiService } from './../../service/parametros-ci-api.service';
 import { SnotifyService } from 'ng-snotify';
@@ -32,34 +33,19 @@ export class ParametrosModuloPageComponent implements OnInit {
 	private _loadFormGroup(): void {
 		this.globalesCIForm = this._formBuilder.group({
 			// eslint-disable-next-line no-useless-escape
+			//Tab Generales
 			costoDecimal: ['0', Validators.required],
 			existenciaDecimal: ['0', Validators.required],
 			pesoDecimal: ['0', Validators.required],
-
+			costoFiscal: ['P', Validators.required],
+			costoCorporativo: ['U', Validators.required],
+			costoIngresoEspecial: ['P', Validators.required],
 			unidadPeso: ['', Validators.required],
 			unidadVolumen: ['', Validators.required],
-			usaLocalizaciones: ['', Validators.required],
-			AjustarConteo: ['', Validators.required],
-			maxAuditoria: ['', Validators.required],
-			isDeleted: ['', Validators.required],
-			createBy: ['', Validators.required],
-			createDate: ['', Validators.required],
-			updateBy: ['', Validators.required],
-			updateDate: ['', Validators.required],
-			asntAjuCompras: ['', Validators.required],
-			asntAjuConsumo: ['', Validators.required],
-			asntAjuCosto: ['', Validators.required],
-			astnAjuFisico: ['', Validators.required],
-			asntAjuMiscelan: ['', Validators.required],
-			asntAjuProduc: ['', Validators.required],
-			asntAjuVencim: ['', Validators.required],
-			asntAjuVent: ['', Validators.required],
-			ctrEnTransaccion: ['', Validators.required],
-			existEnTotales: ['', Validators.required],
-			fchUltProcApro: ['', Validators.required],
-			fchUltProcVcto: ['', Validators.required],
-			fechaInicioTrans: ['', Validators.required],
-			integracionCont: ['', Validators.required],
+			cuarentena: ['', Validators.required],
+			disponible: ['', Validators.required],
+			reservada: ['', Validators.required],
+			vencida: ['', Validators.required],
 			modAplicAsiento: ['', Validators.required],
 			nombreClasif1: ['', [Validators.required, Validators.maxLength(25)]],
 			nombreClasif2: ['', [Validators.required, Validators.maxLength(25)]],
@@ -67,31 +53,63 @@ export class ParametrosModuloPageComponent implements OnInit {
 			nombreClasif4: ['', [Validators.required, Validators.maxLength(25)]],
 			nombreClasif5: ['', [Validators.required, Validators.maxLength(25)]],
 			nombreClasif6: ['', [Validators.required, Validators.maxLength(25)]],
+			//Fin
+			//Tab Indicadores
+			integracionCont: [false, Validators.required],
+			usaLocalizaciones: [false, Validators.required],
+			usaCodigoBarras: [false, Validators.required],
+			usaAprobacion: [false, Validators.required],
+			relaArticuloProveedor: [false, Validators.required],
+			resExistenciaDocumento: [false, Validators.required],
+			kits: [false, Validators.required],
+			redondearUnidadDetalle: [false, Validators.required],
+			transaccionesXUsuario: [false, Validators.required],
+			UsaConsecutivosPorDocumento: [false, Validators.required],
+			manejaEstandar: [false, Validators.required],
+			usaNumeroSerie: [false, Validators.required],
+			lineaMaxTrans: ['', Validators.required],
+			//Fin
+
+			//Tab Contable
 			paqueteId: ['', Validators.required],
+			descripcionPaquete: [''],
 			tipoAsientoId: ['', Validators.required],
-			asistenciaAutomatica: ['', Validators.required],
-			cntrlSeriesEntr: ['', Validators.required],
+			descripcionAsiento: [''],
+			generacionAsientoVisual: [false, Validators.required],
+			generacionAsientoModificar: [false, Validators.required],
+			generacionAsientoAplicar: [false, Validators.required],
+
+			//Fin
+			//Tab Ajuste
+			asntAjuCompras: [false, Validators.required],
+			asntAjuConsumo: [false, Validators.required],
+			asntAjuCosto: [false, Validators.required],
+			asntAjuFisico: [false, Validators.required],
+			asntAjuMiscelan: [false, Validators.required],
+			asntAjuProduc: [false, Validators.required],
+			asntAjuVencim: [false, Validators.required],
+			asntAjuVent: [false, Validators.required],
+			ctrEnTransaccion: [false, Validators.required],
+			//Fin
+			//Tab Codigo Barras
+			unidadesDeDistribucion: [false, Validators.required],
+			asistenciaAutomatica: [false, Validators.required],
+			usaCodigoEAN13: [false, Validators.required],
 			EAN13ReglaLocal: ['', Validators.required],
-			EAN18ReglaLocal: ['', Validators.required],
-			lienaMaxTrans: ['', Validators.required],
-			modalidadUso: ['', Validators.required],
-			prioridadBusqueda: ['', Validators.required],
-			transacXusuario: ['', Validators.required],
-			UCC12ReglaLocal: ['', Validators.required],
-			usaCodigoBarras: ['', Validators.required],
-			usaCodigoEAN13: ['', Validators.required],
-			usaCodigoEAN8: ['', Validators.required],
-			usaCodigoGeneric: ['', Validators.required],
+			usaCodigoEAN8: [false, Validators.required],
 			usaCodigoUCC12: ['', Validators.required],
+			UCC12ReglaLocal: ['', Validators.required],
 			usaCodigoUCC8: ['', Validators.required],
+			EAN18ReglaLocal: ['', Validators.required],
+			usaCodigoGeneric: ['', Validators.required],
+			modalidadUso: ['', Validators.required],
 			usaConsecutivos: ['', Validators.required],
 			usaUnidadDistr: ['', Validators.required],
-			usarAprobacion: ['', Validators.required],
+			prioridadBusqueda: ['', Validators.required],
+			//Fin
+
 			usarNumeroSerie: ['', Validators.required],
-			cuarentena: ['', Validators.required],
-			disponible: ['', Validators.required],
-			reservada: ['', Validators.required],
-			vencida: ['', Validators.required],
+
 			email: ['', Validators.required],
 			tipo: ['', Validators.required]
 		});
@@ -116,6 +134,18 @@ export class ParametrosModuloPageComponent implements OnInit {
 		});
 	}
 
+	save(): void {
+		/*const datos: Iglobales_CI = {
+		 	CostosDec: this.costoDecimalField.value as number,
+			ExistenciasDec: this.existenciaDecimalField.value as number,
+			PesosDec: this.pesoDecimalField.value as number,
+			UnidadPeso: this.unidadPesoField.value as string,
+			UnidadVolumen: this.unidadVolumenField.value as string,
+			UsaLocalizacion: this.usaLocalizacionesField.value as boolean,
+			AjustarConteo: this.AjustarConteoField.value as boolean
+		}; */
+		console.log('Guardar');
+	}
 	get costoDecimalField(): AbstractControl {
 		return this.globalesCIForm.get('costoDecimal')!;
 	}

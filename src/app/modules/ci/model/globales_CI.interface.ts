@@ -6,7 +6,6 @@ export interface Iglobales_CI {
 	UnidadVolumen: string;
 	UsaLocalizacion: boolean;
 	AjustarConteo: boolean;
-	MaxAuditoria: number;
 	AsntAjuCompra: boolean;
 	AsntAjuConsumo: boolean;
 	AsntAjuCosto: boolean;
